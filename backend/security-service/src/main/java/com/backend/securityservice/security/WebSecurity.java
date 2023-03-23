@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -27,7 +28,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Slf4j
 public class WebSecurity {
 
@@ -45,12 +46,10 @@ public class WebSecurity {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                .requestMatchers("api/auth/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
+                .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/api/auth/*").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf().disable()
                 .cors().disable()
                 .httpBasic().disable()
