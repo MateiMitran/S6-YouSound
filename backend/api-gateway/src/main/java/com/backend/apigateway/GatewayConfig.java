@@ -16,6 +16,9 @@ public class GatewayConfig {
                 .route(r -> r.path("/songs/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://song-service"))
+                .route(r -> r.path("/auth/**")
+                        .filters(f -> f.filter(filterFunction()))
+                        .uri("lb://security-service"))
                 .build();
 
     }
