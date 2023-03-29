@@ -14,7 +14,6 @@ import java.util.Collections;
 
 @Document
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
     @Id
@@ -25,6 +24,13 @@ public class User implements UserDetails {
 
     @NonNull
     private String password;
+
+    private String type;
+
+    public User (String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,5 +69,13 @@ public class User implements UserDetails {
 
     public String getId() {
         return this.id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

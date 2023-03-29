@@ -26,7 +26,7 @@ public class SongController {
         return ResponseEntity.ok(songService.createSong(song));
     }
 
-    @PostMapping
+    @GetMapping
     public ResponseEntity<List<Song>> getAllSongs() {
         return ResponseEntity.ok(songService.getAllSongs());
     }
