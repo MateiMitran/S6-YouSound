@@ -8,11 +8,13 @@ import java.util.Objects;
 
 @Data
 @Document
-public class Listener {
+public class Listener extends User {
 
     private String test;
 
-    public Listener(String test) {
+
+    public Listener(String username, String password, String test) {
+        super(username, password);
         this.test = test;
     }
 

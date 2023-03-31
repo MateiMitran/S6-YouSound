@@ -1,6 +1,6 @@
-package com.backend.songservice.Repositories;
+package com.backend.musicservice.Repositories;
 
-import com.backend.songservice.Entities.Song;
+import com.backend.musicservice.Entities.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

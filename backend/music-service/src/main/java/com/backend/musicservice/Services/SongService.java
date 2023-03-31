@@ -1,7 +1,7 @@
-package com.backend.songservice.Services;
+package com.backend.musicservice.Services;
 
-import com.backend.songservice.Entities.Song;
-import com.backend.songservice.Repositories.SongRepository;
+import com.backend.musicservice.Entities.Song;
+import com.backend.musicservice.Repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;

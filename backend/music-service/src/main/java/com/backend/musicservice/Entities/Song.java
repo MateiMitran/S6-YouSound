@@ -1,4 +1,4 @@
-package com.backend.songservice.Entities;
+package com.backend.musicservice.Entities;
 
 import jakarta.persistence.*;
 
@@ -22,7 +22,7 @@ public class Song {
     private String genre;
     @Column(name="album_id")
     private String album_id;
-    @Column(name="artist_id")
+    @Column(name="artist_id", nullable = false)
     private String artist_id;
     @Column(name="released_on")
     private Date released_on;

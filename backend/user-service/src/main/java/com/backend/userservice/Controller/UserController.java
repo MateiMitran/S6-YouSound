@@ -1,7 +1,7 @@
 package com.backend.userservice.Controller;
 
+import com.backend.userservice.Entities.User;
 import com.backend.userservice.Services.UserService;
-import com.backend.securityservice.document.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

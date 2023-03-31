@@ -8,15 +8,17 @@ import java.util.Objects;
 
 @Data
 @Document
-public class Artist {
+public class Artist extends User {
 
     private String description;
 
     private int monthly_listeners;
 
-    public Artist(String description, int monthly_listeners) {
+
+    public Artist(String username, String password, String description, int monthly_listeners) {
+        super(username, password);
         this.description = description;
-        this.monthly_listeners = 0;
+        this.monthly_listeners = monthly_listeners;
     }
 
     public Artist() {

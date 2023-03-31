@@ -1,13 +1,12 @@
-package com.backend.songservice.Controllers;
+package com.backend.musicservice.Controllers;
 
-import com.backend.songservice.Entities.Song;
-import com.backend.songservice.Services.SongService;
+import com.backend.musicservice.Entities.Song;
+import com.backend.musicservice.Services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/songs")

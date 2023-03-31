@@ -15,13 +15,22 @@ public class GatewayConfig {
         return builder.routes()
                 .route(r -> r.path("/songs/**")
                         .filters(f -> f.filter(filterFunction()))
-                        .uri("lb://song-service"))
+                        .uri("lb://music-service"))
                 .route(r -> r.path("/auth/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://security-service"))
                 .route(r -> r.path("/users/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://user-service"))
+                .route(r -> r.path("/communities/**")
+                        .filters(f -> f.filter(filterFunction()))
+                        .uri("lb://user-service"))
+                .route(r -> r.path("/playlists/**")
+                        .filters(f -> f.filter(filterFunction()))
+                        .uri("lb://music-service"))
+                .route(r -> r.path("/albums/**")
+                        .filters(f -> f.filter(filterFunction()))
+                        .uri("lb://music-service"))
                 .build();
 
     }
