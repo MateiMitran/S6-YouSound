@@ -1,7 +1,5 @@
 package com.backend.securityservice.security;
 
-//import com.example.video3.document.User;
-//import com.example.video3.dto.TokenDTO;
 import com.backend.securityservice.document.User;
 import com.backend.securityservice.dto.TokenDTO;
 import org.springframework.beans.factory.annotation.Autowired;
