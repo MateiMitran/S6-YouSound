@@ -31,6 +31,9 @@ public class GatewayConfig {
                 .route(r -> r.path("/albums/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://music-service"))
+                .route(r -> r.path("/messages/**")
+                        .filters(f -> f.filter(filterFunction()))
+                        .uri("lb://message-service"))
                 .build();
 
     }

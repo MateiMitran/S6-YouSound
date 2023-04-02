@@ -15,13 +15,13 @@ public class Song {
 
     @Column(name="name", nullable = false)
     private String name;
-    @Column(name="picture", nullable = false)
+    @Column(name="picture")
     private String picture;
 
     @Column(name="genre", nullable = false)
     private String genre;
     @Column(name="album_id")
-    private String album_id;
+    private Long album_id;
     @Column(name="artist_id", nullable = false)
     private String artist_id;
     @Column(name="released_on")
@@ -41,7 +41,7 @@ public class Song {
         this.genre = genre;
     }
 
-    public Song(Long id, String name, String picture, String genre, String album_id, String artist_id, Date released_on, String duration) {
+    public Song(Long id, String name, String picture, String genre, Long album_id, String artist_id, Date released_on, String duration) {
         this.id = id;
         this.name = name;
         this.picture = picture;
@@ -85,11 +85,11 @@ public class Song {
         this.genre = genre;
     }
 
-    public String getAlbum_id() {
+    public Long getAlbum_id() {
         return album_id;
     }
 
-    public void setAlbum_id(String album_id) {
+    public void setAlbum_id(Long album_id) {
         this.album_id = album_id;
     }
 
