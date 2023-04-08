@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  music:
+    image: yousound/music-service:0.0.1
+    ports:
+      - "8081:8081"
+    networks:
+      - music-network
+    depends_on:
+      - discovery-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  user:
+    image: yousound/user-service:0.0.1
+    ports:
+      - "8083:8083"
+    networks:
+      - music-network
+    depends_on:
+      - discovery-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  api-gateway:
+    image: yousound/api-gateway:0.0.1
+    ports:
+      - "8080:8080"
+    networks:
+      - music-network
+    depends_on:
+      - discovery-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+
+  discovery-server:
+    image: yousound/discovery-server:0.0.1
+    ports:
+      - "8761:8761"
+    networks:
+      - music-network
+
+  zipkin-server:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+    networks:
+      - music-network
+
+networks:
+  music-network:

@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+group = 'com.backend'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "yousound-unique-key-test"
+        property "sonar.qualitygate.wait", true
+        property "sonar.login",  "sqp_9d2e3547a485b6670947598cb6e566e89d5b6c0e"
+        property "sonar.projectName", "yousound-unique"
+        property "sonar.organization", "default"
+        property "sonar.projectVersion", 1.0
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.language", "java"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.binaries", "build/classes"
+        property "sonar.sources", "src/main/"
+
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.8'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
+   // implementation 'io.github.resilience4j:resilience4j-all'
+   // implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+   // implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

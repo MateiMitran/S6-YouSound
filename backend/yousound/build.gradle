@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id "org.sonarqube" version "3.5.0.2730"
+}
+
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.sonarqube'
+
+    group 'com.backend'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "yousound-unique-key-test"
+            property "sonar.qualitygate.wait", true
+            property "sonar.login",  "sqp_9d2e3547a485b6670947598cb6e566e89d5b6c0e"
+            property "sonar.projectName", "yousound-unique"
+            property "sonar.organization", "default"
+            property "sonar.projectVersion", 1.0
+            property "sonar.host.url", "http://localhost:9000"
+            property "sonar.language", "java"
+            property "sonar.sourceEncoding", "UTF-8"
+            property "sonar.binaries", "build/classes"
+            property "sonar.sources", "src/main/"
+
+        }
+    }
+
+}
+
+test {
+    useJUnitPlatform()
+}
