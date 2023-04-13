@@ -16,7 +16,6 @@ public class MessageController {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-
     @PostMapping
     public void publish(@RequestBody MessageRequest request) {
         kafkaTemplate.send("yousound", request.message());

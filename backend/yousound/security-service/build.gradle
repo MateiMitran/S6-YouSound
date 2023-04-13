@@ -34,11 +34,12 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
     implementation "org.springframework.boot:spring-boot-starter-data-mongodb"
-    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    implementation 'org.keycloak:keycloak-spring-boot-starter:15.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security:3.0.5'
 
 }
 
