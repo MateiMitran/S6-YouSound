@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaListeners {
 
-
     Logger logger = LoggerFactory.getLogger(KafkaListeners.class);
 
     @KafkaListener(topics="yousound",groupId="groupId")
     void listener(String data) {
         logger.info("Message received " + data);
+
     }
 
 }

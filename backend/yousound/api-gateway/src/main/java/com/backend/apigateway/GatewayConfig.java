@@ -7,13 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 
-
 @Configuration
 public class GatewayConfig {
 
 
     private static final String MICROSERVICE = "lb://music-service";
-
 
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {

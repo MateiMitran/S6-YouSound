@@ -6,6 +6,3 @@ include 'message-service'
 include 'music-service'
 include 'user-service'
 include 'security-service'
-include 'limits-service'
-include 'spring-cloud-config-server'
-

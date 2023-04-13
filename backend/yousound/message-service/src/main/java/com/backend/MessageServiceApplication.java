@@ -16,8 +16,6 @@ public class MessageServiceApplication {
     CommandLineRunner commandLineRunner(KafkaTemplate<String, String> kafkaTemplate) {
         return args ->
             kafkaTemplate.send("yousound", "hello kafka");
-
     }
-
 
 }

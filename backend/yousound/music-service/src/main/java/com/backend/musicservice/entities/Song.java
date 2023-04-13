@@ -2,6 +2,7 @@ package com.backend.musicservice.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -25,11 +26,11 @@ public class Song {
     @Column(name="artist_id", nullable = false)
     private String artist_id;
     @Column(name="released_on")
-    private Date released_on;
+    private LocalDateTime released_on;
     @Column(name="plays")
     private int plays;
     @Column(name="duration")
-    private int duration;
+    private String duration;
 
     public Song() {
 
@@ -41,7 +42,7 @@ public class Song {
         this.genre = genre;
     }
 
-    public Song(Long id, String name, String picture, String genre, Long album_id, String artist_id, Date released_on, int duration) {
+    public Song(Long id, String name, String picture, String genre, Long album_id, String artist_id, LocalDateTime released_on, String duration) {
         this.id = id;
         this.name = name;
         this.picture = picture;
@@ -101,11 +102,12 @@ public class Song {
         this.artist_id = artist_id;
     }
 
-    public Date getReleased_on() {
+
+    public LocalDateTime getReleased_on() {
         return released_on;
     }
 
-    public void setReleased_on(Date released_on) {
+    public void setReleased_on(LocalDateTime released_on) {
         this.released_on = released_on;
     }
 
@@ -117,11 +119,11 @@ public class Song {
         this.plays = plays;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

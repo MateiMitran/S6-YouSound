@@ -42,6 +42,10 @@ public class Playlist {
         this.created_at = LocalDateTime.now();
     }
 
+    public Playlist() {
+
+    }
+
     public Long getId() {
         return id;
     }
