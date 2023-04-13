@@ -1,8 +1,8 @@
-package com.backend.userservice.Services;
+package com.backend.userservice.services;
 
 
-import com.backend.userservice.Entities.Community;
-import com.backend.userservice.Repositories.CommunityRepository;
+import com.backend.userservice.entities.Community;
+import com.backend.userservice.repositories.CommunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,25 +12,35 @@ import java.util.Optional;
 @Service
 public class CommunityService {
 
-    @Autowired
-    CommunityRepository communityRepository;
-
-    public Community findCommunityById(String id) {
-        return getCommunityFromId(id);
-    }
+    private CommunityRepository communityRepository;
 
     public String getArtistIdOfCommunity(String id) {
-        return getCommunityFromId(id).getArtist_id();
+
+        Community c = getCommunityFromId(id);
+
+        if (c==null) {
+            return null;
+        }
+
+        return c.getArtist_id();
+
+
     }
 
 
 
     public boolean checkIfUserIsInCommunity(String communityId, String userId) {
-        return getCommunityFromId(communityId).getUser_ids().contains(userId);
+        Community c = getCommunityFromId(communityId);
+
+        if (c==null) {
+            return false;
+        }
+
+        return c.getUser_ids().contains(userId);
     }
 
 
-    private Community getCommunityFromId(String id) {
+    public Community getCommunityFromId(String id) {
         Optional<Community> community = communityRepository.findById(id);
 
         if (community.isPresent()) {

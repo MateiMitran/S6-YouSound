@@ -1,8 +1,8 @@
-package com.backend.userservice.Controller;
+package com.backend.userservice.controller;
 
 
-import com.backend.userservice.Entities.Community;
-import com.backend.userservice.Services.CommunityService;
+import com.backend.userservice.entities.Community;
+import com.backend.userservice.services.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,8 @@ import java.util.List;
 @RequestMapping("/api/communities")
 public class CommunityController {
 
-    @Autowired
-    CommunityService communityService;
 
+    private CommunityService communityService;
 
     @GetMapping("")
     public ResponseEntity<List<Community>> getAllCommunities() {
@@ -24,7 +23,7 @@ public class CommunityController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Community> getCommunityById(@PathVariable String id) {
-        return ResponseEntity.ok(communityService.findCommunityById(id));
+        return ResponseEntity.ok(communityService.getCommunityFromId(id));
     }
 
     @PostMapping("/create")
@@ -32,8 +31,8 @@ public class CommunityController {
         return ResponseEntity.ok(communityService.createCommunity(c));
     }
 
-    @GetMapping("/{c_id}/artist/")
-    public ResponseEntity<String> getArtistIdFromCommunity(@PathVariable String c_id) {
-        return ResponseEntity.ok(communityService.getArtistIdOfCommunity(c_id));
+    @GetMapping("/{cId}/artist/")
+    public ResponseEntity<String> getArtistIdFromCommunity(@PathVariable String cId) {
+        return ResponseEntity.ok(communityService.getArtistIdOfCommunity(cId));
     }
 }

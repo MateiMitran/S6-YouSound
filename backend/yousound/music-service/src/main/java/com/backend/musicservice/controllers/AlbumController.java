@@ -1,8 +1,8 @@
-package com.backend.musicservice.Controllers;
+package com.backend.musicservice.controllers;
 
 
 import com.backend.musicservice.entities.Album;
-import com.backend.musicservice.Services.AlbumService;
+import com.backend.musicservice.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +32,8 @@ public class AlbumController {
         return ResponseEntity.ok(albumService.createAlbum(album));
     }
 
-    @GetMapping("/by/{a_id}")
-    public ResponseEntity<List<Album>> getAllAlbumsByArtist(@PathVariable String a_id) {
-        return ResponseEntity.ok(albumService.getAlbumsByArtistId(a_id));
+    @GetMapping("/by/{aId}")
+    public ResponseEntity<List<Album>> getAllAlbumsByArtist(@PathVariable String aId) {
+        return ResponseEntity.ok(albumService.getAlbumsByArtistId(aId));
     }
 }

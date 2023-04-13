@@ -1,4 +1,4 @@
-package com.backend.userservice.Entities;
+package com.backend.userservice.entities;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
