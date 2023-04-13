@@ -1,8 +1,8 @@
-package com.backend.musicservice.controllers;
+package com.backend.musicservice.Controllers;
 
 
 import com.backend.musicservice.entities.Playlist;
-import com.backend.musicservice.services.PlaylistService;
+import com.backend.musicservice.Services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +30,8 @@ public class PlaylistController {
         return ResponseEntity.ok(playlistService.getAllPlaylists());
     }
 
-    @GetMapping("/user/{uId}")
-    public ResponseEntity<List<Playlist>> getAllFromUserWithId(@PathVariable String uId) {
-        return ResponseEntity.ok(playlistService.getPlaylistsOfUser(uId));
+    @GetMapping("/user/{u_id}")
+    public ResponseEntity<List<Playlist>> getAllFromUserWithId(@PathVariable String u_id) {
+        return ResponseEntity.ok(playlistService.getPlaylistsOfUser(u_id));
     }
 }

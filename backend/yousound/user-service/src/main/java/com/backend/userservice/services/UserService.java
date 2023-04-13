@@ -1,8 +1,8 @@
-package com.backend.userservice.services;
+package com.backend.userservice.Services;
 
 
-import com.backend.userservice.entities.User;
-import com.backend.userservice.repositories.UserRepository;
+import com.backend.userservice.Entities.User;
+import com.backend.userservice.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,8 @@ public class UserService {
     }
 
     public User getUserById(String id) {
-       return userRepository.findById(id).orElseThrow(() ->
-               new ResourceNotFoundException("User does not exist with id: " + id));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User does not exist with id: " + id));
+        return user;
     }
 }

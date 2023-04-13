@@ -1,15 +1,14 @@
-package com.backend.musicservice.services;
+package com.backend.musicservice.Services;
 
 
 import com.backend.musicservice.entities.Playlist;
-import com.backend.musicservice.repositories.PlaylistRepository;
+import com.backend.musicservice.Repositories.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class PlaylistService {
@@ -22,14 +21,14 @@ public class PlaylistService {
     }
 
     public Playlist getPlaylistById(Long id) {
-        return pRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return pRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException());
     }
 
     public List<Playlist> getPlaylistsOfUser(String user_id) {
         List<Playlist> userPlaylists = new ArrayList<>();
 
         getAllPlaylists().forEach(playlist -> {
-            if (Objects.equals(playlist.getCreator_id(), user_id)) {
+            if (playlist.getCreator_id() == user_id) {
                 userPlaylists.add(playlist);
             }
         });

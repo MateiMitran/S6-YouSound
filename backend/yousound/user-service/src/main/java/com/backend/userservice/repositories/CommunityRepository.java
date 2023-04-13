@@ -1,6 +1,6 @@
-package com.backend.userservice.repositories;
+package com.backend.userservice.Repositories;
 
-import com.backend.userservice.entities.Community;
+import com.backend.userservice.Entities.Community;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

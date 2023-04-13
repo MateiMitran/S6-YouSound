@@ -1,4 +1,4 @@
-package com.backend.userservice.entities;
+package com.backend.userservice.Entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

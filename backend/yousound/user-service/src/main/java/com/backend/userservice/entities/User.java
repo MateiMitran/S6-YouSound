@@ -1,4 +1,4 @@
-package com.backend.userservice.entities;
+package com.backend.userservice.Entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(value = "users")
+@Document
 @Data
 @NoArgsConstructor
 public class User {

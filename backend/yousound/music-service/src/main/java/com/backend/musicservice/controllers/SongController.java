@@ -1,7 +1,7 @@
-package com.backend.musicservice.controllers;
+package com.backend.musicservice.Controllers;
 
 import com.backend.musicservice.entities.Song;
-import com.backend.musicservice.services.SongService;
+import com.backend.musicservice.Services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

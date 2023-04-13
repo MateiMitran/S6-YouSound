@@ -1,15 +1,14 @@
-package com.backend.musicservice.services;
+package com.backend.musicservice.Services;
 
 
 import com.backend.musicservice.entities.Album;
-import com.backend.musicservice.repositories.AlbumRepository;
+import com.backend.musicservice.Repositories.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class AlbumService {
@@ -22,14 +21,14 @@ public class AlbumService {
     }
 
     public Album getAlbumById(Long id) {
-        return aRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        return aRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException());
     }
 
     public List<Album> getAlbumsByArtistId(String artist_id) {
         List<Album> albums = new ArrayList<>();
 
         getAllAlbums().forEach(album -> {
-            if (Objects.equals(album.getArtist_id(), artist_id)) {
+            if (album.getArtist_id() == artist_id) {
                 albums.add(album);
             }
         });
