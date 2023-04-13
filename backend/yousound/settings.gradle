@@ -1,0 +1,8 @@
+rootProject.name = 'yousound'
+
+include 'api-gateway'
+include 'discovery-server'
+include 'message-service'
+include 'security-service'
+include 'user-service'
+include 'music-service'
