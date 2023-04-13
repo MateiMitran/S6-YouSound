@@ -10,12 +10,15 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 @Configuration
 public class GatewayConfig {
 
+
+    private static final String MICROSERVICE = "lb://music-service";
+
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route(r -> r.path("/songs/**")
                         .filters(f -> f.filter(filterFunction()))
-                        .uri("lb://music-service"))
+                        .uri(MICROSERVICE))
                 .route(r -> r.path("/auth/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://security-service"))
@@ -27,10 +30,10 @@ public class GatewayConfig {
                         .uri("lb://user-service"))
                 .route(r -> r.path("/playlists/**")
                         .filters(f -> f.filter(filterFunction()))
-                        .uri("lb://music-service"))
+                        .uri(MICROSERVICE))
                 .route(r -> r.path("/albums/**")
                         .filters(f -> f.filter(filterFunction()))
-                        .uri("lb://music-service"))
+                        .uri(MICROSERVICE))
                 .route(r -> r.path("/messages/**")
                         .filters(f -> f.filter(filterFunction()))
                         .uri("lb://message-service"))

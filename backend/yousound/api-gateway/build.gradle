@@ -43,6 +43,7 @@ dependencies {
     implementation 'org.springframework.data:spring-data-rest-webmvc:4.0.2'
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.testng:testng:7.1.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 tasks.named('test') {

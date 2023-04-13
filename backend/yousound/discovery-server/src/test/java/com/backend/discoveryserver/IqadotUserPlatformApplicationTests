@@ -1,0 +1,12 @@
+package com.backend.discoveryserver;
+
+import org.junit.Test;
+
+@SpringBootTest
+class IqadotUserPlatformApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

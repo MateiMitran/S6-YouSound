@@ -14,10 +14,8 @@ public class MessageServiceApplication {
 
     @Bean
     CommandLineRunner commandLineRunner(KafkaTemplate<String, String> kafkaTemplate) {
-        return args -> {
+        return args ->
             kafkaTemplate.send("yousound", "hello kafka");
-        };
     }
-
 
 }
