@@ -46,11 +46,12 @@ jobs:
       - name: Build and Push Music Service
         run: |
           cd backend/yousound/music-service
-          docker build -f Dockerfile . -t yousoundd/music-service:0.0.1
+          ls
+          - docker build -f Dockerfile . -t yousoundd/music-service:0.0.1
           docker push yousoundd/music-service:0.0.1
 
       - name: Build and Push User Service
         run: |
           cd backend/yousound/user-service
-          docker build -f Dockerfile . -t yousoundd/user-service:0.0.1
+          - docker build -f Dockerfile . -t yousoundd/user-service:0.0.1
           docker push yousoundd/user-service:0.0.1
