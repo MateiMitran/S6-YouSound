@@ -21,11 +21,10 @@ jobs:
 
       - name: Test Music Service
         run: |
-          ls
-          cd yousound/music-service
+          cd backend/yousound/music-service
           gradle test
 
       - name: Test User Service
         run: |
-          cd yousound/user-service
+          cd backend/yousound/user-service
           gradle test
