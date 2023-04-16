@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class CommunityService {
 
+    @Autowired
     private CommunityRepository communityRepository;
 
     public String getArtistIdOfCommunity(String id) {

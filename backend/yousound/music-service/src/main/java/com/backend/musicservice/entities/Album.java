@@ -60,6 +60,7 @@ public class Album {
         return released_on;
     }
 
+
     public void setReleased_on(LocalDateTime released_on) {
         this.released_on = released_on;
     }

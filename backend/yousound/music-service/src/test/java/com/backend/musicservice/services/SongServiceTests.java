@@ -1,7 +1,6 @@
 package com.backend.musicservice.services;
 
-import com.backend.musicservice.Repositories.SongRepository;
-import com.backend.musicservice.Services.SongService;
+import com.backend.musicservice.repositories.SongRepository;
 import com.backend.musicservice.entities.Song;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,6 +19,7 @@ public class SongServiceTests {
     @Mock
     private SongRepository songRepository;
 
+
     @InjectMocks
     private SongService songService;
 
@@ -29,7 +29,7 @@ public class SongServiceTests {
     }
 
     @Test
-    public void testFindAllSongs() {
+    public void testGetAllSongs() {
 
         List<Song> expectedSongs = new ArrayList<>();
 
@@ -50,5 +50,31 @@ public class SongServiceTests {
         verify(songRepository, times(1)).findAll();
     }
 
+
+    @Test
+    public void testGetSongById() {
+        Song expectedSong = new Song(1L, "testName", "testGenre");
+
+        when(songRepository.findById(1L)).thenReturn(java.util.Optional.of(expectedSong));
+
+        Song actualSong = songService.getSongById(1L);
+
+        assertEquals(expectedSong, actualSong);
+
+        verify(songRepository, times(1)).findById(1L);
+    }
+
+    @Test
+    public void testCreateSong() {
+        Song expectedSong = new Song(1L, "testName", "testGenre");
+
+        when(songRepository.save(expectedSong)).thenReturn(expectedSong);
+
+        Song actualSong = songService.createSong(expectedSong);
+
+        assertEquals(expectedSong, actualSong);
+
+        verify(songRepository, times(1)).save(expectedSong);
+    }
 
 }

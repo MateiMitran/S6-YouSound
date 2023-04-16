@@ -14,6 +14,7 @@ import java.util.List;
 public class CommunityController {
 
 
+    @Autowired
     private CommunityService communityService;
 
     @GetMapping("")

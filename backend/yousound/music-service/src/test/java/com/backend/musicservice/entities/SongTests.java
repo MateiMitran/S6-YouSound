@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.time.LocalDateTime;
 
-public class SongUnitTests {
+
+public class SongTests {
 
     private Song song;
 
@@ -51,11 +53,11 @@ public class SongUnitTests {
         Assertions.assertEquals("test", song.getArtist_id());
     }
 
-//    @Test
-//    public void testSetReleasedOnGetReleasedOn() {
-//        song.setReleased_on(LocalDateTime.parse("2023-04-23T10:15:32"));
-//        Assertions.assertEquals(LocalDateTime.parse("2023-04-23T10:15:32"), song.getReleased_on().toString());
-//    }
+    @Test
+    public void testSetReleasedOnGetReleasedOn() {
+       song.setReleased_on(LocalDateTime.parse("2023-04-23T10:15:32"));
+       Assertions.assertEquals("2023-04-23T10:15:32", song.getReleased_on().toString());
+    }
 
     @Test
     public void testSetPlaysGetPlays() {
@@ -77,6 +79,14 @@ public class SongUnitTests {
         song1.setId(id);
         song2.setId(id);
         Assertions.assertEquals(song1, song2);
+    }
+
+    @Test
+    public void testSongConstructor() {
+        Song song = new Song(1L, "testName", "testGenre");
+        Assertions.assertEquals(1L, song.getId());
+        Assertions.assertEquals("testName", song.getName());
+        Assertions.assertEquals("testGenre", song.getGenre());
     }
 
 

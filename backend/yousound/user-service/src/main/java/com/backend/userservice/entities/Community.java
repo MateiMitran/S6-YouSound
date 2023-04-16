@@ -13,7 +13,6 @@ import java.util.Objects;
 
 @Document(value="communities")
 @Data
-@NoArgsConstructor
 public class Community {
 
 
@@ -32,6 +31,10 @@ public class Community {
         this.id = id;
         this.artist_id = artist_id;
         this.description = description;
+        this.user_ids = new ArrayList<>();
+    }
+
+    public Community(){
         this.user_ids = new ArrayList<>();
     }
 
@@ -65,6 +68,14 @@ public class Community {
 
     public void setUser_ids(List<String> user_ids) {
         this.user_ids = user_ids;
+    }
+
+    public void addUserId(String user_id) {
+        this.user_ids.add(user_id);
+    }
+
+    public void removeUserId(String user_id) {
+        this.user_ids.remove(user_id);
     }
 
     @Override

@@ -16,7 +16,7 @@ public class UserController {
     UserService userService;
 
     @PutMapping("/role/{id}")
-    public ResponseEntity<User> updateUserRole(@PathVariable String id, @RequestParam String role) {
+    public ResponseEntity<User> updateUserRole(@PathVariable String id, @RequestBody String role) {
         return ResponseEntity.ok(userService.updateUserRole(id, role));
     }
 
