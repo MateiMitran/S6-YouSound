@@ -59,11 +59,11 @@ public class PlaylistTests {
 
     @Test
     public void testPlaylistConstructor() {
-        Playlist playlist = new Playlist(1L, "testName", "1234");
+        Playlist playlist = new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234");
         Assertions.assertEquals("testName", playlist.getName());
         Assertions.assertEquals(0, playlist.getLikes());
-        Assertions.assertEquals(0, playlist.getNr_of_songs());
-        Assertions.assertEquals(0, playlist.getDuration());
+        Assertions.assertEquals(40, playlist.getNr_of_songs());
+        Assertions.assertEquals(120, playlist.getDuration());
         Assertions.assertEquals("1234", playlist.getCreator_id());
     }
 

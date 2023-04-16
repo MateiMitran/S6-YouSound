@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.musicservice.entities.PlaylistTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-04-16T14:45:17" hostname="DESKTOP-3J2J7JK" time="0.009">
+<testsuite name="com.backend.musicservice.entities.PlaylistTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:01:06" hostname="LAPTOP-B5B6RA7N" time="0.007">
   <properties/>
-  <testcase name="testSetLikesGetLikes()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
-  <testcase name="testSetCreatorIdGetCreatorId()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
+  <testcase name="testSetLikesGetLikes()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.001"/>
+  <testcase name="testSetCreatorIdGetCreatorId()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.001"/>
   <testcase name="testSetDurationGetDuration()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
   <testcase name="testSetCreatedAtGetCreatedAt()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
-  <testcase name="testSetNrOfSongsGetNrOfSongs()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.001"/>
-  <testcase name="testPlaylistConstructor()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.002"/>
+  <testcase name="testSetNrOfSongsGetNrOfSongs()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
+  <testcase name="testPlaylistConstructor()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
   <testcase name="testSetIdGetId()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
-  <testcase name="testSetNameGetName()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.0"/>
+  <testcase name="testSetNameGetName()" classname="com.backend.musicservice.entities.PlaylistTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

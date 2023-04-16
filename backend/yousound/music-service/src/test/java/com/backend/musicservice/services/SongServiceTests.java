@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +34,9 @@ public class SongServiceTests {
 
         List<Song> expectedSongs = new ArrayList<>();
 
-        expectedSongs.add(new Song(1L, "testName", "testGenre"));
-        expectedSongs.add(new Song(2L, "testName1", "testGenre1"));
-        expectedSongs.add(new Song(3L, "testName2", "testGenre2"));
+        expectedSongs.add(new Song(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234"));
+        expectedSongs.add(new Song(2L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234"));
+        expectedSongs.add(new Song(3L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234"));
 
         when(songRepository.findAll()).thenReturn(expectedSongs);
 
@@ -53,7 +54,7 @@ public class SongServiceTests {
 
     @Test
     public void testGetSongById() {
-        Song expectedSong = new Song(1L, "testName", "testGenre");
+        Song expectedSong = new Song(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234");
 
         when(songRepository.findById(1L)).thenReturn(java.util.Optional.of(expectedSong));
 
@@ -66,7 +67,7 @@ public class SongServiceTests {
 
     @Test
     public void testCreateSong() {
-        Song expectedSong = new Song(1L, "testName", "testGenre");
+        Song expectedSong = new Song(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234");
 
         when(songRepository.save(expectedSong)).thenReturn(expectedSong);
 

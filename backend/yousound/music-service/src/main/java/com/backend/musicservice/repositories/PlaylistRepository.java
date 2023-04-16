@@ -1,4 +1,4 @@
-package com.backend.musicservice.repositories;
+package com.backend.musicservice.Repositories;
 
 import com.backend.musicservice.entities.Playlist;
 import org.springframework.data.jpa.repository.JpaRepository;

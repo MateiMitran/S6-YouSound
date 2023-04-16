@@ -31,9 +31,9 @@ public class AlbumTests {
     }
 
     @Test
-    public void testSetReleasedOnGetReleasedOn() {
-        album.setReleased_on(LocalDateTime.parse("2023-04-23T10:15:32"));
-        Assertions.assertEquals("2023-04-23T10:15:32", album.getReleased_on().toString());
+    public void testSetCreatedAtGetCreatedAt() {
+        album.setCreated_at(LocalDateTime.parse("2023-04-23T10:15:32"));
+        Assertions.assertEquals("2023-04-23T10:15:32", album.getCreated_at().toString());
     }
 
     @Test
@@ -56,14 +56,12 @@ public class AlbumTests {
 
     @Test
     public void testAlbumConstructor() {
-        Album album = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
-        assertEquals("test", album.getName());
-        assertEquals("2023-04-23T10:15:32", album.getReleased_on().toString());
+        Album album = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
+        assertEquals("testName", album.getName());
+        assertEquals("2023-04-23T10:15:32", album.getCreated_at().toString());
         assertEquals(1, album.getNr_of_songs());
         assertEquals(1, album.getDuration());
         assertEquals("1234", album.getArtist_id());
     }
-
-
 
 }

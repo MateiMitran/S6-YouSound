@@ -67,8 +67,8 @@ public class SongTests {
 
     @Test
     public void testSetDurationGetDuration() {
-        song.setDuration("10 minutes");
-        Assertions.assertEquals("10 minutes", song.getDuration());
+        song.setDuration(120);
+        Assertions.assertEquals(120, song.getDuration());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class SongTests {
 
     @Test
     public void testSongConstructor() {
-        Song song = new Song(1L, "testName", "testGenre");
+        Song song = new Song(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234");
         Assertions.assertEquals(1L, song.getId());
         Assertions.assertEquals("testName", song.getName());
         Assertions.assertEquals("testGenre", song.getGenre());

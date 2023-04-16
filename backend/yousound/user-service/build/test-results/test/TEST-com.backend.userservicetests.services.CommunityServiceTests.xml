@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.userservicetests.services.CommunityServiceTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-04-16T12:35:37" hostname="DESKTOP-3J2J7JK" time="0.026">
+<testsuite name="com.backend.userservicetests.services.CommunityServiceTests" tests="6" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:01:19" hostname="LAPTOP-B5B6RA7N" time="0.039">
   <properties/>
-  <testcase name="testDeleteCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.009"/>
-  <testcase name="testGetArtistIdOfCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.002"/>
-  <testcase name="testGetAllCommunities()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.002"/>
-  <testcase name="testCreateCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.002"/>
-  <testcase name="testGetCommunityFromId()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.002"/>
-  <testcase name="testCheckIfUserIsInCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.003"/>
+  <testcase name="testDeleteCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.014"/>
+  <testcase name="testGetArtistIdOfCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.004"/>
+  <testcase name="testGetAllCommunities()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.004"/>
+  <testcase name="testCreateCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.004"/>
+  <testcase name="testGetCommunityFromId()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.003"/>
+  <testcase name="testCheckIfUserIsInCommunity()" classname="com.backend.userservicetests.services.CommunityServiceTests" time="0.004"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -16,9 +16,9 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.2)
 
-2023-04-16T14:35:37.762+02:00  INFO 3984 --- [    Test worker] c.b.u.services.CommunityServiceTests     : Starting CommunityServiceTests using Java 17.0.6 with PID 3984 (started by Mitran Matei in C:\Users\Mitran Matei\Desktop\Fontys\Semester 6\Individual\backend\yousound\user-service)
-2023-04-16T14:35:37.763+02:00  INFO 3984 --- [    Test worker] c.b.u.services.CommunityServiceTests     : No active profile set, falling back to 1 default profile: "default"
-2023-04-16T14:35:37.862+02:00  INFO 3984 --- [    Test worker] c.b.u.services.CommunityServiceTests     : Started CommunityServiceTests in 0.123 seconds (process running for 3.432)
+2023-04-16T19:01:19.254+02:00  INFO 15604 --- [    Test worker] c.b.u.services.CommunityServiceTests     : Starting CommunityServiceTests using Java 17.0.2 with PID 15604 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\user-service)
+2023-04-16T19:01:19.254+02:00  INFO 15604 --- [    Test worker] c.b.u.services.CommunityServiceTests     : No active profile set, falling back to 1 default profile: "default"
+2023-04-16T19:01:19.388+02:00  INFO 15604 --- [    Test worker] c.b.u.services.CommunityServiceTests     : Started CommunityServiceTests in 0.161 seconds (process running for 5.134)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

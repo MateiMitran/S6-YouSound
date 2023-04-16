@@ -8,6 +8,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class PlaylistServiceTests {
     @Test
     public void testGetAllPlaylists() {
         List<Playlist> expectedPlaylists = new ArrayList<>();
-        expectedPlaylists.add(new Playlist(1L, "testName", "testGenre"));
-        expectedPlaylists.add(new Playlist(2L, "testName1", "testGenre1"));
-        expectedPlaylists.add(new Playlist(3L, "testName2", "testGenre2"));
+        expectedPlaylists.add(new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
+        expectedPlaylists.add(new Playlist(2L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
+        expectedPlaylists.add(new Playlist(3L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
 
         when(playlistRepository.findAll()).thenReturn(expectedPlaylists);
 
@@ -48,7 +49,7 @@ public class PlaylistServiceTests {
 
     @Test
     public void testGetPlaylistById() {
-        Playlist playlist = new Playlist(1L, "testName", "testGenre");
+        Playlist playlist = new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234");
         when(playlistRepository.findById(1L)).thenReturn(java.util.Optional.of(playlist));
 
         Playlist actualPlaylist = playlistService.getPlaylistById(1L);
@@ -61,11 +62,11 @@ public class PlaylistServiceTests {
     @Test
     public void testGetPlaylistsOfUser() {
         List<Playlist> expectedPlaylists = new ArrayList<>();
-        expectedPlaylists.add(new Playlist(1L, "testName", "testGenre"));
-        expectedPlaylists.add(new Playlist(2L, "testName1", "testGenre"));
-        expectedPlaylists.add(new Playlist(3L, "testName2", "testGenre"));
+        expectedPlaylists.add(new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
+        expectedPlaylists.add(new Playlist(2L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
+        expectedPlaylists.add(new Playlist(3L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234"));
         when(playlistRepository.findAll()).thenReturn(expectedPlaylists);
-        List<Playlist> actualPlaylists = playlistService.getPlaylistsOfUser("testGenre");
+        List<Playlist> actualPlaylists = playlistService.getPlaylistsOfUser("1234");
         assertEquals(expectedPlaylists.size(), actualPlaylists.size());
         for (int i = 0; i < expectedPlaylists.size(); i++) {
             assertEquals(expectedPlaylists.get(i), actualPlaylists.get(i));
@@ -75,7 +76,7 @@ public class PlaylistServiceTests {
 
     @Test
     public void testCreatePlaylist() {
-        Playlist playlist = new Playlist(1L, "testName", "testGenre");
+        Playlist playlist = new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234");
         when(playlistRepository.save(playlist)).thenReturn(playlist);
         Playlist actualPlaylist = playlistService.createPlaylist(playlist);
         assertEquals(playlist, actualPlaylist);

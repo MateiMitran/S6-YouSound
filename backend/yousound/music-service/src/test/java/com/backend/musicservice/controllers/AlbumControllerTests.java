@@ -37,33 +37,33 @@ public class AlbumControllerTests {
 
     @Test
     public void testFindAlbumById() throws Exception {
-        Album album = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
         Mockito.when(albumService.getAlbumById(1L)).thenReturn(album);
 
         mockMvc.perform(get("/api/albums/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artist_id").value("1234"))
-                .andExpect(jsonPath("$.name").value("test"));
+                .andExpect(jsonPath("$.name").value("testName"));
     }
 
     @Test
     public void testFindAlbums() throws Exception {
         List<Album> albums = new ArrayList<>();
-        albums.add(new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234"));
-        albums.add(new Album(2L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234"));
+        albums.add(new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234"));
+        albums.add(new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234"));
         Mockito.when(albumService.getAllAlbums()).thenReturn(albums);
 
         mockMvc.perform(get("/api/albums"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].artist_id").value("1234"))
-                .andExpect(jsonPath("$[0].name").value("test"))
+                .andExpect(jsonPath("$[0].name").value("testName"))
                 .andExpect(jsonPath("$[1].artist_id").value("1234"))
-                .andExpect(jsonPath("$[1].name").value("test"));
+                .andExpect(jsonPath("$[1].name").value("testName"));
     }
 
     @Test
     public void testCreateAlbum() throws Exception {
-        Album album = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
         Mockito.when(albumService.createAlbum(album)).thenReturn(album);
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
@@ -74,21 +74,21 @@ public class AlbumControllerTests {
                 .content(json))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.artist_id").value("1234"))
-                .andExpect(jsonPath("$.name").value("test"));
+                .andExpect(jsonPath("$.name").value("testName"));
     }
 
     @Test
     public void testGetAllAlbumsByArtist() throws Exception {
         List<Album> albums = new ArrayList<>();
-        albums.add(new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234"));
-        albums.add(new Album(2L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234"));
+        albums.add(new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234"));
+        albums.add(new Album(2L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234"));
         Mockito.when(albumService.getAlbumsByArtistId("1234")).thenReturn(albums);
         mockMvc.perform(get("/api/albums/by/1234"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].artist_id").value("1234"))
-                .andExpect(jsonPath("$[0].name").value("test"))
+                .andExpect(jsonPath("$[0].name").value("testName"))
                 .andExpect(jsonPath("$[1].artist_id").value("1234"))
-                .andExpect(jsonPath("$[1].name").value("test"));
+                .andExpect(jsonPath("$[1].name").value("testName"));
 
     }
 

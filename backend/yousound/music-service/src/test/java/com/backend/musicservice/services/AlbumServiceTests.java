@@ -30,9 +30,9 @@ public class AlbumServiceTests {
     @Test
     public void testGetAllAlbums() {
         List<Album> expectedAlbums = new ArrayList<>();
-        Album album1 = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
-        Album album2 = new Album(2L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
-        Album album3 = new Album(3L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album1 = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
+        Album album2 = new Album(2L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
+        Album album3 = new Album(3L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
 
         when(albumRepository.findAll()).thenReturn(expectedAlbums);
 
@@ -49,7 +49,7 @@ public class AlbumServiceTests {
 
     @Test
     public void testGetAlbumById() {
-        Album album = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
         when(albumRepository.findById(1L)).thenReturn(java.util.Optional.of(album));
 
         Album actualAlbum = albumService.getAlbumById(1L);
@@ -62,9 +62,9 @@ public class AlbumServiceTests {
     @Test
     public void testGetAlbumsByArtistId() {
         List<Album> expectedAlbums = new ArrayList<>();
-        Album album1 = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
-        Album album2 = new Album(2L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
-        Album album3 = new Album(3L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album1 = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
+        Album album2 = new Album(2L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
+        Album album3 = new Album(3L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
 
         when(albumRepository.findAll()).thenReturn(expectedAlbums);
 
@@ -81,7 +81,7 @@ public class AlbumServiceTests {
 
     @Test
     public void testCreateAlbum() {
-        Album album = new Album(1L,"test", LocalDateTime.parse("2023-04-23T10:15:32"), 1, 1, "1234");
+        Album album = new Album(1L,"testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 1, 1, "1234");
         when(albumRepository.save(album)).thenReturn(album);
 
         Album actualAlbum = albumService.createAlbum(album);
