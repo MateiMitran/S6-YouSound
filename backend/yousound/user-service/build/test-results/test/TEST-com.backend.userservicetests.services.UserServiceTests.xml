@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.backend.userservicetests.services.UserServiceTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-04-16T12:35:37" hostname="DESKTOP-3J2J7JK" time="0.01">
+  <properties/>
+  <testcase name="testGetAllUsers()" classname="com.backend.userservicetests.services.UserServiceTests" time="0.003"/>
+  <testcase name="testUpdateUserRole()" classname="com.backend.userservicetests.services.UserServiceTests" time="0.003"/>
+  <testcase name="testGetUserById()" classname="com.backend.userservicetests.services.UserServiceTests" time="0.003"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2023-04-16T14:35:37.912+02:00  INFO 3984 --- [    Test worker] c.b.u.services.UserServiceTests          : Starting UserServiceTests using Java 17.0.6 with PID 3984 (started by Mitran Matei in C:\Users\Mitran Matei\Desktop\Fontys\Semester 6\Individual\backend\yousound\user-service)
+2023-04-16T14:35:37.912+02:00  INFO 3984 --- [    Test worker] c.b.u.services.UserServiceTests          : No active profile set, falling back to 1 default profile: "default"
+2023-04-16T14:35:37.954+02:00  INFO 3984 --- [    Test worker] c.b.u.services.UserServiceTests          : Started UserServiceTests in 0.058 seconds (process running for 3.524)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
