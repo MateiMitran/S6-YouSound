@@ -43,13 +43,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: docker login
+        env:
+          DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
+          DOCKER_PASSWORD: '${{ secrets.DOCKER_PASSWORD }}'
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Build and Push Music Service
         run: |
           cd backend/yousound/music-service
           ls
           docker build -f Dockerfile . -t yousoundd/music-service:0.0.1
           docker push yousoundd/music-service:0.0.1
-
       - name: Build and Push User Service
         run: |
           cd backend/yousound/user-service
