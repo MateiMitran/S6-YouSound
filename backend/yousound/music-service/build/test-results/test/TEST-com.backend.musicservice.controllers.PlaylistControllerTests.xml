@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.backend.musicservice.controllers.PlaylistControllerTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-16T14:45:17" hostname="DESKTOP-3J2J7JK" time="0.071">
+  <properties/>
+  <testcase name="testGetAllPlaylistsFromUser()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.017"/>
+  <testcase name="testGetAllPlaylists()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.012"/>
+  <testcase name="testCreatePlaylist()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.022"/>
+  <testcase name="testGetPlaylistById()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.009"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.2)
+
+2023-04-16T16:45:16.723+02:00  INFO 17244 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Starting PlaylistControllerTests using Java 17.0.6 with PID 17244 (started by Mitran Matei in C:\Users\Mitran Matei\Desktop\Fontys\Semester 6\Individual\backend\yousound\music-service)
+2023-04-16T16:45:16.723+02:00  INFO 17244 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : No active profile set, falling back to 1 default profile: "default"
+2023-04-16T16:45:17.217+02:00  INFO 17244 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-04-16T16:45:17.217+02:00  INFO 17244 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-16T16:45:17.218+02:00  INFO 17244 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-04-16T16:45:17.225+02:00  INFO 17244 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Started PlaylistControllerTests in 0.537 seconds (process running for 3.939)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

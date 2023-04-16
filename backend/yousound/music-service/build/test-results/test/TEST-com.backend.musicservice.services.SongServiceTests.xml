@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.backend.musicservice.services.SongServiceTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-04-16T14:45:17" hostname="DESKTOP-3J2J7JK" time="0.048">
+  <properties/>
+  <testcase name="testGetSongById()" classname="com.backend.musicservice.services.SongServiceTests" time="0.043"/>
+  <testcase name="testGetAllSongs()" classname="com.backend.musicservice.services.SongServiceTests" time="0.002"/>
+  <testcase name="testCreateSong()" classname="com.backend.musicservice.services.SongServiceTests" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
