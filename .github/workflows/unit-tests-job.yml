@@ -21,6 +21,7 @@ jobs:
 
       - name: Test Music Service
         run: |
+          ls
           cd yousound/music-service
           gradle test
 
