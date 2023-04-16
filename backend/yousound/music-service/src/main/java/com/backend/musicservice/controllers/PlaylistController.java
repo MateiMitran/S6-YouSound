@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/playlists")
+@RequestMapping("/api/playlists")
 public class PlaylistController {
     @Autowired
     PlaylistService playlistService;

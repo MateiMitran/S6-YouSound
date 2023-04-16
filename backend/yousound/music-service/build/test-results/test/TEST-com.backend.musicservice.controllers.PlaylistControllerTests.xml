@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.musicservice.controllers.PlaylistControllerTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:01:06" hostname="LAPTOP-B5B6RA7N" time="0.057">
+<testsuite name="com.backend.musicservice.controllers.PlaylistControllerTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:40:41" hostname="LAPTOP-B5B6RA7N" time="0.04">
   <properties/>
-  <testcase name="testGetAllPlaylistsFromUser()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.014"/>
-  <testcase name="testGetAllPlaylists()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.01"/>
-  <testcase name="testCreatePlaylist()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.016"/>
-  <testcase name="testGetPlaylistById()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.012"/>
+  <testcase name="testGetAllPlaylistsFromUser()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.011"/>
+  <testcase name="testGetAllPlaylists()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.007"/>
+  <testcase name="testCreatePlaylist()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.011"/>
+  <testcase name="testGetPlaylistById()" classname="com.backend.musicservice.controllers.PlaylistControllerTests" time="0.006"/>
   <system-out><![CDATA[
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -14,12 +14,12 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.2)
 
-2023-04-16T19:01:06.107+02:00  INFO 10644 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Starting PlaylistControllerTests using Java 17.0.2 with PID 10644 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\music-service)
-2023-04-16T19:01:06.107+02:00  INFO 10644 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : No active profile set, falling back to 1 default profile: "default"
-2023-04-16T19:01:06.337+02:00  INFO 10644 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-04-16T19:01:06.337+02:00  INFO 10644 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-04-16T19:01:06.339+02:00  INFO 10644 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2023-04-16T19:01:06.345+02:00  INFO 10644 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Started PlaylistControllerTests in 0.263 seconds (process running for 4.322)
+2023-04-16T19:40:40.984+02:00  INFO 2344 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Starting PlaylistControllerTests using Java 17.0.2 with PID 2344 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\music-service)
+2023-04-16T19:40:40.985+02:00  INFO 2344 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : No active profile set, falling back to 1 default profile: "default"
+2023-04-16T19:40:41.205+02:00  INFO 2344 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-04-16T19:40:41.205+02:00  INFO 2344 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-16T19:40:41.206+02:00  INFO 2344 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-04-16T19:40:41.211+02:00  INFO 2344 --- [    Test worker] c.b.m.c.PlaylistControllerTests          : Started PlaylistControllerTests in 0.255 seconds (process running for 4.834)
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
