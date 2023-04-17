@@ -1,6 +1,6 @@
 package com.backend.userservicetests.controllers;
 
-import com.backend.userservice.controller.CommunityController;
+import com.backend.userservice.controllers.CommunityController;
 import com.backend.userservice.entities.Community;
 import com.backend.userservice.services.CommunityService;
 import com.fasterxml.jackson.databind.ObjectMapper;

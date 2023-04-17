@@ -1,7 +1,7 @@
 package com.backend.userservicetests.controllers;
 
 
-import com.backend.userservice.controller.UserController;
+import com.backend.userservice.controllers.UserController;
 import com.backend.userservice.entities.User;
 import com.backend.userservice.services.UserService;
 import org.junit.jupiter.api.Test;

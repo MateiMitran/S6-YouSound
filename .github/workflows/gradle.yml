@@ -34,6 +34,15 @@ jobs:
       - name: Build with Gradle
         run: gradle build
         working-directory: ${{steps.set_dir.outputs.dir}}
+      - name: Test Music Service
+        run: |
+          cd backend/yousound/music-service
+          gradle test
+
+      - name: Test User Service
+        run: |
+          cd backend/yousound/user-service
+          gradle test
       - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'

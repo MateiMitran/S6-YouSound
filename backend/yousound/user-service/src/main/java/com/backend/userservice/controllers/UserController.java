@@ -1,4 +1,4 @@
-package com.backend.userservice.controller;
+package com.backend.userservice.controllers;
 
 import com.backend.userservice.entities.User;
 import com.backend.userservice.services.UserService;
