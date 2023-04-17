@@ -37,12 +37,12 @@ jobs:
           gradle clean
       - name: Build with Gradle
         run: |
-          ls
-          cd backend/yousound
+          cd ..
           gradle build
         working-directory: ${{steps.set_dir.outputs.dir}}
       - name: Test YouSound
         run: |
+          ls
           cd backend/yousound
           gradle test
       - name: docker login
