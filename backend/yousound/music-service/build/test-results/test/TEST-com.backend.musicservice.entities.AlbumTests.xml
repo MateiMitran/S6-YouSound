@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.musicservice.entities.AlbumTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:40:41" hostname="LAPTOP-B5B6RA7N" time="0.013">
+<testsuite name="com.backend.musicservice.entities.AlbumTests" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:48:10" hostname="LAPTOP-B5B6RA7N" time="0.018">
   <properties/>
-  <testcase name="testSetDurationGetDuration()" classname="com.backend.musicservice.entities.AlbumTests" time="0.005"/>
+  <testcase name="testSetDurationGetDuration()" classname="com.backend.musicservice.entities.AlbumTests" time="0.009"/>
   <testcase name="testSetCreatedAtGetCreatedAt()" classname="com.backend.musicservice.entities.AlbumTests" time="0.002"/>
   <testcase name="testAlbumConstructor()" classname="com.backend.musicservice.entities.AlbumTests" time="0.001"/>
-  <testcase name="testSetIdGetId()" classname="com.backend.musicservice.entities.AlbumTests" time="0.001"/>
+  <testcase name="testSetIdGetId()" classname="com.backend.musicservice.entities.AlbumTests" time="0.0"/>
   <testcase name="testNrOfSongsGetNrOfSongs()" classname="com.backend.musicservice.entities.AlbumTests" time="0.0"/>
-  <testcase name="testSetNameGetName()" classname="com.backend.musicservice.entities.AlbumTests" time="0.0"/>
-  <testcase name="testSetArtistIdGetArtistId()" classname="com.backend.musicservice.entities.AlbumTests" time="0.0"/>
+  <testcase name="testSetNameGetName()" classname="com.backend.musicservice.entities.AlbumTests" time="0.001"/>
+  <testcase name="testSetArtistIdGetArtistId()" classname="com.backend.musicservice.entities.AlbumTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

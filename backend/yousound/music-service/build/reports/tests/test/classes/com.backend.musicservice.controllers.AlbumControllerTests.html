@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.340s</div>
+<div class="counter">0.399s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,22 +79,22 @@
 </thead>
 <tr>
 <td class="success">testCreateAlbum()</td>
-<td class="success">0.049s</td>
+<td class="success">0.065s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testFindAlbumById()</td>
-<td class="success">0.269s</td>
+<td class="success">0.304s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testFindAlbums()</td>
-<td class="success">0.009s</td>
+<td class="success">0.012s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetAllAlbumsByArtist()</td>
-<td class="success">0.013s</td>
+<td class="success">0.018s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -102,10 +102,10 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>19:40:38.076 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.backend.musicservice.controllers.AlbumControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-19:40:38.148 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using ContextCustomizers for test class [AlbumControllerTests]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
-19:40:38.191 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners for test class [AlbumControllerTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-19:40:38.193 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [AlbumControllerTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>19:48:06.558 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.backend.musicservice.controllers.AlbumControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+19:48:06.688 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using ContextCustomizers for test class [AlbumControllerTests]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+19:48:06.779 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners for test class [AlbumControllerTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+19:48:06.781 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [AlbumControllerTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -115,12 +115,12 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.2)
 
-2023-04-16T19:40:38.691+02:00  INFO 2344 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : Starting AlbumControllerTests using Java 17.0.2 with PID 2344 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\music-service)
-2023-04-16T19:40:38.692+02:00  INFO 2344 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-04-16T19:40:40.541+02:00  INFO 2344 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-04-16T19:40:40.542+02:00  INFO 2344 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-04-16T19:40:40.547+02:00  INFO 2344 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
-2023-04-16T19:40:40.587+02:00  INFO 2344 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : Started AlbumControllerTests in 2.326 seconds (process running for 4.21)
+2023-04-16T19:48:07.583+02:00  INFO 10584 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : Starting AlbumControllerTests using Java 17.0.2 with PID 10584 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\music-service)
+2023-04-16T19:48:07.586+02:00  INFO 10584 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-04-16T19:48:09.730+02:00  INFO 10584 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-04-16T19:48:09.730+02:00  INFO 10584 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-16T19:48:09.735+02:00  INFO 10584 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2023-04-16T19:48:09.770+02:00  INFO 10584 --- [    Test worker] c.b.m.controllers.AlbumControllerTests   : Started AlbumControllerTests in 2.89 seconds (process running for 6.468)
 </pre>
 </span>
 </div>
@@ -132,7 +132,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at Apr 16, 2023, 7:40:41 PM</p>
+<a href="http://www.gradle.org">Gradle 8.0.2</a> at Apr 16, 2023, 7:48:11 PM</p>
 </div>
 </div>
 </body>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.musicservice.services.AlbumServiceTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:40:41" hostname="LAPTOP-B5B6RA7N" time="0.102">
+<testsuite name="com.backend.musicservice.services.AlbumServiceTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-04-16T17:48:10" hostname="LAPTOP-B5B6RA7N" time="0.098">
   <properties/>
-  <testcase name="testCreateAlbum()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.094"/>
-  <testcase name="testGetAllAlbums()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.001"/>
-  <testcase name="testGetAlbumsByArtistId()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.001"/>
+  <testcase name="testCreateAlbum()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.088"/>
+  <testcase name="testGetAllAlbums()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.002"/>
+  <testcase name="testGetAlbumsByArtistId()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.002"/>
   <testcase name="testGetAlbumById()" classname="com.backend.musicservice.services.AlbumServiceTests" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
