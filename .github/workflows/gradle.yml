@@ -37,6 +37,7 @@ jobs:
           gradle clean
       - name: Build with Gradle
         run: |
+          ls
           cd backend/yousound
           gradle build
         working-directory: ${{steps.set_dir.outputs.dir}}
