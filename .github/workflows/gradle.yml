@@ -31,17 +31,18 @@ jobs:
       - name: Set working directory
         run: echo "::set-output name=dir::$(find . -type d -name '*-service*' -print -quit)"
         id: set_dir
+      - name: Gradle Clean
+        run: | 
+          cd backend/yousound
+          gradle clean
       - name: Build with Gradle
-        run: gradle build
+        run: |
+          cd backend/yousound
+          gradle build
         working-directory: ${{steps.set_dir.outputs.dir}}
-      - name: Test Music Service
+      - name: Test YouSound
         run: |
-          cd backend/yousound/music-service
-          gradle test
-
-      - name: Test User Service
-        run: |
-          cd backend/yousound/user-service
+          cd backend/yousound
           gradle test
       - name: docker login
         env:

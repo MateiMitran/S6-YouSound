@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.370s</div>
+<div class="counter">0.031s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">testGetAllUsers()</td>
-<td class="success">0.316s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">testGetUserById()</td>
 <td class="success">0.011s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">testGetUserById()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">testUpdateUserRole()</td>
-<td class="success">0.043s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,11 +97,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>12:32:51.610 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.backend.userservicetests.controllers.UserControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-12:32:51.703 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using ContextCustomizers for test class [UserControllerTests]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
-12:32:51.772 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners for test class [UserControllerTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-12:32:51.774 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [UserControllerTests], class annotated with @DirtiesContext [false] with mode [null]
-
+<pre>
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -110,12 +106,12 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.2)
 
-2023-04-17T12:32:52.280+02:00  INFO 11908 --- [    Test worker] c.b.u.controllers.UserControllerTests    : Starting UserControllerTests using Java 17.0.2 with PID 11908 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\user-service)
-2023-04-17T12:32:52.282+02:00  INFO 11908 --- [    Test worker] c.b.u.controllers.UserControllerTests    : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-04-17T12:32:55.017+02:00  INFO 11908 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-04-17T12:32:55.017+02:00  INFO 11908 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-04-17T12:32:55.025+02:00  INFO 11908 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-2023-04-17T12:32:55.074+02:00  INFO 11908 --- [    Test worker] c.b.u.controllers.UserControllerTests    : Started UserControllerTests in 3.217 seconds (process running for 5.147)
+2023-04-17T13:09:09.168+02:00  INFO 21336 --- [    Test worker] c.b.u.controllers.UserControllerTests    : Starting UserControllerTests using Java 17.0.2 with PID 21336 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\user-service)
+2023-04-17T13:09:09.168+02:00  INFO 21336 --- [    Test worker] c.b.u.controllers.UserControllerTests    : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-04-17T13:09:09.428+02:00  INFO 21336 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-04-17T13:09:09.428+02:00  INFO 21336 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-04-17T13:09:09.429+02:00  INFO 21336 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-04-17T13:09:09.433+02:00  INFO 21336 --- [    Test worker] c.b.u.controllers.UserControllerTests    : Started UserControllerTests in 0.294 seconds (process running for 5.295)
 </pre>
 </span>
 </div>
@@ -127,7 +123,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at Apr 17, 2023, 12:32:55 PM</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at Apr 17, 2023, 1:09:09 PM</p>
 </div>
 </div>
 </body>
