@@ -13,18 +13,16 @@ on:
   pull_request:
     branches: ["master"]
 
-permissions:
-  contents: read
-
 jobs:
-  build-push-docker-image:
+  build-test-push-docker-image:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Set up JDK 17
-        uses: actions/setup-java@v3.10.0
+        uses: actions/setup-java@v2
         with:
           java-version: 17
           distribution: "temurin"
@@ -45,7 +43,7 @@ jobs:
           ls
           cd backend/yousound
           gradle test
-      - name: docker login
+      - name: docker loginZ
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
           DOCKER_PASSWORD: '${{ secrets.DOCKER_PASSWORD }}'
