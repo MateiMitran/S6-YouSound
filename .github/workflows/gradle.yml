@@ -43,7 +43,7 @@ jobs:
           ls
           cd backend/yousound
           gradle test
-      - name: docker loginZ
+      - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
           DOCKER_PASSWORD: '${{ secrets.DOCKER_PASSWORD }}'
