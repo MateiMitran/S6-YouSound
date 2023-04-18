@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 
-@Entity
+@MappedSuperclass
 public class Content {
 
     @Id

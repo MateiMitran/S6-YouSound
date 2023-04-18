@@ -54,12 +54,6 @@ public class SongTests {
     }
 
     @Test
-    public void testSetReleasedOnGetReleasedOn() {
-       song.setReleased_on(LocalDateTime.parse("2023-04-23T10:15:32"));
-       Assertions.assertEquals("2023-04-23T10:15:32", song.getReleased_on().toString());
-    }
-
-    @Test
     public void testSetPlaysGetPlays() {
         song.setPlays(10);
         Assertions.assertEquals(10, song.getPlays());

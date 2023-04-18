@@ -16,8 +16,7 @@ public class Song extends Content{
     private Long album_id;
     @Column(name="artist_id", nullable = false)
     private String artist_id;
-    @Column(name="released_on")
-    private LocalDateTime released_on;
+
     @Column(name="plays")
     private int plays;
 
@@ -26,7 +25,6 @@ public class Song extends Content{
         this.genre = genre;
         this.album_id = album_id;
         this.artist_id = artist_id;
-        this.released_on = released_on;
         this.plays = 0;
     }
 
@@ -57,15 +55,6 @@ public class Song extends Content{
 
     public void setArtist_id(String artist_id) {
         this.artist_id = artist_id;
-    }
-
-
-    public LocalDateTime getReleased_on() {
-        return released_on;
-    }
-
-    public void setReleased_on(LocalDateTime released_on) {
-        this.released_on = released_on;
     }
 
     public String getGenre() {
