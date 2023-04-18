@@ -27,8 +27,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.4'
-    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
    // implementation 'io.micrometer:micrometer-tracing-bridge-brave'
    // implementation 'io.zipkin.reporter2:zipkin-reporter-brave'
@@ -39,6 +37,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-test:3.0.5'
     testImplementation 'org.mockito:mockito-core:5.3.0'
     testImplementation 'org.springframework.boot:spring-boot-test-autoconfigure:3.0.5'
+    //implementation 'org.mongodb:mongodb-driver-sync:4.0.3'
+    //implementation 'org.springframework.data:spring-data-mongodb:4.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.5'
 
 }
 
