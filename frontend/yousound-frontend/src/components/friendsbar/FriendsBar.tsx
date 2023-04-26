@@ -54,7 +54,7 @@ const FriendsBar: React.FC = () => {
               key={`${friend.name}_id`}
               name={friend.name}
               song={friend.song}
-              online={false}
+              online={true}
             />
           );
         })}

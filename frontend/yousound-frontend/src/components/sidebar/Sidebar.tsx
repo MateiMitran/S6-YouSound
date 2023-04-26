@@ -7,6 +7,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  MenuItem,
   Typography,
 } from "@mui/material";
 import {
@@ -19,6 +20,7 @@ import {
 } from "@mui/icons-material";
 import { playlists } from "./playlists";
 import YouSound from "../../assets/yousound.png";
+import Menu from "@mui/material/Menu";
 
 // interface SidebarProps {
 //   profilePic: string;
@@ -27,6 +29,15 @@ import YouSound from "../../assets/yousound.png";
 // }
 
 const Sidebar: React.FC = () => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: any) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box
       sx={{
@@ -45,7 +56,14 @@ const Sidebar: React.FC = () => {
       }}
     >
       <List>
-        <ListItemButton sx={{ marginBottom: "1rem" }}>
+        <ListItemButton
+          id="basic-button"
+          onClick={handleClick}
+          aria-controls={open ? "basic-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          sx={{ marginBottom: "1rem" }}
+        >
           <Avatar>MM</Avatar>
           <ListItemText
             primary={
@@ -62,7 +80,26 @@ const Sidebar: React.FC = () => {
             }
           />
         </ListItemButton>
-        <ListItemButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            "aria-labelledby": "basic-button",
+          }}
+        >
+          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem
+            onClick={() => {
+              handleClose();
+              window.location.href = "/login";
+            }}
+          >
+            Logout
+          </MenuItem>
+        </Menu>
+        <ListItemButton href={"/"}>
           <ListItemIcon>
             <Home sx={{ color: "#929292" }} />
           </ListItemIcon>
@@ -112,7 +149,14 @@ const Sidebar: React.FC = () => {
           </ListItemButton>
         ))}
       </List>
-      <Box sx={{ position: "absolute", bottom: "0", mr: "25px" }}>
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "0",
+          mr: "25px",
+          userSelect: "none",
+        }}
+      >
         <img src={YouSound} draggable="false" alt="YouSound" width={"100%"} />
       </Box>
     </Box>

@@ -37,6 +37,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               boxShadow:
                 "0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.2)",
               borderRadius: 3,
+              cursor: "pointer",
+              userSelect: "none",
             }
           : {
               width: "100%",
@@ -47,6 +49,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
               boxShadow:
                 "0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.2)",
               borderRadius: 3,
+              userSelect: "none",
             }
       }
     >
