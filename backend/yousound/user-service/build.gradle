@@ -40,7 +40,7 @@ dependencies {
     //implementation 'org.mongodb:mongodb-driver-sync:4.0.3'
     //implementation 'org.springframework.data:spring-data-mongodb:4.0.3'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.5'
-
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.0.6'
 }
 
 test {

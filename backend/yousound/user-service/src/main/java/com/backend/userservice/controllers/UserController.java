@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
     @Autowired
@@ -29,5 +30,21 @@ public class UserController {
     public ResponseEntity<User> getUser(@PathVariable String id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody User user) {
+        return ResponseEntity.ok(userService.register(user));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody User user) {
+        return ResponseEntity.ok(userService.login(user.getUsername(), user.getPassword()));
+    }
+
+    @PostMapping("/verify/{token}")
+    public ResponseEntity<User> verify(@PathVariable String token) {
+        return ResponseEntity.ok(userService.verifyByToken(token));
+    }
+
 
 }

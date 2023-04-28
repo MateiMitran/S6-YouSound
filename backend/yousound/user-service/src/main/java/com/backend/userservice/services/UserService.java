@@ -8,12 +8,16 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EmailService emailService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -30,4 +34,38 @@ public class UserService {
        return userRepository.findById(id).orElseThrow(() ->
                new ResourceNotFoundException("User does not exist with id: " + id));
     }
+
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() ->
+                new ResourceNotFoundException("User does not exist with username: " + username));
+    }
+
+    public User login(String username, String password) {
+        User user = userRepository.findByUsername(username).orElseThrow(() ->
+                new ResourceNotFoundException("User does not exist with username: " + username));
+        if (user.getPassword().equals(password) && user.isVerified()) {
+            return user;
+        } else {
+            throw new ResourceNotFoundException("Incorrect password");
+        }
+    }
+
+    public User register(User user) {
+        String token = UUID.randomUUID().toString();
+        user.setVerification_token(token);
+        emailService.sendVerificationEmail(user);
+        return userRepository.save(user);
+    }
+
+    public User verifyByToken(String verification_token) {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getVerification_token().equals(verification_token)) {
+                user.setVerified(true);
+                return userRepository.save(user);
+            }
+        }
+        return null;
+    }
+
 }

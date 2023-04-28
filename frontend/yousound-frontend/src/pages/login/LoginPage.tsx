@@ -1,8 +1,9 @@
-import { Box, Typography, TextField, Button, styled } from "@mui/material";
-import React, { useEffect } from "react";
+import { Box, TextField, Button, styled } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import Link from "@mui/material/Link";
 import blur from "../../assets/blur.jpg";
 import yousound1 from "../../assets/yousound1.png";
+import { UserService } from "../../services/UserService";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -13,10 +14,36 @@ const CssTextField = styled(TextField)({
     "&.Mui-focused fieldset": {
       borderColor: "#484D79",
     },
+    "& input": {
+      color: "white",
+    },
   },
 });
 
 export const LoginPage: React.FC = () => {
+  const [username, setUsername] = useState<String>("");
+  const [password, setPassword] = useState<String>("");
+
+  const changeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
+  const changePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    UserService.login(username, password).then((res) => {
+      if (res) {
+        console.log("logged in");
+        window.location.href = "/";
+      } else {
+        console.log("failed to log in");
+      }
+    });
+  };
+
   useEffect(() => {
     window.localStorage.removeItem("token");
   }, []);
@@ -66,16 +93,20 @@ export const LoginPage: React.FC = () => {
             />
           </Box>
         </Box>
-        <Box component="form" sx={{ mt: 1, width: "80%" }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ mt: 1, width: "80%" }}
+        >
           <Box
-            style={{
+            sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
             }}
           >
             <Box
-              style={{
+              sx={{
                 display: "flex",
                 flexDirection: "column",
                 marginLeft: "15%",
@@ -86,6 +117,8 @@ export const LoginPage: React.FC = () => {
                 id="username"
                 label="Username"
                 name="username"
+                value={username}
+                onChange={changeUsername}
                 autoComplete="username"
                 focused
                 color={"secondary"}
@@ -96,13 +129,15 @@ export const LoginPage: React.FC = () => {
                 label="Password"
                 type="password"
                 id="password"
+                value={password}
+                onChange={changePassword}
                 autoComplete="current-password"
                 color={"secondary"}
                 focused
               />
             </Box>
             <Box
-              style={{
+              sx={{
                 display: "flex",
                 justifyContent: "flex-end",
               }}
@@ -110,7 +145,7 @@ export const LoginPage: React.FC = () => {
               <Link
                 href="/login"
                 variant="body2"
-                style={{
+                sx={{
                   textDecoration: "none",
                   color: "#484D79",
                   fontWeight: "bold",
@@ -123,14 +158,32 @@ export const LoginPage: React.FC = () => {
             <Button
               type="submit"
               variant="contained"
-              style={{
+              sx={{
                 background: "#484D79",
                 textTransform: "none",
                 fontSize: "15px",
+                fontWeight: "bold",
+                mt: "10%",
+                mb: 2,
+                ml: "15%",
               }}
-              sx={{ mt: "10%", mb: 2, ml: "15%" }}
+              onClick={() => handleSubmit}
             >
-              Log In
+              Login
+            </Button>
+            <Button
+              variant="text"
+              href="/signup"
+              sx={{
+                color: "#484D79",
+                textTransform: "none",
+                fontSize: "15px",
+                fontWeight: "bold",
+                mb: 2,
+                ml: "15%",
+              }}
+            >
+              Sign up
             </Button>
           </Box>
         </Box>
