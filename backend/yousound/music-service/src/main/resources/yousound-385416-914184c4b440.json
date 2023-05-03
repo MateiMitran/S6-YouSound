@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "yousound-385416",
+  "private_key_id": "914184c4b4406fc7a44987f683cf1ff4f415be14",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC6BuKEcX1DdKjr\nv2FhMBApEW8hnyPO7XXyxDuZS8O+2wU6iLqstJDxiwCyWOVGR6f7xoG8murJ+aJd\nVgYXWVCyBk3wqxGcs/0nAllNybXzmN6RZ9creAdGa4cL8yuz2Ow3Y28flSOCSUOC\nGVKhOaeiDe8KlnnlJdVSEOs5+VJAE5eT6Uy0BznJ6kSNDJf8LA5iFwCWNU38Cb1y\nZlu2iigcuOGVSF7jKhoG2jHi0zdZM3aaBu5oJFmMhWjIIKxdR96P6r+0iLKEAuo2\n89Dwkxshtq5UDU1xWx3MHCnk3HZu8E+VsLyohtTnOB4+WU2J8FXCdAsyrfgkReI2\nVwSQucELAgMBAAECggEAWmnTOVThcWInYaE8JpzSFevDzB8JK98M5weKAfkpc78G\nnQrsU9lU4xjQp13+XTihhATYdH8E41Khn+SaBEokJspaokC6yCNQxF9nYR/K/9DK\nR/ikwxtMyeSkF+JB2ODy+f6peTumrQGHvpkpKHQZrfFAv7AgIYfQVNklQqGTYNFw\njsIwHLMX71vlqutIdL67gqyc29/QIe5wTh+ygWJhMAFbLr2cxWzA5YBHzGS76mOH\n2dvzuj3IQ04Ph/4+m/UGTCP5pOdVrlnJNNmyJTXW5U3C/5CHPUMd4oTfOoFQINH9\n9KOtu5kdwUNLM1hliypWDr6SeGRPL73CcVOJSb8LRQKBgQDkXSsx4OtF+7YvV6TV\n0OZgBQ2tRzT33MYm5uR/DBGbK4tO2wYmow7ul90cVKruwTLxVI7fQOvDc3vtkrfP\nUHheVdAM3nfsGmC36QGLV3BVK3JkeZOTrJZpR0HtrydwBEzhK5WJTP6CeQuVQJ9I\nepmQKJ0VOBZb26Gku+14pKCLLQKBgQDQihfDWbAYGN5zsY/eTGhMcud8NIiwWRof\nf+4NN4/p5kV6U4nxNe5YL5AWX6msarnL8zUW/eYDgFrMIyGT/NcBZJ0ypGu93iWb\nEwYH7kGdVmuzIc/le9p69/YEa+/Pm1qfGhKAZPklsGkv3gDud5/mL73Z9T/WV8zD\n9hxSWspAFwKBgQC8EbLiKB77CrrWsHJzGNCxoVfLLcqEmtCh9yOVMgZJ6YmYDq85\nIK7Kdk1F6MDBUmE2+PGVEW1ZEQGt/Vfdp6MJ5dgq0QiobGzc6Us5S3Ca4+YYszuD\nse5Jk8LLEaYEDbaW9oL3iW5NW4zbhVXopfdUDu6XLBLV4cJ03cRLyCDjnQKBgQCT\nOarlI6CKoqQKEcV8L31C26xJp90Igx9KNcseUaesfgF3BxtPy79lSs7yvL7RFtft\nANruTHni5u8zR2ohTFOOjDXe1u2psffir1+GodJ4/dYzNR/M58+rGPv6yykW7Jrh\n0EpXkvHChfT88kK+GH4uyG3EPry+2mWZw1rjWW2IKQKBgQCM7gCRoaN5kwSR9sQw\nDvGArHwqKf6RtFpM6+KGlXgCtA+wpCyYlhH8YtMXf4geFuj4HPykz2UU64vsv242\nyo0wTYqCUJUp/F3pcFIx6+MeRGWPXjpiUHV4CPNnHvNvjnf6fOGekwroiJcuJoe7\nF3Y2A9KL7dAX6ExpLGEHw2VjWg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "yousound-bucket@yousound-385416.iam.gserviceaccount.com",
+  "client_id": "114638746837333725856",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/yousound-bucket%40yousound-385416.iam.gserviceaccount.com"
+}

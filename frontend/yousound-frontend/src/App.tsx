@@ -3,11 +3,13 @@ import Playbar from "./components/playbar/Playbar";
 import FriendsBar from "./components/friendsbar/FriendsBar";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/home/Home";
-import { LoginPage } from "./pages/login/LoginPage";
+import { Home } from "./pages/user/home/Home";
+import { LoginPage } from "./pages/user/login/LoginPage";
 import { useState, useEffect } from "react";
-import { SignupPage } from "./pages/signup/SignupPage";
-import { VerifyPage } from "./pages/verify/VerifyPage";
+import { SignupPage } from "./pages/user/signup/SignupPage";
+import { VerifyPage } from "./pages/user/verify/VerifyPage";
+import { SearchPage } from "./pages/user/search/SearchPage";
+import { DashboardPage } from "./pages/admin/DashboardPage";
 
 function App() {
   const [hasToken, setHasToken] = useState(false);
@@ -28,6 +30,8 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/verify/:token" element={<VerifyPage />} />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
           </Routes>
         </BrowserRouter>
       </div>

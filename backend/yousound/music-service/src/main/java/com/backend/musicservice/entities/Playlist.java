@@ -29,6 +29,11 @@ public class Playlist extends Content {
 
     }
 
+    public Playlist(long l, String s, String s1, LocalDateTime parse, String s2, String s3, int i, String s4) {
+        super(l, s, s1, parse, s2, s3, i);
+        this.creator_id = s4;
+    }
+
     public int getNr_of_songs() {
         return nr_of_songs;
     }
@@ -43,6 +48,9 @@ public class Playlist extends Content {
 
     public void setCreator_id(String creator_id) {
         this.creator_id = creator_id;
+    }
+    public SearchResult toSearchResult() {
+        return new SearchResult(this.getName(), this.getPicture(), "Playlist");
     }
 }
 

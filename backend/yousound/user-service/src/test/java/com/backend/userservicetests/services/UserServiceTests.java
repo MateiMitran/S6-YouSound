@@ -3,6 +3,7 @@ package com.backend.userservicetests.services;
 
 import com.backend.userservice.entities.User;
 import com.backend.userservice.repositories.UserRepository;
+import com.backend.userservice.services.EmailService;
 import com.backend.userservice.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,7 @@ public class UserServiceTests {
 
     @Autowired
     private UserService userService;
+
 
     @MockBean
     private UserRepository userRepository;

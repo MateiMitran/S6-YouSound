@@ -105,7 +105,7 @@ const Sidebar: React.FC = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton href={"/search"}>
           <ListItemIcon>
             <Search sx={{ color: "#929292" }} />
           </ListItemIcon>

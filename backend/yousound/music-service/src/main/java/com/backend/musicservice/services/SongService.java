@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SongService {
@@ -25,7 +26,15 @@ public class SongService {
     }
 
     public Song createSong(Song song) {
+
+        song.setId(UUID.randomUUID().getLeastSignificantBits());
         return songRepository.save(song);
+    }
+
+    public Boolean deleteSongById(Long id) {
+        Song song = songRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+        songRepository.delete(song);
+        return true;
     }
 
 

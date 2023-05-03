@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class PlaylistService {
@@ -38,6 +39,14 @@ public class PlaylistService {
     }
 
     public Playlist createPlaylist(Playlist playlist) {
+
+        playlist.setId(UUID.randomUUID().getLeastSignificantBits());
         return pRepo.save(playlist);
+    }
+
+    public Boolean deletePlaylistById(Long id) {
+        Playlist playlist = pRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        pRepo.delete(playlist);
+        return true;
     }
 }

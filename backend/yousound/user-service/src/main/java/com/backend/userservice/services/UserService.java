@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
+    @Autowired(required = false)
     EmailService emailService;
 
     public List<User> getAllUsers() {
@@ -66,6 +66,26 @@ public class UserService {
             }
         }
         return null;
+    }
+
+    public boolean deleteUserById(String id) {
+
+        if (userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean deleteUserByUsername(String username) {
+
+        if (userRepository.findByUsername(username).isPresent()) {
+            userRepository.deleteById(username);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

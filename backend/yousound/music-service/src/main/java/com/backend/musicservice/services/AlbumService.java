@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class AlbumService {
@@ -38,7 +39,15 @@ public class AlbumService {
     }
 
     public Album createAlbum(Album album) {
+
+        album.setId(UUID.randomUUID().getLeastSignificantBits());
         return aRepo.save(album);
+    }
+
+    public Boolean deleteAlbumById(Long id) {
+        Album album = aRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+        aRepo.delete(album);
+        return true;
     }
 
 }

@@ -19,13 +19,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/songs")
+@RequestMapping("/api/music/songs")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SongController {
 
 
-    private static final String BUCKET_NAME = "yousound-music";
+    private static final String BUCKET_NAME = "yousound-musicc";
 
     @Autowired
     private SongService songService;
@@ -33,10 +35,10 @@ public class SongController {
     private final Storage storage;
 
     public SongController() throws IOException {
-        Resource resource = new ClassPathResource("yousound-383010-362d7a87709e.json");
+        Resource resource = new ClassPathResource("yousound-385416-914184c4b440.json");
         InputStream keyFileStream = resource.getInputStream();
         this.storage = StorageOptions.newBuilder()
-                .setProjectId("yousound-383010")
+                .setProjectId("yousound-385416")
                 .setCredentials(ServiceAccountCredentials.fromStream(keyFileStream))
                 .build()
                 .getService();
@@ -50,14 +52,7 @@ public class SongController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Song> createSong(@RequestBody Song song) {
-        return ResponseEntity.ok(songService.createSong(song));
-    }
-
-
-    @PostMapping("/{id}/upload")
-    public ResponseEntity<BlobInfo> uploadFileToSong(@PathVariable Long id, @RequestPart MultipartFile songFile, @RequestPart MultipartFile picture) throws IOException {
-        Song song = songService.getSongById(id);
+    public ResponseEntity<Song> createSong(@RequestBody Song song, @RequestPart MultipartFile songFile, @RequestPart MultipartFile picture) throws IOException {
         String fileName = song.getId() + "-" + songFile.getOriginalFilename();
         String pictureName = song.getId() + "-picture-"+ picture.getOriginalFilename();
 
@@ -70,21 +65,29 @@ public class SongController {
         songService.createSong(song);
 
         storage.create(BlobInfo.newBuilder(BUCKET_NAME, pictureName)
-                .setContentType("image/jpeg")
-                .build(),
+                        .setContentType("image/jpeg")
+                        .build(),
                 picture.getBytes());
 
 
-        return ResponseEntity.ok(storage.create(BlobInfo.newBuilder(BUCKET_NAME, fileName)
+        storage.create(BlobInfo.newBuilder(BUCKET_NAME, fileName)
                         .setContentType("audio/mpeg")
                         .build(),
-                songFile.getBytes()));
-
+                songFile.getBytes());
+        return ResponseEntity.ok(songService.createSong(song));
     }
+
+
+
 
     @GetMapping
     public ResponseEntity<List<Song>> getAllSongs() {
         return ResponseEntity.ok(songService.getAllSongs());
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> deleteSongById(@PathVariable Long id) {
+        return ResponseEntity.ok(songService.deleteSongById(id));
     }
 
 }

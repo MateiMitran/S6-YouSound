@@ -1,24 +1,14 @@
 import axios from "axios";
+import { UserEntity } from "../types";
 
 const API_URL = "http://localhost:8083/api/users";
 
-export type UserEntity = {
-  id: String;
-  username: String;
-  password: String;
-  email: String;
-  firstName: String;
-  lastName: String;
-  verification_token: String;
-  verified: boolean;
-  type: String;
-};
 
 export abstract class UserService {
   public static async login(
     username: String,
     password: String
-  ): Promise<UserEntity> {
+  ): Promise<UserEntity | undefined> {
     return new Promise((resolve) => {
       axios
         .post(API_URL + "/login", {
@@ -26,10 +16,12 @@ export abstract class UserService {
           password,
         })
         .then((response) => {
-          if (response.data) {
-            localStorage.setItem("user", JSON.stringify(response.data));
-          }
+          localStorage.setItem("user", JSON.stringify(response.data));
           resolve(response.data);
+        })
+        .catch((error) => {
+          console.log("User not verified.");
+          return undefined;
         });
     });
   }
@@ -67,6 +59,27 @@ export abstract class UserService {
         }
         resolve(response.data);
       });
+    });
+  }
+
+  public static async getAllUsers(): Promise<UserEntity[]> {
+    return new Promise((resolve) => {
+      axios.get(API_URL).then((response) => {
+        resolve(response.data);
+      });
+    });
+  }
+
+  public static async deleteById(id: String): Promise<Boolean> {
+    return new Promise((resolve) => {
+      axios
+        .delete(API_URL + "/delete-by-id/" + id)
+        .then((response) => {
+          resolve(true);
+        })
+        .catch((error) => {
+          resolve(false);
+        });
     });
   }
 }

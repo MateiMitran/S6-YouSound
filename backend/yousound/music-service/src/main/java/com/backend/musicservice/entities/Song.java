@@ -16,11 +16,10 @@ public class Song extends Content{
     private Long album_id;
     @Column(name="artist_id", nullable = false)
     private String artist_id;
-
     @Column(name="plays")
     private int plays;
 
-    public Song(Long id, String name, String description, String picture, LocalDateTime created_at, String file, int duration, String genre, Long album_id, String artist_id, LocalDateTime released_on) {
+    public Song(Long id, String name, String description, String picture, LocalDateTime created_at, String file, int duration, String genre, Long album_id, String artist_id) {
         super(id, name, description, created_at, picture,  file, duration);
         this.genre = genre;
         this.album_id = album_id;
@@ -71,5 +70,9 @@ public class Song extends Content{
 
     public void setPlays(int plays) {
         this.plays = plays;
+    }
+
+    public SearchResult toSearchResult() {
+        return new SearchResult(this.getName(), this.getPicture(), "Song");
     }
 }

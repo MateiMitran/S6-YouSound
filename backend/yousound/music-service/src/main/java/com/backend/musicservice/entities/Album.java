@@ -47,4 +47,8 @@ public class Album extends Content{
     public void setArtist_id(String artist_id) {
         this.artist_id = artist_id;
     }
+
+    public SearchResult toSearchResult() {
+        return new SearchResult(this.getName(), this.getPicture(), "Album");
+    }
 }

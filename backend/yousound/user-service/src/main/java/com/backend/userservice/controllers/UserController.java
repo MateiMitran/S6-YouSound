@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class UserController {
 
     @Autowired
@@ -44,6 +44,16 @@ public class UserController {
     @PostMapping("/verify/{token}")
     public ResponseEntity<User> verify(@PathVariable String token) {
         return ResponseEntity.ok(userService.verifyByToken(token));
+    }
+
+    @DeleteMapping("/delete-by-id/{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable String id) {
+        return ResponseEntity.ok(userService.deleteUserById(id));
+    }
+
+    @DeleteMapping("/delete/{username}")
+    public ResponseEntity<Boolean> deleteByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(userService.deleteUserByUsername(username));
     }
 
 

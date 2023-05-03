@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.390s</div>
+<div class="counter">0.311s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">testCreateCommunity()</td>
-<td class="success">0.066s</td>
+<td class="success">0.055s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetAllCommunities()</td>
-<td class="success">0.311s</td>
+<td class="success">0.237s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">testGetCommunityById()</td>
-<td class="success">0.013s</td>
+<td class="success">0.019s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,10 +97,10 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>13:09:05.397 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.backend.userservicetests.controllers.CommunityControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-13:09:05.476 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using ContextCustomizers for test class [CommunityControllerTests]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
-13:09:05.531 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners for test class [CommunityControllerTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
-13:09:05.533 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [CommunityControllerTests], class annotated with @DirtiesContext [false] with mode [null]
+<pre>22:28:35.166 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [com.backend.userservicetests.controllers.CommunityControllerTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+22:28:35.232 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using ContextCustomizers for test class [CommunityControllerTests]: [DisableAutoConfigurationContextCustomizer, DisableObservabilityContextCustomizer, TypeExcludeFiltersContextCustomizer, PropertyMappingContextCustomizer, Customizer, ImportsContextCustomizer, ExcludeFilterContextCustomizer, DuplicateJsonObjectContextCustomizer, MockitoContextCustomizer]
+22:28:35.264 [Test worker] DEBUG org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTestContextBootstrapper - Using TestExecutionListeners for test class [CommunityControllerTests]: [ServletTestExecutionListener, DirtiesContextBeforeModesTestExecutionListener, ApplicationEventsTestExecutionListener, MockitoTestExecutionListener, DependencyInjectionTestExecutionListener, DirtiesContextTestExecutionListener, TransactionalTestExecutionListener, SqlScriptsTestExecutionListener, EventPublishingTestExecutionListener, RestDocsTestExecutionListener, MockRestServiceServerResetTestExecutionListener, MockMvcPrintOnlyOnFailureTestExecutionListener, WebDriverTestExecutionListener, MockWebServiceServerTestExecutionListener, ResetMocksTestExecutionListener]
+22:28:35.265 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: class [CommunityControllerTests], class annotated with @DirtiesContext [false] with mode [null]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -110,12 +110,12 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.0.2)
 
-2023-04-17T13:09:06.056+02:00  INFO 21336 --- [    Test worker] c.b.u.c.CommunityControllerTests         : Starting CommunityControllerTests using Java 17.0.2 with PID 21336 (started by Matei Mitran in C:\Users\Matei Mitran\Desktop\S6-YouSound\backend\yousound\user-service)
-2023-04-17T13:09:06.057+02:00  INFO 21336 --- [    Test worker] c.b.u.c.CommunityControllerTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2023-04-17T13:09:08.662+02:00  INFO 21336 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2023-04-17T13:09:08.663+02:00  INFO 21336 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2023-04-17T13:09:08.668+02:00  INFO 21336 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
-2023-04-17T13:09:08.712+02:00  INFO 21336 --- [    Test worker] c.b.u.c.CommunityControllerTests         : Started CommunityControllerTests in 3.098 seconds (process running for 4.575)
+2023-05-03T22:28:35.640+02:00  INFO 12572 --- [    Test worker] c.b.u.c.CommunityControllerTests         : Starting CommunityControllerTests using Java 17.0.6 with PID 12572 (started by Mitran Matei in C:\Users\Mitran Matei\Desktop\Fontys\Semester 6\S6-YouSound\backend\yousound\user-service)
+2023-05-03T22:28:35.642+02:00  INFO 12572 --- [    Test worker] c.b.u.c.CommunityControllerTests         : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2023-05-03T22:28:37.893+02:00  INFO 12572 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-05-03T22:28:37.894+02:00  INFO 12572 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-05-03T22:28:37.901+02:00  INFO 12572 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 4 ms
+2023-05-03T22:28:37.941+02:00  INFO 12572 --- [    Test worker] c.b.u.c.CommunityControllerTests         : Started CommunityControllerTests in 2.63 seconds (process running for 3.855)
 </pre>
 </span>
 </div>
@@ -127,7 +127,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at Apr 17, 2023, 1:09:09 PM</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at May 3, 2023, 10:28:39 PM</p>
 </div>
 </div>
 </body>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, IconButton, Slider, Typography, Stack } from "@mui/material";
 import {
   SkipPrevious,
@@ -14,8 +14,11 @@ import {
   RepeatTwoTone,
   RepeatOneTwoTone,
 } from "@mui/icons-material";
-import VolumeSlider from "./VolumeSlider";
 import Losingit from "../../assets/losingit.jpg";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
+import losingit from "../../assets/losingitaudio.mp3";
+import { useDispatch } from "react-redux";
 
 // interface PlaybarProps {
 //   songImageUrl: string;
@@ -24,12 +27,30 @@ import Losingit from "../../assets/losingit.jpg";
 //   duration: number;
 //   currentTime: number;
 // }
+const useInitializeAudio = () => {
+  const dispatch = useDispatch();
+  const newAudio = new Audio(Losingit);
+  newAudio.addEventListener("timeupdate", () => {
+    dispatch({ type: "SET_CURRENT_TIME", payload: newAudio.currentTime });
+  });
+  newAudio.addEventListener("loadedmetadata", () => {
+    dispatch({ type: "SET_DURATION", payload: newAudio.duration });
+  });
+  dispatch({ type: "SET_AUDIO", payload: newAudio });
+};
 
 const Playbar: React.FC = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const [repeatCount, setRepeatCount] = useState<number>(0);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(30);
+  const [volume, setVolume] = useState(0.5);
+
+  // useEffect(() => {
+  //   useInitializeAudio();
+  // }, []);
 
   const incrementRepeat = () => {
     if (repeatCount === 2) {
@@ -39,6 +60,75 @@ const Playbar: React.FC = () => {
     }
   };
 
+  const formatTime = (seconds: number): string => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds - hours * 3600) / 60);
+    const remainingSeconds = Math.floor(seconds - hours * 3600 - minutes * 60);
+
+    const formattedHours = hours.toString().padStart(2, "0");
+    const formattedMinutes = minutes.toString().padStart(2, "0");
+    const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
+
+    if (hours > 0) {
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    } else {
+      return `${formattedMinutes}:${formattedSeconds}`;
+    }
+  };
+
+  const handlePlay = () => {
+    if (audio) {
+      audio.volume = volume;
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    } else {
+      // useInitializeAudio();
+    }
+  };
+
+  const handleVolumeChange = (event: any, newValue: number | number[]) => {
+    const newVolume = typeof newValue === "number" ? newValue : newValue[0];
+    setVolume(newVolume);
+    if (audio) {
+      audio.volume = newVolume;
+    }
+  };
+
+  const handlePlaySliderChange = (event: any, newValue: number | number[]) => {
+    const newTime = typeof newValue === "number" ? newValue : newValue[0];
+    if (audio) {
+      audio.currentTime = newTime;
+    }
+  };
+
+  const handlePlaySliderChangeCommitted = (
+    event: any,
+    newValue: number | number[]
+  ) => {
+    const newTime = typeof newValue === "number" ? newValue : newValue[0];
+    if (audio) {
+      audio.currentTime = newTime;
+      if (!audio.paused) {
+        audio.play();
+      }
+    }
+  };
+
+  const handleAudioTimeUpdate = () => {
+    if (audio) {
+      const newTime = audio.currentTime;
+      if (Math.abs(newTime - currentTime) >= 0.1) {
+        setCurrentTime(newTime);
+      }
+    }
+  };
+
+  if (audio) {
+    audio.addEventListener("timeupdate", handleAudioTimeUpdate);
+  }
   return (
     <Box
       sx={{
@@ -63,18 +153,28 @@ const Playbar: React.FC = () => {
         <IconButton sx={{ color: "inherit" }}>
           <SkipPrevious />
         </IconButton>
-        <IconButton
-          onClick={() => setIsPlaying(!isPlaying)}
-          sx={{ color: "inherit" }}
-        >
-          {isPlaying ? <Pause /> : <PlayArrow />}
+        <IconButton onClick={handlePlay} sx={{ color: "inherit" }}>
+          {audio && !audio.paused ? <Pause /> : <PlayArrow />}
         </IconButton>
         <IconButton sx={{ color: "inherit" }}>
           <SkipNext />
         </IconButton>
-        <Typography>1:34</Typography>
-        <Slider value={14} max={20} sx={{ color: "inherit", width: 500 }} />
-        <Typography>2:34</Typography>
+        <Typography sx={{ marginRight: "1rem" }}>
+          {formatTime(currentTime)}
+        </Typography>
+        <Slider
+          value={currentTime}
+          min={0}
+          max={duration}
+          step={0.01}
+          onChange={handlePlaySliderChange}
+          onChangeCommitted={handlePlaySliderChangeCommitted}
+          aria-labelledby="playback-slider"
+          sx={{ mr: "10px", color: "inherit", width: 500 }}
+        />
+        <Typography sx={{ ml: "1rem" }}>
+          {formatTime(duration - currentTime)}
+        </Typography>
         <IconButton
           onClick={() => setIsLiked(!isLiked)}
           sx={{ color: "inherit" }}
@@ -103,7 +203,22 @@ const Playbar: React.FC = () => {
         <IconButton sx={{ color: "inherit" }}>
           <QueueMusic />
         </IconButton>
-        <VolumeSlider />
+        <Box sx={{ width: 200, mt: "100px" }}>
+          <Stack spacing={2} direction="row" alignItems="center">
+            <VolumeDown />
+            <Slider
+              aria-label="Volume"
+              value={volume}
+              min={0}
+              max={1}
+              step={0.01}
+              onChange={handleVolumeChange}
+              sx={{ color: "#4745A0" }}
+              aria-labelledby="volume-slider"
+            />
+            <VolumeUp />
+          </Stack>
+        </Box>
         <Stack direction="row" alignItems="center" spacing={1}>
           <img
             src={Losingit}

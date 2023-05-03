@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/playlists")
+@RequestMapping("/api/music/playlists")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PlaylistController {
     @Autowired
     PlaylistService playlistService;
@@ -33,5 +34,10 @@ public class PlaylistController {
     @GetMapping("/user/{uId}")
     public ResponseEntity<List<Playlist>> getAllFromUserWithId(@PathVariable String uId) {
         return ResponseEntity.ok(playlistService.getPlaylistsOfUser(uId));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> deletePlaylistById(@PathVariable Long id) {
+        return ResponseEntity.ok(playlistService.deletePlaylistById(id));
     }
 }
