@@ -5,7 +5,7 @@ import blur from "../../../assets/blur.jpg";
 import yousound1 from "../../../assets/yousound1.png";
 import { UserService } from "../../../services/UserService";
 
-const CssTextField = styled(TextField)({
+export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
     color: "white",
   },

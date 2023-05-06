@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.UUID;
 
 
 @MappedSuperclass
@@ -29,8 +30,8 @@ public class Content {
     @Column(nullable = false)
     private int duration;
 
-    public Content(Long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration) {
-        this.id = id;
+    public Content( String name, String description, LocalDateTime created_at, String picture, String file, int duration) {
+        this.id = UUID.randomUUID().getLeastSignificantBits();
         this.name = name;
         this.description = description;
         this.picture = picture;

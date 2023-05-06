@@ -14,8 +14,8 @@ public class Playlist extends Content {
     @Column(name="creator_id", nullable = false)
     private String creator_id;
 
-    public Playlist(Long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, int nr_of_songs, String creator_id) {
-        super(id, name, description, created_at, picture, file, duration);
+    public Playlist(String name, String description, LocalDateTime created_at, String picture, String file, int duration, int nr_of_songs, String creator_id) {
+        super(name, description, created_at, picture, file, duration);
         this.nr_of_songs = nr_of_songs;
         this.creator_id = creator_id;
     }
@@ -29,10 +29,10 @@ public class Playlist extends Content {
 
     }
 
-    public Playlist(long l, String s, String s1, LocalDateTime parse, String s2, String s3, int i, String s4) {
-        super(l, s, s1, parse, s2, s3, i);
-        this.creator_id = s4;
-    }
+//    public Playlist(String s, String s1, LocalDateTime parse, String s2, String s3, int i, String s4) {
+//        super(s, s1, parse, s2, s3, i);
+//        this.creator_id = s4;
+//    }
 
     public int getNr_of_songs() {
         return nr_of_songs;

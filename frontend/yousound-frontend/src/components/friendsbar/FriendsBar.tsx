@@ -4,7 +4,7 @@ import { Box, List, ListItemText, Typography } from "@mui/material";
 import { FriendComponent } from "./FriendComponent";
 import { dataFriends } from "./data.js";
 
-const FriendsBar: React.FC = () => {
+export const FriendsBar: React.FC = React.memo((props) => {
   return (
     <Box
       sx={{
@@ -61,6 +61,4 @@ const FriendsBar: React.FC = () => {
       </List>
     </Box>
   );
-};
-
-export default FriendsBar;
+});

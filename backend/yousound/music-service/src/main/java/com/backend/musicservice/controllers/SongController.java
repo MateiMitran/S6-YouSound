@@ -77,6 +77,34 @@ public class SongController {
         return ResponseEntity.ok(songService.createSong(song));
     }
 
+    @PostMapping("/upload/{id}")
+    public ResponseEntity<Boolean> updateSong(@PathVariable Long id, @RequestPart MultipartFile songFile, @RequestPart MultipartFile picture) throws IOException {
+        Song song = songService.getSongById(id);
+        String fileName = song.getId() + "-" + songFile.getOriginalFilename();
+        String pictureName = song.getId() + "-picture-"+ picture.getOriginalFilename();
+
+        String urlSong = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, fileName);
+
+        String urlPic = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, pictureName);
+
+        song.setFile(urlSong);
+        song.setPicture(urlPic);
+        songService.createSong(song);
+
+        storage.create(BlobInfo.newBuilder(BUCKET_NAME, pictureName)
+                        .setContentType("image/jpeg")
+                        .build(),
+                picture.getBytes());
+
+
+        storage.create(BlobInfo.newBuilder(BUCKET_NAME, fileName)
+                        .setContentType("audio/mpeg")
+                        .build(),
+                songFile.getBytes());
+
+        return ResponseEntity.ok(true);
+    }
+
 
 
 

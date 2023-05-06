@@ -20,14 +20,14 @@ import java.util.List;
 @EnableJpaRepositories
 public class MusicServiceApplication {
 
-    @Autowired
-    private SongService songService;
-
-    @Autowired
-    private AlbumService albumService;
-
-    @Autowired
-    private PlaylistService playlistService;
+//    @Autowired
+//    private SongService songService;
+//
+//    @Autowired
+//    private AlbumService albumService;
+//
+//    @Autowired
+//    private PlaylistService playlistService;
 
     public static void main(String[] args) {
         SpringApplication.run(MusicServiceApplication.class, args);

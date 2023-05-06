@@ -159,7 +159,7 @@ const Playbar: React.FC = () => {
         <IconButton sx={{ color: "inherit" }}>
           <SkipNext />
         </IconButton>
-        <Typography sx={{ marginRight: "1rem" }}>
+        <Typography sx={{ mr: "1rem" }}>
           {formatTime(currentTime)}
         </Typography>
         <Slider
@@ -170,7 +170,7 @@ const Playbar: React.FC = () => {
           onChange={handlePlaySliderChange}
           onChangeCommitted={handlePlaySliderChangeCommitted}
           aria-labelledby="playback-slider"
-          sx={{ mr: "10px", color: "inherit", width: 500 }}
+          sx={{ ml: "10px", mr: "10px", color: "inherit", width: 500 }}
         />
         <Typography sx={{ ml: "1rem" }}>
           {formatTime(duration - currentTime)}

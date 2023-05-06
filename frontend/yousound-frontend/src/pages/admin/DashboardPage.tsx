@@ -3,6 +3,7 @@ import { Tabs, Tab, Box, Typography, Button, styled } from "@mui/material";
 import { Users } from "./users/Users";
 import { Music } from "./content/Music";
 import { Settings } from "./settings/Settings";
+import { Charts } from "./charts/Charts";
 
 export const DashboardPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -45,9 +46,7 @@ export const DashboardPage: React.FC = () => {
       <Box sx={{ p: 3 }}>
         {activeTab === 0 && <Users />}
         {activeTab === 1 && <Music />}
-        {activeTab === 2 && (
-          <Typography variant="h5">This is the content of Tab 4</Typography>
-        )}
+        {activeTab === 2 && <Charts />}
         {activeTab === 3 && <Settings />}
       </Box>
     </Box>

@@ -4,7 +4,16 @@ import SearchBar from "./SearchBar";
 
 export const SearchPage: React.FC = () => {
   return (
-    <Box sx={{ position: "absolute", top: 250 }}>
+    <Box
+      sx={{
+        width: "100%",
+        margin: "0 auto",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        mt: "5%",
+      }}
+    >
       <SearchBar />
     </Box>
   );

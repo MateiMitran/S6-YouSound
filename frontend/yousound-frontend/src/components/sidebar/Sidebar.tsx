@@ -88,8 +88,21 @@ const Sidebar: React.FC = () => {
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
+          sx={{
+            ml: "10px",
+          }}
         >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem
+            sx={{
+              width: "200px",
+            }}
+            onClick={() => {
+              handleClose();
+              window.location.href = "/profile";
+            }}
+          >
+            Profile
+          </MenuItem>
           <MenuItem
             onClick={() => {
               handleClose();
@@ -112,19 +125,19 @@ const Sidebar: React.FC = () => {
           <ListItemText primary="Search" />
         </ListItemButton>
         <Divider sx={{ backgroundColor: "#929292", margin: "0.5rem 0" }} />
-        <ListItemButton>
+        <ListItemButton href={"/library"}>
           <ListItemIcon>
             <LibraryMusic sx={{ color: "#929292" }} />
           </ListItemIcon>
           <ListItemText primary="Library" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton href={"/communities"}>
           <ListItemIcon>
             <Group sx={{ color: "#929292" }} />
           </ListItemIcon>
           <ListItemText primary="Communities" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton href={"/inbox"}>
           <ListItemIcon>
             <Inbox sx={{ color: "#929292" }} />
           </ListItemIcon>

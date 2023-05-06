@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import debounce from "lodash.debounce";
-import { TextField } from "@mui/material";
+import { Paper, IconButton, Divider, InputBase } from "@mui/material";
+import { Search } from "@mui/icons-material";
 
 interface SearchResult {
   name: String;
@@ -47,15 +48,29 @@ const SearchBar: React.FC = () => {
 
   return (
     <div>
-      <TextField
-        id="search-bar"
-        className="text"
-        onInput={handleSearchInputChange}
-        value={searchText}
-        variant="outlined"
-        placeholder="Search..."
-        size="small"
-      />
+      <Paper
+        component="form"
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: 400,
+          borderRadius: "15px",
+          border: "3px solid #4745A0",
+        }}
+      >
+        <IconButton sx={{ p: "10px" }} aria-label="menu">
+          <Search />
+        </IconButton>
+        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="What do you want to listen to...?"
+          inputProps={{ "aria-label": "search" }}
+          onInput={handleSearchInputChange}
+          value={searchText}
+        />
+      </Paper>
       {searchText && (
         <div className="search-results">{renderSearchResults()}</div>
       )}

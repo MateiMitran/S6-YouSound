@@ -26,8 +26,6 @@ public class SongService {
     }
 
     public Song createSong(Song song) {
-
-        song.setId(UUID.randomUUID().getLeastSignificantBits());
         return songRepository.save(song);
     }
 

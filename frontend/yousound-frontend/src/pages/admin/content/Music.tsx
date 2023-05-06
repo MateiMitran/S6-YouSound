@@ -12,10 +12,9 @@ const columns: GridColDef[] = [
 const columnsP: GridColDef[] = [
   { field: "name", headerName: "Name", width: 130 },
   { field: "creator_id", headerName: "User ID", width: 130 },
-  { field: "nr_of_songs", headerName: "Number of Songs", width: 200},
-  { field: "likes", headerName: "Likes", width: 130}
+  { field: "nr_of_songs", headerName: "Number of Songs", width: 200 },
+  { field: "likes", headerName: "Likes", width: 130 },
 ];
-
 
 const CssDataGrid = styled(DataGrid)({
   "& .MuiDataGrid-cell": {
@@ -30,7 +29,11 @@ const CssDataGrid = styled(DataGrid)({
 });
 
 export const Music: React.FC = () => {
-  const [content, setContent] = React.useState<ContentEntity>();
+  const [content, setContent] = React.useState<ContentEntity>({
+    songs: [],
+    albums: [],
+    playlists: [],
+  });
   const [selectedSongRows, setSelectedSongRows] = React.useState<any>([]);
   const [selectedAlbumRows, setSelectedAlbumRows] = React.useState<any>([]);
   const [selectedPlaylistRows, setSelectedPlaylistRows] = React.useState<any>(
@@ -136,18 +139,16 @@ export const Music: React.FC = () => {
   return (
     <Box style={{ height: 400, width: "100%" }}>
       <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
-        {content?.songs && (
-          <CssDataGrid
-            rows={content.songs}
-            columns={columns}
-            checkboxSelection
-            onRowSelectionModelChange={handleSelectionSongModelChange}
-            rowSelectionModel={selectedSongRows}
-            paginationModel={{ page: paginationS, pageSize: 10 }}
-            onPaginationModelChange={handlePaginationS}
-          />
-        )}
-        {content?.albums && (
+        <CssDataGrid
+          rows={content?.songs}
+          columns={columns}
+          checkboxSelection
+          onRowSelectionModelChange={handleSelectionSongModelChange}
+          rowSelectionModel={selectedSongRows}
+          paginationModel={{ page: paginationS, pageSize: 10 }}
+          onPaginationModelChange={handlePaginationS}
+        />
+        {content.albums.length > 0 && (
           <CssDataGrid
             rows={content.albums}
             columns={columns}
@@ -158,7 +159,7 @@ export const Music: React.FC = () => {
             onPaginationModelChange={handlePaginationA}
           />
         )}
-        {content?.playlists && (
+        {content.playlists.length > 0 && (
           <CssDataGrid
             rows={content.playlists}
             columns={columnsP}
@@ -171,17 +172,29 @@ export const Music: React.FC = () => {
         )}
       </Stack>
       {selectedSongRows.length > 0 && (
-        <Button variant="contained" sx={{mr: "1rem"}} onClick={() => handleDeleteButtonClick(1)}>
+        <Button
+          variant="contained"
+          sx={{ mr: "1rem" }}
+          onClick={() => handleDeleteButtonClick(1)}
+        >
           Delete Songs
         </Button>
       )}
       {selectedAlbumRows.length > 0 && (
-        <Button variant="contained" sx={{ml: "1rem", mr: "1rem"}} onClick={() => handleDeleteButtonClick(2)}>
+        <Button
+          variant="contained"
+          sx={{ ml: "1rem", mr: "1rem" }}
+          onClick={() => handleDeleteButtonClick(2)}
+        >
           Delete Albums
         </Button>
       )}
       {selectedPlaylistRows.length > 0 && (
-        <Button variant="contained" sx={{ml: "1rem", mr: "1rem"}} onClick={() => handleDeleteButtonClick(3)}>
+        <Button
+          variant="contained"
+          sx={{ ml: "1rem", mr: "1rem" }}
+          onClick={() => handleDeleteButtonClick(3)}
+        >
           Delete Playlists
         </Button>
       )}
