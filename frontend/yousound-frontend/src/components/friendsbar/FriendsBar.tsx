@@ -14,12 +14,12 @@ export const FriendsBar: React.FC = React.memo((props) => {
         backgroundColor: "#222020",
         color: "#929292",
         height: "100vh",
-        minWidth: "240px",
+        minWidth: "260px",
         position: "fixed",
         padding: "1rem",
         top: 0,
         right: 0,
-        maxWidth: "240px",
+        maxWidth: "260px",
       }}
     >
       <List>

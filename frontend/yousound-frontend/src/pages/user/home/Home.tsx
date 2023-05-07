@@ -1,106 +1,65 @@
-import React, { useEffect } from "react";
-import { Box, Stack } from "@mui/material";
-import { dataSongs1, dataSongs2 } from "../../../components/friendsbar/data";
+import React, { useEffect, useState } from "react";
+import { Box, Grid } from "@mui/material";
 import { ContentCard } from "../../../components/cards/ContentCard";
+import { SongEntity } from "../../../types";
+import { MusicService } from "../../../services/MusicService";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setCurrentSong,
+  toggleIsPlaying,
+} from "../../../store/slices/playerSlice";
+import { RootState } from "../../../store";
 
 export const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const [songs, setSongs] = useState<SongEntity[]>([]);
+  const { isPlaying } = useSelector((state: RootState) => state.player);
   useEffect(() => {
     window.localStorage.setItem("token", "test");
+    const fetchSongs = async () => {
+      const response = await MusicService.getAllSongs();
+      setSongs(response);
+    };
+    fetchSongs();
   }, []);
 
+  const handleSongClick = (song: SongEntity) => {
+    console.log(isPlaying);
+    if (isPlaying) {
+      dispatch(setCurrentSong(song));
+      dispatch(toggleIsPlaying());
+    } else {
+      dispatch(setCurrentSong(song));
+      dispatch(toggleIsPlaying());
+    }
+  };
+
   return (
-    <Box sx={{ mt: "3%" }}>
+    <Box sx={{ mt: "3%", ml: "260px", mr: "280px" }}>
       <h2>Recently Played</h2>
-      <Stack
-        direction="row"
-        spacing={5}
+      <Grid
+        container
+        spacing={2}
         sx={{
-          width: "100%",
-          margin: "0 auto",
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
+          flexWrap: "wrap",
         }}
       >
-        {dataSongs1.map((song) => {
+        {songs.map((song) => {
           return (
-            <ContentCard
-              key={`${song.name}_id`}
-              name={song.name}
-              artist={song.artist}
-              image={song.image}
-            />
+            <Grid item xs={3} key={`${song.name}_id`}>
+              <ContentCard
+                name={song.name}
+                artist_id={song.artist_id}
+                picture={song.picture}
+                file={song.file}
+                onClick={() => handleSongClick(song)}
+              />
+            </Grid>
           );
         })}
-      </Stack>
-      <h2>Discover</h2>
-      <Stack
-        direction="row"
-        spacing={4}
-        sx={{ width: "100%", margin: "0 auto" }}
-      >
-        {dataSongs2.map((song) => {
-          return (
-            <ContentCard
-              key={`${song.name}_id`}
-              name={song.name}
-              artist={song.artist}
-              image={song.image}
-            />
-          );
-        })}
-      </Stack>
-      <h2>Discover</h2>
-      <Stack
-        direction="row"
-        spacing={4}
-        sx={{ width: "100%", margin: "0 auto" }}
-      >
-        {dataSongs2.map((song) => {
-          return (
-            <ContentCard
-              key={`${song.name}_id`}
-              name={song.name}
-              artist={song.artist}
-              image={song.image}
-            />
-          );
-        })}
-      </Stack>
-      <h2>Discover</h2>
-      <Stack
-        direction="row"
-        spacing={4}
-        sx={{ width: "100%", margin: "0 auto" }}
-      >
-        {dataSongs2.map((song) => {
-          return (
-            <ContentCard
-              key={`${song.name}_id`}
-              name={song.name}
-              artist={song.artist}
-              image={song.image}
-            />
-          );
-        })}
-      </Stack>
-      <h2>Discover</h2>
-      <Stack
-        direction="row"
-        spacing={4}
-        sx={{ width: "100%", margin: "0 auto" }}
-      >
-        {dataSongs2.map((song) => {
-          return (
-            <ContentCard
-              key={`${song.name}_id`}
-              name={song.name}
-              artist={song.artist}
-              image={song.image}
-            />
-          );
-        })}
-      </Stack>
+      </Grid>
     </Box>
   );
 };

@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { SongEntity } from "../../types";
 
 interface ContentCardProps {
-  image: string;
   name: string;
-  artist: string;
+  picture: string;
+  file: string;
+  artist_id: string;
+  onClick: () => void;
 }
 
 export const ContentCard: React.FC<ContentCardProps> = ({
-  image,
   name,
-  artist,
+  picture,
+  file,
+  artist_id,
+  onClick,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -26,11 +31,11 @@ export const ContentCard: React.FC<ContentCardProps> = ({
     <Card
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onClick={onClick}
       sx={
         isHovered
           ? {
               width: "100%",
-              maxWidth: 500,
               padding: 2,
               bgcolor: "#373737",
               border: "1px solid black",
@@ -42,7 +47,6 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             }
           : {
               width: "100%",
-              maxWidth: 500,
               padding: 2,
               bgcolor: "#232121",
               border: "1px solid black",
@@ -56,8 +60,8 @@ export const ContentCard: React.FC<ContentCardProps> = ({
       <CardMedia
         component="img"
         height="140"
-        image={image}
-        alt="image"
+        src={picture}
+        alt={name}
         sx={{
           borderRadius: 1.5,
           border: "2px solid black",
@@ -83,7 +87,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
           noWrap
           fontWeight="bold"
         >
-          {artist}
+          {artist_id}
         </Typography>
       </CardContent>
     </Card>

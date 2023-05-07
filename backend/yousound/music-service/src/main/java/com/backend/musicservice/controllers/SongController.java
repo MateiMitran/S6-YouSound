@@ -52,28 +52,7 @@ public class SongController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Song> createSong(@RequestBody Song song, @RequestPart MultipartFile songFile, @RequestPart MultipartFile picture) throws IOException {
-        String fileName = song.getId() + "-" + songFile.getOriginalFilename();
-        String pictureName = song.getId() + "-picture-"+ picture.getOriginalFilename();
-
-        String urlSong = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, fileName);
-
-        String urlPic = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, pictureName);
-
-        song.setFile(urlSong);
-        song.setPicture(urlPic);
-        songService.createSong(song);
-
-        storage.create(BlobInfo.newBuilder(BUCKET_NAME, pictureName)
-                        .setContentType("image/jpeg")
-                        .build(),
-                picture.getBytes());
-
-
-        storage.create(BlobInfo.newBuilder(BUCKET_NAME, fileName)
-                        .setContentType("audio/mpeg")
-                        .build(),
-                songFile.getBytes());
+    public ResponseEntity<Song> createSong(@RequestBody Song song)  {
         return ResponseEntity.ok(songService.createSong(song));
     }
 

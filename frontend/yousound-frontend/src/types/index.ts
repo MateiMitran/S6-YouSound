@@ -6,50 +6,50 @@ export type ContentEntity = {
 
 export type SongEntity = {
   id: number;
-  name: String;
-  description: String;
+  name: string;
+  description: string;
   created_at: Date;
-  picture: String;
-  file: String;
+  picture: string;
+  file: string;
   duration: number;
-  genre: String;
+  genre: string;
   album_id?: number;
-  artist_id: String;
+  artist_id: string;
   plays?: number;
 };
 
 export type AlbumEntity = {
   id: number;
-  name: String;
-  description: String;
+  name: string;
+  description: string;
   created_at: Date;
-  picture: String;
-  file: String;
+  picture: string;
+  file: string;
   duration: number;
   nr_of_songs: number;
-  artist_id: String;
+  artist_id: string;
 };
 
 export type PlaylistEntity = {
   id: number;
-  name: String;
-  description: String;
+  name: string;
+  description: string;
   created_at: Date;
-  picture: String;
-  file: String;
+  picture: string;
+  file: string;
   duration: number;
   nr_of_songs?: number;
-  creator_id: String;
+  creator_id: string;
 };
 
 export type UserEntity = {
-  id: String;
-  username: String;
-  password: String;
-  email: String;
-  firstName: String;
-  lastName: String;
-  verification_token: String;
+  id: string;
+  username: string;
+  password: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  verification_token: string;
   verified: boolean;
-  type: String;
+  type: string;
 };
