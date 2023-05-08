@@ -1,8 +1,8 @@
-package com.backend.userservice.controllers;
+package com.backend.socialservice.controllers;
 
 
-import com.backend.userservice.entities.Community;
-import com.backend.userservice.services.CommunityService;
+import com.backend.socialservice.services.CommunityService;
+import com.backend.socialservice.entities.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
