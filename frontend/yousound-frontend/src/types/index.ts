@@ -53,3 +53,10 @@ export type UserEntity = {
   verified: boolean;
   type: string;
 };
+
+export type CommunityEntity = {
+  id: string;
+  artist_id: string;
+  description: string;
+  user_ids: string[];
+}

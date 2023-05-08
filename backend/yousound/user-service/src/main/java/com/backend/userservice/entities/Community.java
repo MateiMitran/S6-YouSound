@@ -3,6 +3,7 @@ package com.backend.userservice.entities;
 import lombok.Data;
 import lombok.NonNull;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Community {
     @NonNull
     private String description;
 
+    @DBRef
     private List<String> user_ids;
 
     public Community(String id, String artist_id, String description) {

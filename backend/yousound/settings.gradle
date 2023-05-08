@@ -6,3 +6,5 @@ include 'message-service'
 include 'music-service'
 include 'user-service'
 include 'security-service'
+include 'social-service'
+

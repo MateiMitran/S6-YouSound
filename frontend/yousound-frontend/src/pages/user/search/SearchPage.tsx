@@ -11,7 +11,7 @@ export const SearchPage: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        mt: "5%",
+        mt: "1%",
       }}
     >
       <SearchBar />

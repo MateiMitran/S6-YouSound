@@ -12,6 +12,8 @@ import { SearchPage } from "./pages/user/search/SearchPage";
 import { DashboardPage } from "./pages/admin/DashboardPage";
 import { ProfilePage } from "./pages/user/profile/ProfilePage";
 import { InboxPage } from "./pages/user/inbox/InboxPage";
+import { CommunitiesPage } from "./pages/user/communities/CommunitiesPage";
+import { CommunityPage } from "./pages/user/communities/CommunityPage";
 
 function App() {
   const [hasToken, setHasToken] = useState(false);
@@ -36,6 +38,8 @@ function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/inbox" element={<InboxPage />} />
+            <Route path="/communities" element={<CommunitiesPage />} />
+            <Route path="/communities/:communityid" element={<CommunityPage />} />
           </Routes>
         </BrowserRouter>
       </div>

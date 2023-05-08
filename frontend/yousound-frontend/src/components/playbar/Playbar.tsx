@@ -162,6 +162,7 @@ const Playbar: React.FC = () => {
         bottom: 0,
         right: 0,
         zIndex: 1000,
+
       }}
     >
       {currentSong && (
