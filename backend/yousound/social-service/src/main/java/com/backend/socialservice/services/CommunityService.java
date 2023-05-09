@@ -3,7 +3,9 @@ package com.backend.socialservice.services;
 
 import com.backend.socialservice.entities.Community;
 import com.backend.socialservice.repositories.CommunityRepository;
+import com.backend.userservice.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,10 +35,7 @@ public class CommunityService {
 
     public Community getCommunityFromId(String id) {
         Optional<Community> community = communityRepository.findById(id);
-        if (community.isPresent()) {
-           return community.get();
-        }
-        return null;
+        return community.orElse(null);
     }
 
     public Community createCommunity(Community c) {
@@ -51,6 +50,13 @@ public class CommunityService {
         return communityRepository.findAll();
     }
 
+
+    public List<User> getAllUsersFromCommunityWithId(String id) throws ResourceNotFoundException {
+        if (communityRepository.findById(id).isPresent()) {
+            return communityRepository.findById(id).get().getUsers();
+        }
+        throw new ResourceNotFoundException();
+    }
 
 }
 

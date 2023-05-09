@@ -2,6 +2,7 @@ package com.backend.socialservice.entities;
 
 
 import lombok.Data;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,13 +17,15 @@ public class Comment {
     private String id;
     private String content;
 
+    private String post_id;
     private String user_id;
     private int likes;
     private List<Comment> replies;
 
-    public Comment(String id, String content, String user_id) {
+    public Comment(String id, String content, String post_id, String user_id) {
         this.id = id;
         this.content = content;
+        this.post_id = post_id;
         this.user_id = user_id;
         this.likes = 0;
         this.replies = new ArrayList<>();
@@ -71,5 +74,13 @@ public class Comment {
 
     public void setReplies(List<Comment> replies) {
         this.replies = replies;
+    }
+
+    public String getPost_id() {
+        return post_id;
+    }
+
+    public void setPost_id(String post_id) {
+        this.post_id = post_id;
     }
 }
