@@ -30,8 +30,8 @@ public class Content {
     @Column(nullable = false)
     private int duration;
 
-    public Content( String name, String description, LocalDateTime created_at, String picture, String file, int duration) {
-        this.id = UUID.randomUUID().getLeastSignificantBits();
+    public Content(long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.picture = picture;

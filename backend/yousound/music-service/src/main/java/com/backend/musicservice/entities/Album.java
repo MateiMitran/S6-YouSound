@@ -17,8 +17,8 @@ public class Album extends Content{
     @Column(name="artist_id", nullable = false)
     private String artist_id;
 
-    public Album(String name, String description, LocalDateTime created_at, String picture, String file, int duration, int nr_of_songs, String artist_id) {
-        super(name, description, created_at, picture, file, duration);
+    public Album(long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, int nr_of_songs, String artist_id) {
+        super(id, name, description, created_at, picture, file, duration);
         this.nr_of_songs = nr_of_songs;
         this.artist_id = artist_id;
     }

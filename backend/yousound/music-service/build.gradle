@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
     implementation 'com.google.cloud:google-cloud-storage:2.22.0'
     implementation 'com.mysql:mysql-connector-j:8.0.32'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
 }
 
 tasks.named('test') {
