@@ -19,8 +19,8 @@ public class Song extends Content{
     @Column(name="plays")
     private int plays;
 
-    public Song(String name, String description, String picture, LocalDateTime created_at, String file, int duration, String genre, Long album_id, String artist_id) {
-        super(name, description, created_at, picture,  file, duration);
+    public Song(Long id, String name, String description, String picture, LocalDateTime created_at, String file, int duration, String genre, Long album_id, String artist_id) {
+        super(id, name, description, created_at, picture,  file, duration);
         this.genre = genre;
         this.album_id = album_id;
         this.artist_id = artist_id;
@@ -28,7 +28,7 @@ public class Song extends Content{
     }
 
     public Song(Long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, String genre, String artist_id) {
-        super(name,description, created_at, picture, file, duration);
+        super(id, name,description, created_at, picture, file, duration);
         this.artist_id = artist_id;
         this.genre = genre;
         this.plays = 0;

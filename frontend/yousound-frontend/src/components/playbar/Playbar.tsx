@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import {
@@ -22,7 +22,6 @@ import {
   RepeatTwoTone,
   RepeatOneTwoTone,
 } from "@mui/icons-material";
-import Losingit from "../../assets/losingit.jpg";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 
@@ -252,7 +251,7 @@ const Playbar: React.FC = () => {
         </Box>
         <Stack direction="row" alignItems="center" spacing={1}>
           <img
-            src={Losingit}
+            src={currentSong?.picture}
             alt="Song"
             style={{
               width: "50px",
@@ -263,8 +262,8 @@ const Playbar: React.FC = () => {
             }}
           />
           <Box>
-            <Typography sx={{ color: "#B8B7B7" }}>Fisher</Typography>
-            <Typography variant="subtitle2">Losing it</Typography>
+            <Typography sx={{ color: "#B8B7B7" }}>{currentSong?.artist_id}</Typography>
+            <Typography variant="subtitle2">{currentSong?.name}</Typography>
           </Box>
         </Stack>
       </Stack>
