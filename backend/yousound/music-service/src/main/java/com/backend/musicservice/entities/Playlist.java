@@ -2,6 +2,7 @@ package com.backend.musicservice.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Playlist extends Content {
     @Column(name="creator_id", nullable = false)
     private String creator_id;
 
-    public Playlist(long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, String creator_id) {
+    public Playlist(Long id, String name, String description, LocalDate created_at, String picture, String file, int duration, String creator_id) {
         super(id, name, description, created_at, picture, file, duration);
         this.creator_id = creator_id;
     }

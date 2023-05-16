@@ -6,16 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Component;
 
 import java.text.MessageFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
+import java.util.Objects;
 
 @Component
 public class TokenGenerator {
@@ -26,6 +25,14 @@ public class TokenGenerator {
     @Autowired
     JwtEncoder refreshTokenEncoder;
 
+    @Autowired
+    @Qualifier("jwtAccessTokenDecoder")
+    JwtDecoder accessTokenDecoder;
+
+    @Autowired
+    @Qualifier("jwtRefreshTokenDecoder")
+    JwtDecoder refreshTokenDecoder;
+
     private String createAccessToken(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         Instant now = Instant.now();
@@ -35,6 +42,7 @@ public class TokenGenerator {
                 .issuedAt(now)
                 .expiresAt(now.plus(5, ChronoUnit.MINUTES))
                 .subject(user.getId())
+                .claim("username", user.getUsername())
                 .build();
 
         return accessTokenEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();
@@ -83,4 +91,24 @@ public class TokenGenerator {
 
         return tokenDTO;
     }
+
+    public boolean isAccessTokenValid(String token) {
+        try {
+            Jwt jwt = accessTokenDecoder.decode(token);
+            return Objects.requireNonNull(jwt.getExpiresAt()).isAfter(Instant.now());
+        } catch (JwtException e) {
+            return false;
+        }
+    }
+
+    public Jwt decodeAccessToken(String token) {
+        return accessTokenDecoder.decode(token);
+    }
+
+    public Map<String, Object> decodeRefreshToken(TokenDTO tokenDTO) {
+        Jwt jwt = refreshTokenDecoder.decode(tokenDTO.getRefreshToken());
+        return jwt.getClaims();
+    }
+
+
 }

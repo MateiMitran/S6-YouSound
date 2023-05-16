@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PlayerState {
   currentSong: {
-    id: number;
+    id?: number;
     name: string;
     description: string;
-    created_at: Date;
+    created_at: string;
     picture: string;
     file: string;
-    duration: number;
+    duration?: number;
     genre: string;
     album_id?: number;
     artist_id: string;
@@ -35,13 +35,13 @@ const playerSlice = createSlice({
     setCurrentSong: (
       state,
       action: PayloadAction<{
-        id: number;
+        id?: number;
         name: string;
         description: string;
-        created_at: Date;
+        created_at: string;
         picture: string;
         file: string;
-        duration: number;
+        duration?: number;
         genre: string;
         album_id?: number;
         artist_id: string;

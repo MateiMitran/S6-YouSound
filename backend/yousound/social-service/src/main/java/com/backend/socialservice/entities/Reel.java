@@ -3,6 +3,7 @@ package com.backend.socialservice.entities;
 
 import lombok.Data;
 import lombok.NonNull;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 public class Reel {
 
 
+    @Id
+    private String id;
     @NonNull
     private String community_id;
 
@@ -27,7 +30,8 @@ public class Reel {
 
     private int reach;
 
-    public Reel(@NonNull String community_id, @NonNull String user_id, @NonNull String content) {
+    public Reel(String id, @NonNull String community_id, @NonNull String user_id, @NonNull String content) {
+        this.id = id;
         this.community_id = community_id;
         this.user_id = user_id;
         this.content = content;

@@ -4,6 +4,7 @@ package com.backend.musicservice.entities;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -17,7 +18,8 @@ public class Album extends Content{
     @Column(name="artist_id", nullable = false)
     private String artist_id;
 
-    public Album(long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, int nr_of_songs, String artist_id) {
+
+    public Album(Long id, String name, String description, LocalDate created_at, String picture, String file, int duration, int nr_of_songs, String artist_id) {
         super(id, name, description, created_at, picture, file, duration);
         this.nr_of_songs = nr_of_songs;
         this.artist_id = artist_id;

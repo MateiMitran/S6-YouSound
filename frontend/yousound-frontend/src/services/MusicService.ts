@@ -64,4 +64,34 @@ export abstract class MusicService {
       });
     });
   }
+
+  public static async createSong(song: SongEntity): Promise<SongEntity> {
+    return new Promise((resolve) => {
+      axios.post(API_URL + "/songs/create", song).then((response) => {
+        resolve(response.data);
+      });
+    });
+  }
+
+  public static async uploadToSong(
+    id: number | undefined,
+    file: any,
+    picture: any
+  ): Promise<Boolean> {
+    const formData = new FormData();
+    formData.append("songFile", file);
+    formData.append("picture", picture);
+
+    return new Promise((resolve) => {
+      axios
+        .post(API_URL + "/songs/upload/" + id, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          resolve(true);
+        });
+    });
+  }
 }

@@ -1,12 +1,18 @@
 package com.backend.securityservice.dto;
 
 import com.backend.securityservice.document.User;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Builder;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Builder
 @Data
-public class UserDTO {
+@JsonSerialize
+@JsonDeserialize
+public class UserDTO implements Serializable {
     private String id;
     private String username;
 
@@ -16,5 +22,19 @@ public class UserDTO {
                 .username(user.getUsername())
                 .build();
 
+    }
+
+    public UserDTO(String id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

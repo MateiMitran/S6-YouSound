@@ -14,42 +14,53 @@ import { ProfilePage } from "./pages/user/profile/ProfilePage";
 import { InboxPage } from "./pages/user/inbox/InboxPage";
 import { CommunitiesPage } from "./pages/user/communities/CommunitiesPage";
 import { CommunityPage } from "./pages/user/communities/CommunityPage";
+import { ArtistHome } from "./pages/artist/artisthome/ArtistHome";
+import SidebarArtist from "./components/sidebar/SidebarArtist";
 
 function App() {
   const [hasToken, setHasToken] = useState(false);
+  const [isArtist, setisArtist] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      setHasToken(true);
+    if (token === "artist") {
+      setisArtist(true);
+    } else {
+      if (token) {
+        setHasToken(true);
+      }
     }
   }, []);
   return (
-    <div className="App">
-      {hasToken && <Sidebar />}
-      <div className="content">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/verify/:token" element={<VerifyPage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/inbox" element={<InboxPage />} />
-            <Route path="/communities" element={<CommunitiesPage />} />
-            <Route path="/communities/:communityid" element={<CommunityPage />} />
-          </Routes>
-        </BrowserRouter>
+    <>
+      {!isArtist && <Playbar />}
+
+      <div className="App">
+        {hasToken && !isArtist && <Sidebar />}
+        {isArtist && <SidebarArtist />}
+        <div className="content">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/verify/:token" element={<VerifyPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/inbox" element={<InboxPage />} />
+              <Route path="/communities" element={<CommunitiesPage />} />
+              <Route
+                path="/communities/:communityid"
+                element={<CommunityPage />}
+              />
+              <Route path="/artisthome" element={<ArtistHome />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
       </div>
-      {hasToken && window.location.pathname !== "/profile" && (
-        <>
-          <Playbar />
-          <FriendsBar />
-        </>
-      )}
-    </div>
+      {!isArtist && <FriendsBar />}
+    </>
   );
 }
 

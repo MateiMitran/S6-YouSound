@@ -2,6 +2,7 @@ package com.backend.musicservice.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
@@ -19,7 +20,8 @@ public class Song extends Content{
     @Column(name="plays")
     private int plays;
 
-    public Song(Long id,String name, String description, String picture, LocalDateTime created_at, String file, int duration, String genre, Long album_id, String artist_id) {
+
+    public Song(Long id, String name, String description, String picture, LocalDate created_at, String file, int duration, String genre, Long album_id, String artist_id) {
         super(id, name, description, created_at, picture,  file, duration);
         this.genre = genre;
         this.album_id = album_id;
@@ -27,7 +29,7 @@ public class Song extends Content{
         this.plays = 0;
     }
 
-    public Song(Long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration, String genre, String artist_id) {
+    public Song(Long id, String name, String description, LocalDate created_at, String picture, String file, int duration, String genre, String artist_id) {
         super(id, name,description, created_at, picture, file, duration);
         this.artist_id = artist_id;
         this.genre = genre;

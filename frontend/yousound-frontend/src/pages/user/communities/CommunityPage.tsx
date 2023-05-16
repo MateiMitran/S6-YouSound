@@ -3,6 +3,7 @@ import * as React from "react";
 import { useParams } from "react-router-dom";
 import vibe from "../../../assets/vibe.png";
 import { CommunityEntity } from "../../../types";
+import { Feed } from "./feed/Feed";
 
 export const CommunityPage: React.FC = () => {
   const { communityid } = useParams();
@@ -64,13 +65,13 @@ export const CommunityPage: React.FC = () => {
           label="Media"
           sx={{ flexGrow: 1, fontFamily: "Arial", fontWeight: "bold" }}
         />
-        <Tab
+        <Tab  
           label="Settings"
           sx={{ flexGrow: 1, fontFamily: "Arial", fontWeight: "bold" }}
         />
       </Tabs>
       <Box sx={{ p: 3 }}>
-        {activeTab === 0 && <h1>Tab 1</h1>}
+        {activeTab === 0 && <Feed />} 
         {activeTab === 1 && <h1>Tab 2</h1>}
         {activeTab === 2 && <h1>Tab 3</h1>}
         {activeTab === 3 && <h1>Tab 4</h1>}

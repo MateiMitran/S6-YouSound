@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import {
@@ -22,7 +22,6 @@ import {
   RepeatTwoTone,
   RepeatOneTwoTone,
 } from "@mui/icons-material";
-import ys from "../../assets/ys.jpg";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 
@@ -162,7 +161,6 @@ const Playbar: React.FC = () => {
         bottom: 0,
         right: 0,
         zIndex: 1000,
-
       }}
     >
       {currentSong && (
@@ -243,7 +241,9 @@ const Playbar: React.FC = () => {
               value={volume}
               min={0}
               step={0.01}
-              onChange={(event, newValue) => handleVolumeChange(event, newValue)}
+              onChange={(event, newValue) =>
+                handleVolumeChange(event, newValue)
+              }
               sx={{ color: "#4745A0" }}
               aria-labelledby="volume-slider"
             />
@@ -251,19 +251,23 @@ const Playbar: React.FC = () => {
           </Stack>
         </Box>
         <Stack direction="row" alignItems="center" spacing={1}>
-          <img
-            src={currentSong?.picture}
-            alt="Song"
-            style={{
-              width: "50px",
-              height: "50px",
-              objectFit: "cover",
-              borderRadius: "4px",
-              marginLeft: "1rem",
-            }}
-          />
+          {currentSong?.picture && (
+            <img
+              src={currentSong?.picture}
+              alt="Song"
+              style={{
+                width: "50px",
+                height: "50px",
+                objectFit: "cover",
+                borderRadius: "4px",
+                marginLeft: "1rem",
+              }}
+            />
+          )}
           <Box>
-            <Typography sx={{ color: "#B8B7B7" }}>{currentSong?.artist_id}</Typography>
+            <Typography sx={{ color: "#B8B7B7" }}>
+              {currentSong?.artist_id}
+            </Typography>
             <Typography variant="subtitle2">{currentSong?.name}</Typography>
           </Box>
         </Stack>

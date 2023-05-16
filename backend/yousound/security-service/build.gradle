@@ -38,9 +38,9 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation "org.springframework.boot:spring-boot-starter-test"
-    implementation 'org.keycloak:keycloak-spring-boot-starter:15.0.2'
-    implementation 'org.springframework.boot:spring-boot-starter-security:3.0.5'
     implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
 }
 
 test {

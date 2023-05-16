@@ -27,7 +27,7 @@ import java.util.UUID;
 public class SongController {
 
 
-    private static final String BUCKET_NAME = "yousound-musicc";
+    private static final String BUCKET_NAME = "yousound-bucket";
 
     @Autowired
     private SongService songService;
@@ -35,10 +35,10 @@ public class SongController {
     private final Storage storage;
 
     public SongController() throws IOException {
-        Resource resource = new ClassPathResource("yousound-385416-914184c4b440.json");
+        Resource resource = new ClassPathResource("flash-surge-386910-252cca9aeb33.json");
         InputStream keyFileStream = resource.getInputStream();
         this.storage = StorageOptions.newBuilder()
-                .setProjectId("yousound-385416")
+                .setProjectId("flash-surge-386910")
                 .setCredentials(ServiceAccountCredentials.fromStream(keyFileStream))
                 .build()
                 .getService();

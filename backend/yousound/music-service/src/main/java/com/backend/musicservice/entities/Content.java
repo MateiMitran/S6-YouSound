@@ -3,6 +3,7 @@ package com.backend.musicservice.entities;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -24,13 +25,13 @@ public class Content {
     @Column(nullable = false)
     private String file;
     @Column(nullable = false)
-    private LocalDateTime created_at;
+    private LocalDate created_at;
     @Column(nullable = false)
     private int likes;
     @Column(nullable = false)
     private int duration;
 
-    public Content(long id, String name, String description, LocalDateTime created_at, String picture, String file, int duration) {
+    public Content(Long id, String name, String description, LocalDate created_at, String picture, String file, int duration) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -54,7 +55,7 @@ public class Content {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -62,7 +63,7 @@ public class Content {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -70,7 +71,7 @@ public class Content {
     }
 
     public String getPicture() {
-        return picture;
+        return this.picture;
     }
 
     public void setPicture(String picture) {
@@ -78,23 +79,23 @@ public class Content {
     }
 
     public String getFile() {
-        return file;
+        return this.file;
     }
 
     public void setFile(String file) {
         this.file = file;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDate getCreated_at() {
+        return this.created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreated_at(LocalDate created_at) {
         this.created_at = created_at;
     }
 
     public int getLikes() {
-        return likes;
+        return this.likes;
     }
 
     public void setLikes(int likes) {
@@ -102,7 +103,7 @@ public class Content {
     }
 
     public int getDuration() {
-        return duration;
+        return this.duration;
     }
 
     public void setDuration(int duration) {
