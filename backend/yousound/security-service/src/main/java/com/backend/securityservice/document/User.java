@@ -25,16 +25,16 @@ public class User implements UserDetails {
     @NonNull
     private String password;
 
-    private String type;
+    private Collection<? extends GrantedAuthority> authorities;
 
-    public User (String username, String password) {
+    public User (@NonNull String username, @NonNull String password) {
         this.username = username;
         this.password = password;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return this.authorities;
     }
 
     @Override
@@ -58,12 +58,12 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String getUsername() {
+    public @NonNull String getUsername() {
         return this.username;
     }
 
     @Override
-    public String getPassword() {
+    public @NonNull String getPassword() {
         return this.password;
     }
 
@@ -71,11 +71,4 @@ public class User implements UserDetails {
         return this.id;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }

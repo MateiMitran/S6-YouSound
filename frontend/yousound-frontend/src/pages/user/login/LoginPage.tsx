@@ -21,8 +21,8 @@ export const CssTextField = styled(TextField)({
 });
 
 export const LoginPage: React.FC = () => {
-  const [username, setUsername] = useState<String>("");
-  const [password, setPassword] = useState<String>("");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [open, setOpen] = React.useState<boolean>(false);
 
   const handleClose = () => {

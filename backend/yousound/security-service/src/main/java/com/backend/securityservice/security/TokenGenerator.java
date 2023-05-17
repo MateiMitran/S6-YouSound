@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class TokenGenerator {
@@ -43,6 +45,9 @@ public class TokenGenerator {
                 .expiresAt(now.plus(5, ChronoUnit.MINUTES))
                 .subject(user.getId())
                 .claim("username", user.getUsername())
+                .claim("roles", user.getAuthorities().stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .collect(Collectors.toList()))
                 .build();
 
         return accessTokenEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();

@@ -18,13 +18,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -44,9 +48,38 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        user.setAuthorities(authorities);
         userDetailsManager.createUser(user);
 
-        Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), Collections.EMPTY_LIST);
+        Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), authorities);
+
+        return ResponseEntity.ok(tokenGenerator.createToken(authentication));
+    }
+
+    @PostMapping("/register/admin")
+    public ResponseEntity registerAdmin(@RequestBody SignupDTO signupDTO) {
+        User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        user.setAuthorities(authorities);
+        userDetailsManager.createUser(user);
+
+        Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), authorities);
+
+        return ResponseEntity.ok(tokenGenerator.createToken(authentication));
+    }
+
+    @PostMapping("/register/artist")
+    public ResponseEntity registerArtist(@RequestBody SignupDTO signupDTO) {
+        User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        user.setAuthorities(authorities);
+        userDetailsManager.createUser(user);
+
+        Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), authorities);
 
         return ResponseEntity.ok(tokenGenerator.createToken(authentication));
     }
