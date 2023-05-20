@@ -132,7 +132,6 @@ export const Music: React.FC = () => {
   }, [content]);
 
   React.useEffect(() => {
-    localStorage.removeItem("token");
     fetchContent();
   }, []);
 

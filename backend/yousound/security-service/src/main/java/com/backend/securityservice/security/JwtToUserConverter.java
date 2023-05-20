@@ -12,10 +12,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component
 public class JwtToUserConverter implements Converter<Jwt, UsernamePasswordAuthenticationToken> {
+
+
+    Logger log = Logger.getLogger(JwtToUserConverter.class.getName());
 
     @Override
     public UsernamePasswordAuthenticationToken convert(Jwt jwt) {
@@ -28,6 +32,9 @@ public class JwtToUserConverter implements Converter<Jwt, UsernamePasswordAuthen
             authorities.add(new SimpleGrantedAuthority(role));
         }
 
-        return new UsernamePasswordAuthenticationToken(user, jwt, authorities);
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, jwt, authorities);
+
+        log.info(token.toString());
+        return token;
     }
 }

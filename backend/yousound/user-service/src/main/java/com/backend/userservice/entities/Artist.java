@@ -1,65 +1,105 @@
 package com.backend.userservice.entities;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
 
+
+@Document(collection = "artists")
 @Data
-@Document
-public class Artist extends User {
+public class Artist {
 
-    private String description;
+    @Id
+    private String id;
 
-    private int monthly_listeners;
+    private String username;
 
+    private String password;
 
-    public Artist(String username, String password, String description, int monthly_listeners) {
-        super(username, password);
-        this.description = description;
-        this.monthly_listeners = monthly_listeners;
-    }
+    private String email;
+
+    private String firstName;
+
+    private String lastName;
 
     public Artist() {
 
     }
 
-    public String getDescription() {
-        return description;
+
+    public String getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public int getMonthly_listeners() {
-        return monthly_listeners;
+    public String getUsername() {
+        return username;
     }
 
-    public void setMonthly_listeners(int monthly_listeners) {
-        this.monthly_listeners = monthly_listeners;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
         Artist artist = (Artist) o;
-        return monthly_listeners == artist.monthly_listeners && Objects.equals(description, artist.description);
+        return Objects.equals(id, artist.id) && Objects.equals(username, artist.username) && Objects.equals(password, artist.password) && Objects.equals(email, artist.email) && Objects.equals(firstName, artist.firstName) && Objects.equals(lastName, artist.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), description, monthly_listeners);
+        return Objects.hash(id, username, password, email, firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "Artist{" +
-                "description='" + description + '\'' +
-                ", monthly_listeners=" + monthly_listeners +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

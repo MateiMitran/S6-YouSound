@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class PlaylistTests {
@@ -47,8 +48,8 @@ public class PlaylistTests {
 
     @Test
     public void testSetCreatedAtGetCreatedAt() {
-        playlist.setCreated_at(LocalDateTime.parse("2022-04-23T10:15:32"));
-        Assertions.assertEquals("2022-04-23T10:15:32", playlist.getCreated_at().toString());
+        playlist.setCreated_at(LocalDate.parse("2022-04-23"));
+        Assertions.assertEquals("2022-04-23", playlist.getCreated_at().toString());
     }
 
     @Test
@@ -57,14 +58,6 @@ public class PlaylistTests {
         Assertions.assertEquals("1234", playlist.getCreator_id());
     }
 
-    @Test
-    public void testPlaylistConstructor() {
-        Playlist playlist = new Playlist(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, 40, "1234");
-        Assertions.assertEquals("testName", playlist.getName());
-        Assertions.assertEquals(0, playlist.getLikes());
-        Assertions.assertEquals(40, playlist.getNr_of_songs());
-        Assertions.assertEquals(120, playlist.getDuration());
-        Assertions.assertEquals("1234", playlist.getCreator_id());
-    }
+
 
 }

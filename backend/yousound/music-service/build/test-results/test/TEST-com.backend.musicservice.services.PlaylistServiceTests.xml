@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.backend.musicservice.services.PlaylistServiceTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-03T20:28:31" hostname="DESKTOP-3J2J7JK" time="0.062">
+<testsuite name="com.backend.musicservice.services.PlaylistServiceTests" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-05-20T19:31:45" hostname="DESKTOP-NA7IMDO" time="0.036">
   <properties/>
-  <testcase name="testGetPlaylistsOfUser()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.05"/>
-  <testcase name="testGetAllPlaylists()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.003"/>
-  <testcase name="testCreatePlaylist()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.002"/>
-  <testcase name="testGetPlaylistById()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.004"/>
+  <testcase name="testGetPlaylistsOfUser()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.032"/>
+  <testcase name="testGetAllPlaylists()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.002"/>
+  <testcase name="testCreatePlaylist()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.001"/>
+  <testcase name="testGetPlaylistById()" classname="com.backend.musicservice.services.PlaylistServiceTests" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

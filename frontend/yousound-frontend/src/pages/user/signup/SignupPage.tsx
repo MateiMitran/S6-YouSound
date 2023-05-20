@@ -1,8 +1,8 @@
 import { Box, TextField, Button, styled, Snackbar, Alert } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import blur from "../../../assets/blur.jpg";
 import yousound1 from "../../../assets/yousound1.png";
-import { UserService } from "../../../services/UserService";
+import { registerUser } from "../../../services/AuthService";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -53,17 +53,16 @@ export const SignupPage: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    UserService.register(username, email, firstName, lastName, password).then(
-      (res) => {
-        console.log(res);
-        setOpen(true);
-      }
-    );
+    if (username && password && email && firstName && lastName) {
+      registerUser(username, password, email, firstName, lastName)
+        .then((response) => {
+          setOpen(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
-
-  useEffect(() => {
-    window.localStorage.removeItem("token");
-  }, []);
 
   return (
     <Box
@@ -87,7 +86,7 @@ export const SignupPage: React.FC = () => {
         autoHideDuration={5000}
       >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          User registered. Verify your email before logging in!
+          User registered.
         </Alert>
       </Snackbar>
       <Box

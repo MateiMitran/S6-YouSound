@@ -73,7 +73,6 @@ export const Users: React.FC = () => {
   };
 
   React.useEffect(() => {
-    localStorage.removeItem("token");
     fetchUsers();
   }, []);
 

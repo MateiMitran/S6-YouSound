@@ -14,7 +14,7 @@ import java.util.Collections;
 
 @Document
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 public class User implements UserDetails {
     @Id
     private String id;
@@ -24,6 +24,12 @@ public class User implements UserDetails {
 
     @NonNull
     private String password;
+
+    private String email;
+
+    private String firstName;
+
+    private String lastName;
 
     private Collection<? extends GrantedAuthority> authorities;
 
@@ -70,5 +76,7 @@ public class User implements UserDetails {
     public String getId() {
         return this.id;
     }
+
+
 
 }

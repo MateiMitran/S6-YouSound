@@ -6,11 +6,13 @@ import com.backend.securityservice.dto.SignupDTO;
 import com.backend.securityservice.dto.TokenDTO;
 import com.backend.securityservice.dto.UserDTO;
 import com.backend.securityservice.security.TokenGenerator;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.Produces;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,12 +28,13 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.channels.Channel;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
 public class AuthController {
 
 
@@ -44,10 +47,16 @@ public class AuthController {
     DaoAuthenticationProvider daoAuthenticationProvider;
     @Autowired
     JwtAuthenticationProvider refreshTokenAuthProvider;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> register(@RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
+        user.setEmail(signupDTO.getEmail());
+        user.setFirstName(signupDTO.getFirstName());
+        user.setLastName(signupDTO.getLastName());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         user.setAuthorities(authorities);
@@ -59,7 +68,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/admin")
-    public ResponseEntity registerAdmin(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> registerAdmin(@RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
@@ -72,20 +81,30 @@ public class AuthController {
     }
 
     @PostMapping("/register/artist")
-    public ResponseEntity registerArtist(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> registerArtist(@RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_ARTIST"));
         user.setAuthorities(authorities);
         userDetailsManager.createUser(user);
 
         Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(user, signupDTO.getPassword(), authorities);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String message;
+        try {
+            message = objectMapper.writeValueAsString(signupDTO);
+        } catch (JsonProcessingException e) {
+            // Handle the exception as needed
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
 
+        // Publish the serialized message to the RabbitMQ queue
+        rabbitTemplate.convertAndSend("user-service-queue", message);
         return ResponseEntity.ok(tokenGenerator.createToken(authentication));
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDTO) {
         log.info("Received login request for user: {}", loginDTO.getUsername());
 
         try {
@@ -108,7 +127,7 @@ public class AuthController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity token(@RequestBody TokenDTO tokenDTO) {
+    public ResponseEntity<TokenDTO> token(@RequestBody TokenDTO tokenDTO) {
         Authentication authentication = refreshTokenAuthProvider.authenticate(new BearerTokenAuthenticationToken(tokenDTO.getRefreshToken()));
         Jwt jwt = (Jwt) authentication.getCredentials();
         return ResponseEntity.ok(tokenGenerator.createToken(authentication));
@@ -123,5 +142,13 @@ public class AuthController {
             return null;
         }
         return ResponseEntity.ok(new UserDTO(jwt.getSubject(), jwt.getClaim("username")));
+    }
+
+    @GetMapping("/role")
+    public ResponseEntity<String> getRole(@RequestParam("token") String token) {
+        Jwt jwt = tokenGenerator.decodeAccessToken(token);
+        String role = jwt.getClaimAsString("roles");
+        role = role.substring(1, role.length() - 1);
+        return ResponseEntity.ok(role);
     }
 }

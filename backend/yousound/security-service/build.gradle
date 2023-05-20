@@ -41,6 +41,7 @@ dependencies {
     implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
+    implementation 'org.springframework.amqp:spring-rabbit:3.0.4'
 }
 
 test {

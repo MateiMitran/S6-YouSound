@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {
   Avatar,
   Box,
@@ -21,7 +21,10 @@ import {
 import { playlists } from "./playlists";
 import YouSound from "../../assets/yousound.png";
 import Menu from "@mui/material/Menu";
-
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/AuthService";
+import { useSelector } from "react-redux";
+import { UserService } from "../../services/UserService";
 // interface SidebarProps {
 //   profilePic: string;
 //   name: string;
@@ -30,13 +33,31 @@ import Menu from "@mui/material/Menu";
 
 const Sidebar: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [firstName, setFirstName] = React.useState<string>("");
+  const [lastName, setLastName] = React.useState<string>("");
   const open = Boolean(anchorEl);
+  const userId = useSelector((state: any) => state.authentication.userId);
+  const dispatch = useDispatch();
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    dispatch(logout());
+  }
+
+  React.useEffect(() => {
+    if (userId) {
+      UserService.getUser(userId).then((response: any) => {
+        setFirstName(response.firstName);
+        setLastName(response.lastName);
+      });
+    }
+  }, []);
+
 
   return (
     <Box
@@ -64,7 +85,7 @@ const Sidebar: React.FC = () => {
           aria-expanded={open ? "true" : undefined}
           sx={{ marginBottom: "1rem" }}
         >
-          <Avatar>MM</Avatar>
+          <Avatar>{extractLetters(firstName+" "+lastName)}</Avatar>
           <ListItemText
             primary={
               <Typography
@@ -75,7 +96,7 @@ const Sidebar: React.FC = () => {
                   fontSize: "20px",
                 }}
               >
-                Matei Mitran
+                {firstName + " " + lastName}
               </Typography>
             }
           />
@@ -105,7 +126,7 @@ const Sidebar: React.FC = () => {
           </MenuItem>
           <MenuItem
             onClick={() => {
-              handleClose();
+              logOut();
               window.location.href = "/login";
             }}
           >
@@ -177,3 +198,15 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
+
+
+function extractLetters(str: string): string {
+  const trimmedStr = str.trim(); 
+
+  const firstLetter = trimmedStr.charAt(0);
+
+  const spaceIndex = trimmedStr.indexOf(' ');
+  const letterAfterSpace = trimmedStr.charAt(spaceIndex + 1);
+
+  return firstLetter + letterAfterSpace;
+}

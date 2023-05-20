@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 import Link from "@mui/material/Link";
 import blur from "../../../assets/blur.jpg";
 import yousound1 from "../../../assets/yousound1.png";
-import { UserService } from "../../../services/UserService";
+import { authenticateUser, authenticationFailure, authenticationSuccess } from "../../../services/AuthService";
+import { useNavigate } from "react-router-dom";
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { useDispatch } from "react-redux";
 
 export const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -20,10 +24,14 @@ export const CssTextField = styled(TextField)({
   },
 });
 
-export const LoginPage: React.FC = () => {
+export const LoginPage: React.FC = (props: any) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [open, setOpen] = React.useState<boolean>(false);
+
+  const navigate = useNavigate();
+  const dispatch: ThunkDispatch<{}, {}, AnyAction> = useDispatch();
+
 
   const handleClose = () => {
     setOpen(false);
@@ -36,24 +44,28 @@ export const LoginPage: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+
+
+  const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    UserService.login(username, password)
-      .then((res) => {
-        console.log(res);
-        if (res) {
-          console.log("logged in");
-          window.location.href = "/";
-        }
-      })
-      .catch((error) => {
-        setOpen(true);
-        console.log("failed to log in");
-      });
-  };
+    if (username && password) {
+      await dispatch(authenticateUser(username, password)).then((response: any) => {
+        dispatch(
+          authenticationSuccess(
+              response.userId,
+              response.accessToken,
+              response.refreshToken
+          )
+      );
+      navigate('/');
+      }).catch((error: Error) => {
+        dispatch(authenticationFailure(error.message));
+    });
+    }
+    
+  }
 
   useEffect(() => {
-    window.localStorage.removeItem("token");
   }, []);
 
   return (

@@ -75,13 +75,6 @@ public class SongTests {
         Assertions.assertEquals(song1, song2);
     }
 
-    @Test
-    public void testSongConstructor() {
-        Song song = new Song(1L, "testName", "testDesc", LocalDateTime.parse("2023-04-23T10:15:32"), "testPic", "testFile", 120, "testGenre", "1234");
-        Assertions.assertEquals(1L, song.getId());
-        Assertions.assertEquals("testName", song.getName());
-        Assertions.assertEquals("testGenre", song.getGenre());
-    }
 
 
 

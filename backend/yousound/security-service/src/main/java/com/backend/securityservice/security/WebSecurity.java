@@ -6,11 +6,14 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,6 +31,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @Slf4j
 public class WebSecurity {
 
@@ -42,13 +46,18 @@ public class WebSecurity {
     @Autowired
     UserDetailsManager userDetailsManager;
 
+
+    @PostConstruct
+    public void postConstruct() {
+        log.info("JwtToUserConverter: " + jwtToUserConverter);
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/music/**").hasRole("ADMIN")
-                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/token").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/validate","/api/auth/register/artist", "/api/auth/register/admin", "/api/auth/token", "/api/auth/role").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()

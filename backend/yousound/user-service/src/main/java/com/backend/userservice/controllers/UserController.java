@@ -16,11 +16,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PutMapping("/role/{id}")
-    public ResponseEntity<User> updateUserRole(@PathVariable String id, @RequestBody String role) {
-        return ResponseEntity.ok(userService.updateUserRole(id, role));
-    }
-
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
@@ -29,21 +24,6 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable String id) {
         return ResponseEntity.ok(userService.getUserById(id));
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        return ResponseEntity.ok(userService.register(user));
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody User user) {
-        return ResponseEntity.ok(userService.login(user.getUsername(), user.getPassword()));
-    }
-
-    @PostMapping("/verify/{token}")
-    public ResponseEntity<User> verify(@PathVariable String token) {
-        return ResponseEntity.ok(userService.verifyByToken(token));
     }
 
     @DeleteMapping("/delete-by-id/{id}")

@@ -5,13 +5,14 @@ import {
   PlaylistEntity,
   ContentEntity,
 } from "../types";
+import { AuthHeader } from "./AuthHeader";
 
-const API_URL = "http://localhost:8081/api/music";
+const API_URL = "http://localhost:8080/api/music";
 
 export abstract class MusicService {
   public static async getAllSongs(): Promise<SongEntity[]> {
     return new Promise((resolve) => {
-      axios.get(API_URL + "/songs").then((response) => {
+      axios.get(API_URL + "/songs", { headers: AuthHeader() }).then((response) => {
         resolve(response.data);
       });
     });

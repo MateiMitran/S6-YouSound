@@ -23,7 +23,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'junit:junit:4.13.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-   // implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
     annotationProcessor 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
@@ -40,7 +40,7 @@ dependencies {
     //implementation 'org.mongodb:mongodb-driver-sync:4.0.3'
     //implementation 'org.springframework.data:spring-data-mongodb:4.0.3'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.0.5'
-    implementation 'org.springframework.boot:spring-boot-starter-mail:3.0.6'
+    implementation 'org.springframework.amqp:spring-rabbit:3.0.4'
 }
 
 test {

@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import { Home, Settings, Group, Inbox, Headphones } from "@mui/icons-material";
 import YouSound from "../../assets/yousound.png";
+import { useDispatch } from "react-redux";
+import { logout } from "../../services/AuthService";
 
 // interface SidebarProps {
 //   profilePic: string;
@@ -23,12 +25,17 @@ import YouSound from "../../assets/yousound.png";
 const SidebarArtist: React.FC = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const dispatch = useDispatch();
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logOut = () => {
+    dispatch(logout());
+  }
 
   return (
     <Box
@@ -87,7 +94,7 @@ const SidebarArtist: React.FC = () => {
         >
           <MenuItem
             onClick={() => {
-              handleClose();
+              logOut();
               window.location.href = "/login";
             }}
           >

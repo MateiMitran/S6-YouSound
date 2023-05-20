@@ -4,6 +4,7 @@ import { ContentCard } from "../../../components/cards/ContentCard";
 import { SongEntity } from "../../../types";
 import { MusicService } from "../../../services/MusicService";
 import { useDispatch, useSelector } from "react-redux";
+import { getRole } from "../../../services/AuthService";
 import {
   setCurrentSong,
   toggleIsPlaying,
@@ -14,17 +15,25 @@ export const Home: React.FC = () => {
   const dispatch = useDispatch();
   const [songs, setSongs] = useState<SongEntity[]>([]);
   const { isPlaying } = useSelector((state: RootState) => state.player);
+  const token = useSelector((state: any) => state.authentication.token);
+  const fetchSongs = async () => {
+    const response = await MusicService.getAllSongs();
+    setSongs(response);
+  };
+  const fetchRole = async () => {
+    await getRole(token);
+    if (localStorage.getItem("role") === "ROLE_ARTIST") {
+      window.location.href = "/artisthome";
+    } else if (localStorage.getItem("role") === "ROLE_ADMIN") {
+      window.location.href = "/dashboard";
+    }
+  };
   useEffect(() => {
-    window.localStorage.setItem("token", "test");
-    const fetchSongs = async () => {
-      const response = await MusicService.getAllSongs();
-      setSongs(response);
-    };
     fetchSongs();
-  }, []);
+    fetchRole();
+  }, [token]);
 
   const handleSongClick = (song: SongEntity) => {
-    console.log(isPlaying);
     if (isPlaying) {
       dispatch(setCurrentSong(song));
       dispatch(toggleIsPlaying());

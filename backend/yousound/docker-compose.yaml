@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   music:
-    image: yousound/music-service:0.0.1
+    image: yousoundd/music-service:0.0.1
     ports:
       - "8081:8081"
     networks:
@@ -14,7 +14,7 @@ services:
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
 
   user:
-    image: yousound/user-service:0.0.1
+    image: yousoundd/user-service:0.0.1
     ports:
       - "8083:8083"
     networks:
@@ -26,7 +26,7 @@ services:
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
 
   api-gateway:
-    image: yousound/api-gateway:0.0.1
+    image: yousoundd/api-gateway:0.0.1
     ports:
       - "8080:8080"
     networks:
@@ -38,7 +38,7 @@ services:
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
 
   discovery-server:
-    image: yousound/discovery-server:0.0.1
+    image: yousoundd/discovery-server:0.0.1
     ports:
       - "8761:8761"
     networks:

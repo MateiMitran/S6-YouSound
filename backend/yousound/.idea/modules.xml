@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" />
+    </modules>
+  </component>
+</project>

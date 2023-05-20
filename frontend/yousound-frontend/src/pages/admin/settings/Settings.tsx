@@ -1,5 +1,15 @@
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../services/AuthService";
 
 export const Settings: React.FC = () => {
-  return <Button variant="contained" href={"/login"}>LogOut</Button>;
+  const dispatch = useDispatch();
+  const logOut = () => {
+    dispatch(logout());
+  }
+
+  return <Button variant="contained" onClick={() => {
+    logOut();
+    window.location.href = "/login";
+  }}>LogOut</Button>;
 };
