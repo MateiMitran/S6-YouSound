@@ -17,13 +17,4 @@ public class WebClientConfig {
         return WebClient.builder();
     }
 
-
-
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        CorsConfiguration config = new CorsConfiguration().applyPermitDefaultValues();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
 }

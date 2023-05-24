@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/social-service/yousound.social-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/social-service/yousound.social-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service/yousound.user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service/yousound.user-service.main.iml" />
     </modules>
   </component>
 </project>

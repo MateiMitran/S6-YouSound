@@ -40,6 +40,8 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.0.0'
     implementation 'org.springframework.data:spring-data-rest-webmvc:4.0.2'
     testImplementation 'junit:junit:4.13.1'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.11.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 }
 
 tasks.named('test') {

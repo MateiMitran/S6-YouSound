@@ -44,9 +44,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation fileTree(dir: 'lib', include: ['*.jar'])
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.11.0'
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:2.0.2'
+
+
 }
 
 tasks.named('test') {

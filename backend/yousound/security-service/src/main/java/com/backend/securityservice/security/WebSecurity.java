@@ -57,7 +57,7 @@ public class WebSecurity {
 
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/validate","/api/auth/register/artist", "/api/auth/register/admin", "/api/auth/token", "/api/auth/role").permitAll()
+                        .requestMatchers("/api/auth/login", "/api/auth/register", "/api/auth/validate","/api/auth/register/artist", "/api/auth/register/admin", "/api/auth/token", "/api/auth/role", "/actuator/prometheus").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()

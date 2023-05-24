@@ -97,4 +97,9 @@ public class SongController {
         return ResponseEntity.ok(songService.deleteSongById(id));
     }
 
+    @GetMapping("/analytics/{id}")
+    public ResponseEntity<?> getAnalytics(@PathVariable Long id) {
+        return ResponseEntity.ok(songService.calculateAnalytics(id));
+    }
+
 }

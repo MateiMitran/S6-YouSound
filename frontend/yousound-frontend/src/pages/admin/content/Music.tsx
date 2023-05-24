@@ -129,10 +129,6 @@ export const Music: React.FC = () => {
 
   React.useEffect(() => {
     fetchContent();
-  }, [content]);
-
-  React.useEffect(() => {
-    fetchContent();
   }, []);
 
   return (

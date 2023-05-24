@@ -57,6 +57,7 @@ dependencies {
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
     implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    implementation 'io.micrometer:micrometer-registry-prometheus:1.11.0'
 }
 
 tasks.named('test') {

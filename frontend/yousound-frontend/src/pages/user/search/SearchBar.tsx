@@ -3,6 +3,7 @@ import axios from "axios";
 import debounce from "lodash.debounce";
 import { Paper, IconButton, Divider, InputBase } from "@mui/material";
 import { Search } from "@mui/icons-material";
+import { AuthHeader } from "../../../services/AuthHeader";
 
 interface SearchResult {
   name: String;
@@ -17,7 +18,7 @@ const SearchBar: React.FC = () => {
   const fetchSearchResults = async (query: String) => {
     if (query.trim() !== "") {
       const response = await axios.get(
-        `http://localhost:8081/api/search?query=${query}`
+        `http://${process.env.REACT_APP_HOST}:8080/api/search?query=${query}`, { headers: AuthHeader() }
       );
       setSearchResults(response.data);
     } else {
