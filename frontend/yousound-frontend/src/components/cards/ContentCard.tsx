@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Card, CardMedia, CardContent, Typography } from "@mui/material";
-import { SongEntity } from "../../types";
 
 interface ContentCardProps {
   name: string;

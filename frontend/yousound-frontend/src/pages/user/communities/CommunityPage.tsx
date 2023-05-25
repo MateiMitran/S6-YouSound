@@ -2,14 +2,10 @@ import { Box, Tab, Tabs, Typography } from "@mui/material";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import vibe from "../../../assets/vibe.png";
-import { CommunityEntity } from "../../../types";
 import { Feed } from "./feed/Feed";
 
 export const CommunityPage: React.FC = () => {
   const { communityid } = useParams();
-  const [community, setCommunity] = React.useState<CommunityEntity | null>(
-    null
-  );
   const [activeTab, setActiveTab] = React.useState(0);
 
   const handleTabChange = (event: any, newValue: number) => {
@@ -18,7 +14,7 @@ export const CommunityPage: React.FC = () => {
   //fetch community from id
   React.useEffect(() => {
     console.log(communityid);
-  }, []);
+  }, [communityid]);
 
   return (
     <Box sx={{ ml: "240px", mr: "240px" }}>

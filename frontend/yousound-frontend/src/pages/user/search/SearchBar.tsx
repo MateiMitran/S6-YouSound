@@ -26,9 +26,9 @@ const SearchBar: React.FC = () => {
     }
   };
 
-  const debouncedFetchSearchResults = debounce(fetchSearchResults, 300); // Adjust debounce time as needed (in milliseconds)
 
   useEffect(() => {
+    const debouncedFetchSearchResults = debounce(fetchSearchResults, 300); // Adjust debounce time as needed (in milliseconds)
     debouncedFetchSearchResults(searchText);
   }, [searchText]);
 

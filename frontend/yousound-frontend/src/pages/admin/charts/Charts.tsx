@@ -2,7 +2,7 @@ import * as React from "react";
 import { Bar, Line, Doughnut } from "react-chartjs-2";
 import { Chart } from "chart.js";
 import { registerables } from "chart.js";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 // Register the required elements and scales
 Chart.register(...registerables);

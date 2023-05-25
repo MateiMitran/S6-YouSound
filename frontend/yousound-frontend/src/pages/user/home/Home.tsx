@@ -20,15 +20,16 @@ export const Home: React.FC = () => {
     const response = await MusicService.getAllSongs();
     setSongs(response);
   };
-  const fetchRole = async () => {
-    await getRole(token);
-    if (localStorage.getItem("role") === "ROLE_ARTIST") {
-      window.location.href = "/artisthome";
-    } else if (localStorage.getItem("role") === "ROLE_ADMIN") {
-      window.location.href = "/dashboard";
-    }
-  };
+  
   useEffect(() => {
+    const fetchRole = async () => {
+      await getRole(token);
+      if (localStorage.getItem("role") === "ROLE_ARTIST") {
+        window.location.href = "/artisthome";
+      } else if (localStorage.getItem("role") === "ROLE_ADMIN") {
+        window.location.href = "/dashboard";
+      }
+    };
     fetchSongs();
     fetchRole();
   }, [token]);

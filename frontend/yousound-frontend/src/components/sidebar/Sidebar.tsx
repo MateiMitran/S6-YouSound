@@ -56,7 +56,7 @@ const Sidebar: React.FC = () => {
         setLastName(response.lastName);
       });
     }
-  }, []);
+  }, [userId]);
 
 
   return (

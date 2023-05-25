@@ -88,15 +88,15 @@ const messages: Message[] = [
 
 export const InboxPage: React.FC = () => {
   const [selectedEmailId, setSelectedEmailId] = useState<number | string>(1);
-  const [currentSection, setCurrentSection] = useState("inbox");
-  const [emails, setEmails] = useState(messages);
+  const [currentSection] = useState("inbox");
+  const [emails] = useState(messages);
   const [currentEmail, setCurrentEmail] = useState<Message | undefined>(
     undefined
   );
 
   useEffect(() => {
     setCurrentEmail(emails.find((x) => x.id === selectedEmailId));
-  }, [selectedEmailId]);
+  }, [selectedEmailId, emails]);
 
   const openEmail = (id: number) => {
     const index = emails.findIndex((x) => x.id === id);
@@ -114,13 +114,6 @@ export const InboxPage: React.FC = () => {
         break;
       }
     }
-  };
-
-  const setSidebarSection = (section: string) => {
-    if (section !== currentSection) {
-      setSelectedEmailId("");
-    }
-    setCurrentSection(section);
   };
 
   return (
