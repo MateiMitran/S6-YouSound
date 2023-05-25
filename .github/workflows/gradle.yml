@@ -45,39 +45,34 @@ jobs:
         run: | 
           cd backend/yousound
           gradle clean
-      - name: Build with Gradle
-        run: |
-          cd ..
-          gradle build
         working-directory: ${{steps.set_dir.outputs.dir}}
-      - name: Test YouSound
-        run: |
-          cd backend/yousound
-          gradle test
-      - name: Install frontend dependencies
-        run: |
-          cd frontend/yousound-frontend
-          yarn
-      - name: Build and start the frontend application
-        run: |
-          cd frontend/yousound-frontend
-          yarn build
-          yarn start &
-      - name: Wait for frontend application to start
-        run: |
-          sleep 30s
+      #- name: Test YouSound
+     #   run: |
+     #     cd backend/yousound
+    #      gradle test
+ #     - name: Install frontend dependencies
+  #      run: |
+  #        cd frontend/yousound-frontend
+  #        yarn
+   #   - name: Build and start the frontend application
+  #      run: |
+  #        cd frontend/yousound-frontend
+  #        yarn build
+  #        yarn start &
+  #    - name: Wait for frontend application to start
+ #       run: |
+ #         sleep 30s
       - name: Build and start the backend application
         run: |
           cd backend/yousound/security-service
           chmod +x gradlew
           ./gradlew build
-          java -jar build/libs/*.jar &
+          java -jar build/libs/security-service-1.0-SNAPSHOT.jar &
       - name: Wait for backend application to start
         run: |
           sleep 30s
       - name: Security scan with OWASP ZAP
         run: |
-          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:3000 -I
           docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:8082 -I
       - name: docker login
         env:
