@@ -16,7 +16,15 @@ on:
 jobs:
   build-test-push-docker-image:
     runs-on: ubuntu-latest
-
+    services:
+      frontend:
+        image: yousoundd/frontend:0.0.1
+        ports:
+          - "3000:3000"
+      security:
+        image: yousoundd/security-service:0.0.1
+        ports:
+          - "8083:8083" 
     steps:
       - uses: actions/checkout@v2
       - name: Checkout code
@@ -42,6 +50,12 @@ jobs:
         run: |
           cd backend/yousound
           gradle test
+      - name: Security scan with OWASP ZAP Frontend
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000
+      - name: Security scan with OWASP ZAP Frontend
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8083
       - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
