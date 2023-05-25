@@ -41,27 +41,27 @@ jobs:
       - name: Set working directory
         run: echo "::set-output name=dir::$(find . -type d -name '*-service*' -print -quit)"
         id: set_dir
-  #    - name: Gradle Clean
-  #      run: | 
-   #       cd backend/yousound
-   #       gradle clean
-   #     working-directory: ${{steps.set_dir.outputs.dir}}
-      #- name: Test YouSound
-     #   run: |
-     #     cd backend/yousound
-    #      gradle test
- #     - name: Install frontend dependencies
-  #      run: |
-  #        cd frontend/yousound-frontend
-  #        yarn
-   #   - name: Build and start the frontend application
-  #      run: |
-  #        cd frontend/yousound-frontend
-  #        yarn build
-  #        yarn start &
-  #    - name: Wait for frontend application to start
- #       run: |
- #         sleep 30s
+      - name: Gradle Clean
+        run: | 
+          cd backend/yousound
+          gradle clean
+        working-directory: ${{steps.set_dir.outputs.dir}}
+      - name: Test YouSound
+        run: |
+          cd backend/yousound
+          gradle test
+      - name: Install frontend dependencies
+        run: |
+          cd frontend/yousound-frontend
+          yarn
+      - name: Build and start the frontend application
+        run: |
+          cd frontend/yousound-frontend
+          yarn build
+          yarn start &
+      - name: Wait for frontend application to start
+        run: |
+          sleep 30s
       - name: Build and start the backend application
         run: |
           cd backend/yousound/security-service
@@ -73,6 +73,7 @@ jobs:
           sleep 30s
       - name: Security scan with OWASP ZAP
         run: |
+          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:3000 -I
           docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:8082 -I
       - name: docker login
         env:
