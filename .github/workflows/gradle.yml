@@ -55,9 +55,12 @@ jobs:
           cd backend/yousound
           gradle test
       - name: Install frontend dependencies
-        run: yarn
+        run: |
+          cd frontend/yousound-frontend
+          yarn
       - name: Build and start the frontend application
         run: |
+          cd frontend/yousound-frontend
           yarn build
           yarn start &
       - name: Wait for frontend application to start
@@ -65,6 +68,7 @@ jobs:
           sleep 30s
       - name: Build and start the backend application
         run: |
+          cd backend/yousound
           chmod +x gradlew
           ./gradlew build
           java -jar build/libs/*.jar &
