@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: ["master"]
+    branches: ["testing"]
   pull_request:
-    branches: ["master"]
+    branches: ["testing"]
 
 jobs:
   build-test-push-docker-image:
@@ -51,35 +51,35 @@ jobs:
       - name: Build and Push Discovery Server
         run: |
           cd backend/yousound/discovery-server
-          docker build -f Dockerfile . -t yousoundd/discovery-server:0.0.1
-          docker push yousoundd/discovery-server:0.0.1
+          docker build -f Dockerfile . -t yousoundd/discovery-server:0.0.1-testing
+          docker push yousoundd/discovery-server:0.0.1-testing
       - name: Build and Push Api Gateway
         run: |
           cd backend/yousound/api-gateway
-          docker build -f Dockerfile . -t yousoundd/api-gateway:0.0.1
-          docker push yousoundd/api-gateway:0.0.1
+          docker build -f Dockerfile . -t yousoundd/api-gateway:0.0.1-testing
+          docker push yousoundd/api-gateway:0.0.1-testing
       - name: Build and Push Music Service
         run: |
           cd backend/yousound/music-service
-          docker build -f Dockerfile . -t yousoundd/music-service:0.0.1
-          docker push yousoundd/music-service:0.0.1
+          docker build -f Dockerfile . -t yousoundd/music-service:0.0.1-testing
+          docker push yousoundd/music-service:0.0.1-testing
       - name: Build and Push Security Service
         run: |
           cd backend/yousound/security-service
-          docker build -f Dockerfile . -t yousoundd/security-service:0.0.1
-          docker push yousoundd/security-service:0.0.1
-      - name: Build and Push Channel Service
+          docker build -f Dockerfile . -t yousoundd/security-service:0.0.1-testing
+          docker push yousoundd/security-service:0.0.1-testing
+      - name: Build and Push Social Service
         run: |
           cd backend/yousound/social-service
-          docker build -f Dockerfile . -t yousoundd/social-service:0.0.1
-          docker push yousoundd/social-service:0.0.1
-      - name: Build and Push Channel Service
+          docker build -f Dockerfile . -t yousoundd/social-service:0.0.1-testing
+          docker push yousoundd/social-service:0.0.1-testing
+      - name: Build and Push User Service
         run: |
           cd backend/yousound/user-service
-          docker build -f Dockerfile . -t yousoundd/user-service:0.0.1
-          docker push yousoundd/user-service:0.0.1
+          docker build -f Dockerfile . -t yousoundd/user-service:0.0.1-testing
+          docker push yousoundd/user-service:0.0.1-testing
       - name: Build and Push Frontend
         run: |
           cd frontend/yousound-frontend
-          docker build -f Dockerfile . -t yousoundd/frontend:0.0.1
-          docker push yousoundd/frontend:0.0.1
+          docker build -f Dockerfile . -t yousoundd/frontend:0.0.1-testing
+          docker push yousoundd/frontend:0.0.1-testing

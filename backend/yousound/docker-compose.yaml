@@ -1,49 +1,72 @@
 version: '3.7'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  eureka:
+    image: yousoundd/discovery-server:0.0.1-testing
+    ports:
+      - "8761:8761"
+    networks:
+      - music-network
   music:
-    image: yousoundd/music-service:0.0.1
+    image: yousoundd/music-service:0.0.1-testing
     ports:
       - "8081:8081"
     networks:
       - music-network
     depends_on:
-      - discovery-server
+      - eureka
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-
-  user:
-    image: yousoundd/user-service:0.0.1
+  security:
+    image: yousoundd/security-service:0.0.1-testing
     ports:
       - "8083:8083"
     networks:
       - music-network
     depends_on:
-      - discovery-server
+      - eureka
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-
+  social:
+    image: yousoundd/user-service:0.0.1-testing
+    ports:
+      - "8083:8083"
+    networks:
+      - music-network
+    depends_on:
+      - eureka
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+  user:
+    image: yousoundd/user-service:0.0.1-testing
+    ports:
+      - "8083:8083"
+    networks:
+      - music-network
+    depends_on:
+      - eureka
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka:8761/eureka
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
   api-gateway:
-    image: yousoundd/api-gateway:0.0.1
+    image: yousoundd/api-gateway:0.0.1-testing
     ports:
       - "8080:8080"
     networks:
       - music-network
     depends_on:
-      - discovery-server
+      - eureka
     environment:
-      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://discovery-server:8761/eureka
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://eureka:8761/eureka
       SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
-
-  discovery-server:
-    image: yousoundd/discovery-server:0.0.1
-    ports:
-      - "8761:8761"
-    networks:
-      - music-network
-
   zipkin-server:
     image: openzipkin/zipkin
     ports:

@@ -1,16 +1,12 @@
 package com.backend.musicservice.services;
 
-import com.backend.musicservice.entities.Like;
 import com.backend.musicservice.entities.Song;
-import com.backend.musicservice.repositories.LikeRepository;
 import com.backend.musicservice.repositories.SongRepository;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RequestCallback;
-import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -24,9 +20,6 @@ public class SongService {
 
     @Autowired
     private SongRepository songRepository;
-
-    @Autowired
-    private LikeRepository likeRepository;
 
     public List<Song> getAllSongs() {
         return songRepository.findAll();
@@ -44,13 +37,6 @@ public class SongService {
         Song song = songRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         songRepository.delete(song);
         return true;
-    }
-
-    public Like addToLikedSongs(String userId,Long songId) {
-        Like like = new Like();
-        like.setUser_id(userId);
-        like.setSong_id(songId);
-        return likeRepository.save(like);
     }
 
     public SongAnalytic calculateAnalytics(Long id) {

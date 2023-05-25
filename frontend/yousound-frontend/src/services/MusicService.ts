@@ -7,7 +7,7 @@ import {
 } from "../types";
 import { AuthHeader } from "./AuthHeader";
 
-const API_URL = "http://"+ process.env.REACT_APP_HOST + ":8080/api/music";
+const API_URL = "http://" + process.env.REACT_APP_HOST + ":8080/api/music";
 
 export abstract class MusicService {
   public static async getAllSongs(): Promise<SongEntity[]> {
@@ -86,8 +86,10 @@ export abstract class MusicService {
     return new Promise((resolve) => {
       axios
         .post(API_URL + "/songs/upload/" + id, formData, {
-          headers: {
+          headers:
+          {
             "Content-Type": "multipart/form-data",
+            ...AuthHeader()
           },
         })
         .then((response) => {
