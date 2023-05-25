@@ -68,7 +68,7 @@ jobs:
           sleep 30s
       - name: Build and start the backend application
         run: |
-          cd backend/yousound
+          cd backend/yousound/security-service
           chmod +x gradlew
           ./gradlew build
           java -jar build/libs/*.jar &
