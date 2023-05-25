@@ -34,6 +34,10 @@ jobs:
         with:
           java-version: 17
           distribution: "temurin"
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
       - name: Set working directory
         run: echo "::set-output name=dir::$(find . -type d -name '*-service*' -print -quit)"
         id: set_dir
@@ -50,12 +54,27 @@ jobs:
         run: |
           cd backend/yousound
           gradle test
-      - name: Security scan with OWASP ZAP Frontend
+      - name: Install frontend dependencies
+        run: yarn install
+      - name: Build and start the frontend application
         run: |
-          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000
-      - name: Security scan with OWASP ZAP Frontend
+          yarn build
+          yarn start &
+      - name: Wait for frontend application to start
         run: |
-          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8083
+          sleep 30s
+      - name: Build and start the backend application
+        run: |
+          chmod +x gradlew
+          ./gradlew build
+          java -jar build/libs/*.jar &
+      - name: Wait for backend application to start
+        run: |
+          sleep 30s
+      - name: Security scan with OWASP ZAP
+        run: |
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://host.docker.internal:3000
+          docker run -t owasp/zap2docker-stable zap-baseline.py -t http://host.docker.internal:8080
       - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
