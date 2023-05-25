@@ -55,7 +55,7 @@ jobs:
           cd backend/yousound
           gradle test
       - name: Install frontend dependencies
-        run: yarn install
+        run: yarn
       - name: Build and start the frontend application
         run: |
           yarn build
