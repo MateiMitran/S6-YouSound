@@ -77,8 +77,8 @@ jobs:
           sleep 30s
       - name: Security scan with OWASP ZAP
         run: |
-          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:3000
-          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:8080
+          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:3000 -I
+          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:8080 -I
       - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
