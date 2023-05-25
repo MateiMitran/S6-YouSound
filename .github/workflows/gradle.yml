@@ -38,9 +38,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-      - name: Set working directory
-        run: echo "::set-output name=dir::$(find . -type d -name '*-service*' -print -quit)"
-        id: set_dir
       - name: Gradle Clean
         run: | 
           cd backend/yousound
