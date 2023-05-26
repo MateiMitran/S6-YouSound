@@ -46,13 +46,6 @@ public class Post {
         this.reach = 0;
     }
 
-    public Post(){
-        this.date = LocalDateTime.now();
-        this.likes = 0;
-        this.comments = new ArrayList<>();
-        this.reach = 0;
-    }
-
     public String getId() {
         return id;
     }
@@ -61,27 +54,27 @@ public class Post {
         this.id = id;
     }
 
-    public String getCommunity_id() {
+    public @NonNull String getCommunity_id() {
         return community_id;
     }
 
-    public void setCommunity_id(String community_id) {
+    public void setCommunity_id(@NonNull String community_id) {
         this.community_id = community_id;
     }
 
-    public String getUser_id() {
+    public @NonNull String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(@NonNull String user_id) {
         this.user_id = user_id;
     }
 
-    public String getContent() {
+    public @NonNull String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(@NonNull String content) {
         this.content = content;
     }
 

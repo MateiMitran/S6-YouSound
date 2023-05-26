@@ -29,14 +29,10 @@ public class Community {
     @DBRef
     private List<User> users;
 
-    public Community(String id, String artist_id, String description) {
+    public Community(String id, @NonNull String artist_id, @NonNull String description) {
         this.id = id;
         this.artist_id = artist_id;
         this.description = description;
-        this.users = new ArrayList<>();
-    }
-
-    public Community(){
         this.users = new ArrayList<>();
     }
 
@@ -48,19 +44,19 @@ public class Community {
         this.id = id;
     }
 
-    public String getArtist_id() {
+    public @NonNull String getArtist_id() {
         return artist_id;
     }
 
-    public void setArtist_id(String artist_id) {
+    public void setArtist_id(@NonNull String artist_id) {
         this.artist_id = artist_id;
     }
 
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(@NonNull String description) {
         this.description = description;
     }
 

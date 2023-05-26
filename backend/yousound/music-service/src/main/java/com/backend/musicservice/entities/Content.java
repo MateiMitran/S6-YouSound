@@ -1,12 +1,8 @@
 package com.backend.musicservice.entities;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 
 @MappedSuperclass
