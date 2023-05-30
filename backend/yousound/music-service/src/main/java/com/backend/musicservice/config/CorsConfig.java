@@ -1,4 +1,4 @@
-package com.backend.musicservice;
+package com.backend.musicservice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
