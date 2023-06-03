@@ -2,14 +2,18 @@ package com.backend.socialservice.entities;
 
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 
 @Document(collection="reels")
 @Data
+@Getter
+@Setter
 public class Reel {
 
 
@@ -22,12 +26,16 @@ public class Reel {
     private String user_id;
 
     @NonNull
+    @Size(min = 1, max = 255)
     private String content;
 
+    @PastOrPresent
     private LocalDateTime date;
 
+    @Min(0)
     private int likes;
 
+    @Min(0)
     private int reach;
 
     public Reel(String id, @NonNull String community_id, @NonNull String user_id, @NonNull String content) {
@@ -46,51 +54,4 @@ public class Reel {
         this.reach = 0;
     }
 
-    public String getCommunity_id() {
-        return community_id;
-    }
-
-    public void setCommunity_id(String community_id) {
-        this.community_id = community_id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getReach() {
-        return reach;
-    }
-
-    public void setReach(int reach) {
-        this.reach = reach;
-    }
 }

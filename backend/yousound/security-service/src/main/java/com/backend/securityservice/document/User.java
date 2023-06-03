@@ -1,34 +1,42 @@
 package com.backend.securityservice.document;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Collections;
 
 @Document
 @Data
-@NoArgsConstructor(force = true)
 public class User implements UserDetails {
     @Id
+    @Size(min = 2, max = 36)
     private String id;
 
     @NonNull
+    @Size(min=2, max=30)
     private String username;
 
     @NonNull
+    @Size(min=4, max=100)
     private String password;
 
+    @Email
+    @Size(max=50)
     private String email;
 
+    @Size(max=30)
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "must contain only letters")
     private String firstName;
 
+    @Size(max=30)
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "must contain only letters")
     private String lastName;
 
     private Collection<? extends GrantedAuthority> authorities;
@@ -36,6 +44,10 @@ public class User implements UserDetails {
     public User (@NonNull String username, @NonNull String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
+
     }
 
     @Override
@@ -62,21 +74,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    @Override
-    public @NonNull String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public @NonNull String getPassword() {
-        return this.password;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-
 
 }

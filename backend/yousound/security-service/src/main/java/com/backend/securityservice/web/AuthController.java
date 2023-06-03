@@ -26,9 +26,9 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.channels.Channel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<TokenDTO> register(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> register(@Validated @RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
         user.setEmail(signupDTO.getEmail());
         user.setFirstName(signupDTO.getFirstName());
@@ -68,7 +68,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/admin")
-    public ResponseEntity<TokenDTO> registerAdmin(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> registerAdmin(@Validated @RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
@@ -81,7 +81,7 @@ public class AuthController {
     }
 
     @PostMapping("/register/artist")
-    public ResponseEntity<TokenDTO> registerArtist(@RequestBody SignupDTO signupDTO) {
+    public ResponseEntity<TokenDTO> registerArtist(@Validated @RequestBody SignupDTO signupDTO) {
         User user = new User(signupDTO.getUsername(), signupDTO.getPassword());
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_ARTIST"));
@@ -104,7 +104,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<TokenDTO> login(@Validated @RequestBody LoginDTO loginDTO) {
         log.info("Received login request for user: {}", loginDTO.getUsername());
 
         try {

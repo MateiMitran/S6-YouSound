@@ -5,6 +5,7 @@ import com.backend.socialservice.services.CommunityService;
 import com.backend.socialservice.entities.Community;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CommunityController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Community> createCommunity(@RequestBody Community c) {
+    public ResponseEntity<Community> createCommunity(@Validated @RequestBody Community c) {
         return ResponseEntity.ok(communityService.createCommunity(c));
     }
 

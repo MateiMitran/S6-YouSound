@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class SongController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Song> createSong(@RequestBody Song song)  {
+    public ResponseEntity<Song> createSong(@Validated @RequestBody Song song)  {
         return ResponseEntity.ok(songService.createSong(song));
     }
 

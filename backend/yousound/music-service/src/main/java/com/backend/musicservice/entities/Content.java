@@ -1,33 +1,59 @@
 package com.backend.musicservice.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 
 @MappedSuperclass
+@Getter
+@Setter
 public class Content {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String name;
+
+    @NotNull
+    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String description;
+
+    @NotNull
+    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String picture;
+
+    @NotNull
+    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String file;
+
+    @NotNull
+    @PastOrPresent
     @Column(nullable = false)
     private LocalDate created_at;
+
+    @Min(0)
     @Column(nullable = false)
     private int likes;
+
+    @Min(0)
     @Column(nullable = false)
     private int duration;
 
-    public Content(Long id, String name, String description, LocalDate created_at, String picture, String file, int duration) {
+    public Content(Long id, @NonNull String name, @NonNull String description, @NonNull LocalDate created_at,
+                   @NonNull String picture, String file, int duration) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -40,70 +66,6 @@ public class Content {
 
     public Content() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getPicture() {
-        return this.picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
-    public String getFile() {
-        return this.file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
-    public LocalDate getCreated_at() {
-        return this.created_at;
-    }
-
-    public void setCreated_at(LocalDate created_at) {
-        this.created_at = created_at;
-    }
-
-    public int getLikes() {
-        return this.likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getDuration() {
-        return this.duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     @Override

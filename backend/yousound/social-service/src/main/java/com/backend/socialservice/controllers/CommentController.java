@@ -5,6 +5,7 @@ import com.backend.socialservice.entities.Comment;
 import com.backend.socialservice.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class CommentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Comment> createComment(@RequestBody Comment comment) {
+    public ResponseEntity<Comment> createComment(@Validated @RequestBody Comment comment) {
         return ResponseEntity.ok(commentService.createComment(comment));
     }
 

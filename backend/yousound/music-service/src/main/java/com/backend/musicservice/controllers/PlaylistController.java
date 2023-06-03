@@ -5,6 +5,7 @@ import com.backend.musicservice.entities.Playlist;
 import com.backend.musicservice.services.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class PlaylistController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+    public ResponseEntity<Playlist> createPlaylist(@Validated @RequestBody Playlist playlist) {
         return ResponseEntity.ok(playlistService.createPlaylist(playlist));
     }
 

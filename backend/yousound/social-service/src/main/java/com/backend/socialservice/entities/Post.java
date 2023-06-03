@@ -2,17 +2,21 @@ package com.backend.socialservice.entities;
 
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "posts")
 @Data
+@Getter
+@Setter
 public class Post {
 
     @Id
@@ -24,15 +28,19 @@ public class Post {
     private String user_id;
 
     @NonNull
+    @Size(min = 1, max = 255)
     private String content;
 
+    @PastOrPresent
     private LocalDateTime date;
 
+    @Min(0)
     private int likes;
 
     @DBRef
     private List<Comment> comments;
 
+    @Min(0)
     private int reach;
 
     public Post(String id, @NonNull String community_id, @NonNull String user_id, @NonNull String content) {
@@ -46,67 +54,5 @@ public class Post {
         this.reach = 0;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public @NonNull String getCommunity_id() {
-        return community_id;
-    }
-
-    public void setCommunity_id(@NonNull String community_id) {
-        this.community_id = community_id;
-    }
-
-    public @NonNull String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(@NonNull String user_id) {
-        this.user_id = user_id;
-    }
-
-    public @NonNull String getContent() {
-        return content;
-    }
-
-    public void setContent(@NonNull String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public int getReach() {
-        return reach;
-    }
-
-    public void setReach(int reach) {
-        this.reach = reach;
-    }
 }

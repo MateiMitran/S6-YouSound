@@ -5,6 +5,7 @@ import com.backend.musicservice.entities.Album;
 import com.backend.musicservice.services.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class AlbumController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Album> createAlbum(@RequestBody Album album) {
+    public ResponseEntity<Album> createAlbum(@Validated @RequestBody Album album) {
         return ResponseEntity.ok(albumService.createAlbum(album));
     }
 

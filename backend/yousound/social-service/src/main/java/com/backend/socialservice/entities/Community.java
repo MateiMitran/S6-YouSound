@@ -2,7 +2,9 @@ package com.backend.socialservice.entities;
 
 import com.backend.userservice.entities.User;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NonNull;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,10 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+import jakarta.validation.constraints.*;
 
 @Document(collection="communities")
 @Data
+@Getter
+@Setter
 public class Community {
 
 
@@ -24,6 +28,7 @@ public class Community {
     private String artist_id;
 
     @NonNull
+    @Size(min = 1, max = 255)
     private String description;
 
     @DBRef
@@ -34,46 +39,6 @@ public class Community {
         this.artist_id = artist_id;
         this.description = description;
         this.users = new ArrayList<>();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public @NonNull String getArtist_id() {
-        return artist_id;
-    }
-
-    public void setArtist_id(@NonNull String artist_id) {
-        this.artist_id = artist_id;
-    }
-
-    public @NonNull String getDescription() {
-        return description;
-    }
-
-    public void setDescription(@NonNull String description) {
-        this.description = description;
-    }
-
-    public List<User> getUser_ids() {
-        return users;
-    }
-
-    public void setUser_ids(List<User> users) {
-        this.users = users;
-    }
-
-    public void addUserId(User user) {
-        this.users.add(user);
-    }
-
-    public void removeUserId(User user) {
-        this.users.remove(user);
     }
 
     @Override

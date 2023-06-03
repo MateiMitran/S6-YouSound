@@ -1,6 +1,5 @@
 package com.backend.socialservice.services;
 
-import com.backend.socialservice.entities.Post;
 import com.backend.socialservice.entities.Reel;
 import com.backend.socialservice.repositories.ReelRepository;
 import org.springframework.beans.factory.annotation.Autowired;

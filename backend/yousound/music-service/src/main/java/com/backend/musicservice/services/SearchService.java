@@ -2,16 +2,13 @@ package com.backend.musicservice.services;
 
 import com.backend.musicservice.entities.ContentEntity;
 import com.backend.musicservice.entities.SearchResult;
-import com.backend.musicservice.entities.Song;
 import com.backend.musicservice.repositories.AlbumRepository;
 import com.backend.musicservice.repositories.PlaylistRepository;
 import com.backend.musicservice.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service

@@ -1,31 +1,38 @@
 package com.backend.userservice.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 @Data
-@NoArgsConstructor(force = true)
+@Getter
+@Setter
 public class User {
     @Id
+    @Size(min = 2, max = 36)
     private String id;
 
     @NonNull
+    @Size(min=2, max=30)
     private String username;
-
     @NonNull
+    @Size(min=4, max=100)
     private String password;
-
+    @Email
+    @Size(max=50)
     private String email;
-
+    @Size(max=30)
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "must contain only letters")
     private String firstName;
-
+    @Size(max=30)
+    @Pattern(regexp = "^[a-zA-Z]*$", message = "must contain only letters")
     private String lastName;
 
-    public User (String username, String password) {
+    public User (@NonNull String username, @NonNull String password) {
         this.username = username;
         this.password = password;
     }
@@ -38,52 +45,10 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getId() {
-        return id;
+    public User() {
+
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
 }

@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RequestCallback;
-import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -44,6 +42,16 @@ public class SongService {
         Song song = songRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
         songRepository.delete(song);
         return true;
+    }
+
+
+    public void deleteLikedSongsOfUser(String user_id) {
+        List<Like> likes = likeRepository.findAll();
+        for (Like like: likes) {
+            if (like.getUser_id().equals(user_id)) {
+                likeRepository.delete(like);
+            }
+        }
     }
 
     public Like addToLikedSongs(String userId,Long songId) {

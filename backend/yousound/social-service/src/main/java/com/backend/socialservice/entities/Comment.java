@@ -2,23 +2,28 @@ package com.backend.socialservice.entities;
 
 
 import lombok.Data;
-import net.minidev.json.annotate.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+import jakarta.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Document
 @Data
+@Getter
+@Setter
 public class Comment {
 
     @Id
     private String id;
-    private String content;
 
+    @Size(min = 1, max = 255)
+    private String content;
     private String post_id;
     private String user_id;
+    @Min(0)
     private int likes;
     private List<Comment> replies;
 
@@ -36,51 +41,4 @@ public class Comment {
         this.replies = new ArrayList<>();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public List<Comment> getReplies() {
-        return replies;
-    }
-
-    public void setReplies(List<Comment> replies) {
-        this.replies = replies;
-    }
-
-    public String getPost_id() {
-        return post_id;
-    }
-
-    public void setPost_id(String post_id) {
-        this.post_id = post_id;
-    }
 }

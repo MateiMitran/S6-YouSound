@@ -5,6 +5,7 @@ import com.backend.socialservice.entities.Reel;
 import com.backend.socialservice.services.ReelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,13 +19,13 @@ public class ReelController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<Reel> createReel(@RequestBody Reel reel) {
+    public ResponseEntity<Reel> createReel(@Validated @RequestBody Reel reel) {
         return ResponseEntity.ok(reelService.createReel(reel));
     }
 
     //fix this
     @PostMapping("/delete/{id}")
-    public ResponseEntity<Boolean> deleteReel(@RequestBody Reel reel) {
+    public ResponseEntity<Boolean> deleteReel(@Validated @RequestBody Reel reel) {
         return ResponseEntity.ok(reelService.deleteReel(reel));
     }
 

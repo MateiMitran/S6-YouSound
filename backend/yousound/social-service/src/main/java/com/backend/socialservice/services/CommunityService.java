@@ -25,13 +25,13 @@ public class CommunityService {
         return c.getArtist_id();
     }
 
-    public boolean checkIfUserIsInCommunity(String communityId, String userId) {
-        Community c = getCommunityFromId(communityId);
-        if (c==null) {
-            return false;
-        }
-        return c.getUser_ids().contains(userId);
-    }
+//    public boolean checkIfUserIsInCommunity(String communityId, String userId) {
+//        Community c = getCommunityFromId(communityId);
+//        if (c==null) {
+//            return false;
+//        }
+//        return c.getUser_ids().contains(userId);
+//    }
 
     public Community getCommunityFromId(String id) {
         Optional<Community> community = communityRepository.findById(id);

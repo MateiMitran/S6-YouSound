@@ -3,9 +3,9 @@ package com.backend.socialservice.controllers;
 
 import com.backend.socialservice.entities.Post;
 import com.backend.socialservice.services.PostService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class PostController {
     private PostService postService;
 
     @PostMapping("/create")
-    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+    public ResponseEntity<Post> createPost(@Validated @RequestBody Post post) {
         return ResponseEntity.ok(postService.createPost(post));
     }
 
