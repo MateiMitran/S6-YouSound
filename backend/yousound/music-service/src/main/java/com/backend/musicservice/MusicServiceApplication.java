@@ -1,8 +1,5 @@
 package com.backend.musicservice;
 
-import com.backend.musicservice.services.SongService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -10,10 +7,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class MusicServiceApplication implements CommandLineRunner {
+public class MusicServiceApplication  {
 
-    @Autowired
-    private SongService songService;
+//    @Autowired
+//    private SongService songService;
 //
 //    @Autowired
 //    private AlbumService albumService;
@@ -24,8 +21,8 @@ public class MusicServiceApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(MusicServiceApplication.class, args);
     }
-    @Override
-    public void run(String... args) throws Exception {
+//    @Override
+//    public void run(String... args) throws Exception {
 //        List<Song> songs = new ArrayList<>();
 //        songs.add(new Song(1L, "Blinding Lights", "The Weeknd's hit song from 2020", "https://i.scdn.co/image/ab67616d00001e02a956d7cc8b1f1f7ad4381c4f", LocalDateTime.parse("2020-11-29T00:00:00"), "https://p.scdn.co/mp3-preview/4dcd4ebfaed202ec22e58aa7b03a534f900a5f8d?cid=ed5f5c5e5eeb44e0b166bd7fb6b2abaf", 200, "Pop", 1L, "The Weeknd"));
 //        songs.add(new Song(2L, "Dynamite", "BTS's hit song from 2020", "https://i.scdn.co/image/ab67616d00001e02f27f6eaddb6b0edfca62f6f1", LocalDateTime.parse("2020-08-21T00:00:00"), "https://p.scdn.co/mp3-preview/b5f3f8d0132c3cf4f0c1ea9837f75a4b4c64f28a?cid=ed5f5c5e5eeb44e0b166bd7fb6b2abaf", 199, "Pop", 2L, "BTS"));
@@ -135,10 +132,10 @@ public class MusicServiceApplication implements CommandLineRunner {
 //        }
 
 
-        for (int i=0;i<300;i++) {
-            int random = (int) (Math.random() * 5);
-            int random2 = (int) (Math.random() * 5);
-            songService.addToLikedSongs(String.valueOf(random), (long) random2);
-        }
-    }
+//        for (int i=0;i<300;i++) {
+//            int random = (int) (Math.random() * 5);
+//            int random2 = (int) (Math.random() * 5);
+//            songService.addToLikedSongs(String.valueOf(random), (long) random2);
+//        }
+//    }
 }

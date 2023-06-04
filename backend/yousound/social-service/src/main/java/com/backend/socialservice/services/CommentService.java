@@ -3,9 +3,13 @@ package com.backend.socialservice.services;
 
 import com.backend.socialservice.entities.Comment;
 import com.backend.socialservice.repositories.CommentRepository;
+import com.google.cloud.language.v1.Sentiment;
+import jakarta.annotation.PreDestroy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,12 +20,21 @@ public class CommentService {
     @Autowired
     private final CommentRepository commentRepository;
 
-    public CommentService(CommentRepository commentRepository) {
+    @Autowired
+    private final LanguageService languageService;
+
+    public CommentService(CommentRepository commentRepository,@Value("${api.key}") String apiKey) throws IOException {
         this.commentRepository = commentRepository;
+        this.languageService = new LanguageService(apiKey);
     }
+
 
     public Comment createComment(Comment comment) {
         return commentRepository.save(comment);
+    }
+
+    public Sentiment analyzeTextSentiment(String text) {
+        return languageService.analyzeSentiment(text);
     }
 
     public List<Comment> getComments() { return commentRepository.findAll(); }
@@ -70,6 +83,11 @@ public class CommentService {
             return commentRepository.findById(id).get().getReplies();
         }
         return null;
+    }
+
+    @PreDestroy
+    public void cleanup() {
+        languageService.close();
     }
 
 }

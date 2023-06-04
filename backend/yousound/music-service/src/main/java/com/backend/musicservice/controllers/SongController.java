@@ -10,19 +10,22 @@ import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
-
+import com.opencsv.CSVWriter;
 @RestController
 @RequestMapping("/api/music/songs")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -96,6 +99,59 @@ public class SongController {
         return ResponseEntity.ok(true);
     }
 
+
+    @GetMapping(value="/export/{id}", produces = "text/csv")
+    public ResponseEntity<String> exportSongsFromUser(@PathVariable String id) {
+
+       List<Song> songs = songService.getLikedSongsOfUser(id);
+
+
+        try (StringWriter writer = new StringWriter();
+             CSVWriter csvWriter = new CSVWriter(writer)) {
+
+            // Write header
+            csvWriter.writeNext(new String[] {
+                    "Id", "Name", "Description", "Picture", "File",
+                    "Created At", "Likes", "Duration", "Genre", "Artist"
+            });
+
+            // Write song data
+            for (Song song : songs) {
+                csvWriter.writeNext(new String[] {
+                        song.getId().toString(),
+                        song.getName(),
+                        song.getDescription(),
+                        song.getPicture(),
+                        song.getFile(),
+                        song.getCreated_at().toString(),
+                        Integer.toString(song.getLikes()),
+                        Integer.toString(song.getDuration()),
+                        song.getGenre(),
+                        song.getArtist_id()
+                });
+            }
+
+            // Flush and close the writer
+            csvWriter.flush();
+            csvWriter.close();
+
+            // Create a ResponseEntity with CSV data and appropriate headers
+            byte[] csvBytes = writer.toString().getBytes();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.TEXT_PLAIN);
+            headers.setContentLength(csvBytes.length);
+            headers.set("Content-Disposition", "attachment; filename=songs.csv");
+
+            // Create and return the response entity
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(writer.toString());
+        } catch (IOException e) {
+            // Handle exception
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
 
 
 

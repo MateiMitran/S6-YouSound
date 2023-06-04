@@ -3,6 +3,7 @@ package com.backend.socialservice.controllers;
 
 import com.backend.socialservice.entities.Comment;
 import com.backend.socialservice.services.CommentService;
+import com.google.cloud.language.v1.Sentiment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -23,7 +24,12 @@ public class CommentController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Comment> createComment(@Validated @RequestBody Comment comment) {
+    public ResponseEntity<?> createComment(@Validated @RequestBody Comment comment) {
+
+        Sentiment sentiment = commentService.analyzeTextSentiment(comment.getContent());
+        if (sentiment.getScore()<0) {
+            return ResponseEntity.badRequest().body("Comment is not allowed on the platform");
+        }
         return ResponseEntity.ok(commentService.createComment(comment));
     }
 

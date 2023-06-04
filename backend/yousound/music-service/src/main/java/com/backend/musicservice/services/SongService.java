@@ -11,6 +11,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -52,6 +53,17 @@ public class SongService {
                 likeRepository.delete(like);
             }
         }
+    }
+
+    public List<Song> getLikedSongsOfUser(String user_id) {
+        List<Like> likes = likeRepository.findAll();
+        List<Song> songs = new ArrayList<>();
+        for (Like like: likes) {
+            if (like.getUser_id().equals(user_id)) {
+                songs.add(songRepository.findById(like.getSong_id()).orElseThrow(ResourceNotFoundException::new));
+            }
+        }
+        return songs;
     }
 
     public Like addToLikedSongs(String userId,Long songId) {
