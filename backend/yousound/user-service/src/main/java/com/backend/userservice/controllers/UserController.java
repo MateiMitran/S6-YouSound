@@ -2,6 +2,8 @@ package com.backend.userservice.controllers;
 
 import com.backend.userservice.entities.User;
 import com.backend.userservice.services.UserService;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,12 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private FanoutExchange fanoutExchange;
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
@@ -35,6 +43,16 @@ public class UserController {
     public ResponseEntity<Boolean> deleteByUsername(@PathVariable String username) {
         return ResponseEntity.ok(userService.deleteUserByUsername(username));
     }
+
+
+    @DeleteMapping("/delete-all/{userId}")
+    public ResponseEntity<?> deleteAllData(@PathVariable String userId) {
+        System.out.println((String) rabbitTemplate.convertSendAndReceive(fanoutExchange.getName(),"", userId));
+        return ResponseEntity.ok(true);
+    }
+
+
+
 
 
 }

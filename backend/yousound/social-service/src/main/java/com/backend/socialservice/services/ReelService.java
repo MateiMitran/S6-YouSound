@@ -22,6 +22,15 @@ public class ReelService {
         return reelRepository.save(reel);
     }
 
+    public void deleteByUserId(String userId) {
+        List<Reel> reels = reelRepository.findAll();
+        for (Reel reel: reels) {
+            if (reel.getUser_id().equals(userId)) {
+                reelRepository.delete(reel);
+            }
+        }
+    }
+
     public boolean deleteReel(Reel reel) {
         reelRepository.delete(reel);
         return true;

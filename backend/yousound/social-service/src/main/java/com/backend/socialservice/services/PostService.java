@@ -13,9 +13,9 @@ import java.util.Optional;
 @Service
 public class PostService {
 
-    @Autowired
     private final PostRepository postRepository;
 
+    @Autowired
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -57,6 +57,15 @@ public class PostService {
             return true;
         }
         return false;
+    }
+
+    public void deleteByUserId(String userId) {
+        List<Post> posts = postRepository.findAll();
+        for (Post post: posts) {
+            if (post.getUser_id().equals(userId)) {
+                postRepository.delete(post);
+            }
+        }
     }
 
     public boolean unlikePost(String id) {

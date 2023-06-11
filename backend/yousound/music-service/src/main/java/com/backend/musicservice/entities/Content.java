@@ -20,22 +20,20 @@ public class Content {
     private Long id;
 
     @NotNull
-    @Size(min = 1, max = 36)
+    @Size(min = 1, max = 50)
     @Column(nullable = false)
     private String name;
 
     @NotNull
-    @Size(min = 1, max = 36)
+    @Size(min = 1, max = 100)
     @Column(nullable = false)
     private String description;
 
     @NotNull
-    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String picture;
 
     @NotNull
-    @Size(min = 1, max = 36)
     @Column(nullable = false)
     private String file;
 
@@ -53,7 +51,7 @@ public class Content {
     private int duration;
 
     public Content(Long id, @NonNull String name, @NonNull String description, @NonNull LocalDate created_at,
-                   @NonNull String picture, String file, int duration) {
+                   @NonNull String picture, @NonNull String file, int duration) {
         this.id = id;
         this.name = name;
         this.description = description;

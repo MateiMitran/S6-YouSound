@@ -99,6 +99,7 @@ public class AuthController {
         }
 
         // Publish the serialized message to the RabbitMQ queue
+
         rabbitTemplate.convertAndSend("user-service-queue", message);
         return ResponseEntity.ok(tokenGenerator.createToken(authentication));
     }

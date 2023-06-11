@@ -20,12 +20,12 @@ public class CommentService {
     @Autowired
     private final CommentRepository commentRepository;
 
-    @Autowired
-    private final LanguageService languageService;
+//    @Autowired
+//    private final LanguageService languageService;
 
     public CommentService(CommentRepository commentRepository,@Value("${api.key}") String apiKey) throws IOException {
         this.commentRepository = commentRepository;
-        this.languageService = new LanguageService(apiKey);
+//        this.languageService = new LanguageService(apiKey);
     }
 
 
@@ -33,9 +33,9 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
-    public Sentiment analyzeTextSentiment(String text) {
-        return languageService.analyzeSentiment(text);
-    }
+//    public Sentiment analyzeTextSentiment(String text) {
+//        return languageService.analyzeSentiment(text);
+//    }
 
     public List<Comment> getComments() { return commentRepository.findAll(); }
 
@@ -56,6 +56,15 @@ public class CommentService {
     public boolean deleteComment(String id) {
         commentRepository.deleteById(id);
         return true;
+    }
+
+    public void deleteByUserId(String userId) {
+        List<Comment> comments = commentRepository.findAll();
+        for (Comment comment: comments) {
+            if (comment.getUser_id().equals(userId)) {
+                commentRepository.delete(comment);
+            }
+        }
     }
 
     public boolean likeComment(String id) {
@@ -85,9 +94,9 @@ public class CommentService {
         return null;
     }
 
-    @PreDestroy
-    public void cleanup() {
-        languageService.close();
-    }
+//    @PreDestroy
+//    public void cleanup() {
+//        languageService.close();
+//    }
 
 }

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/com.backend.yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/com.backend.yousound.music-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/com.backend.yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/com.backend.yousound.security-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/social-service/com.backend.yousound.social-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/social-service/com.backend.yousound.social-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user-service/com.backend.yousound.user-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/user-service/com.backend.yousound.user-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/yousound.api-gateway.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/yousound.music-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/yousound.security-service.main.iml" />

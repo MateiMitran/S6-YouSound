@@ -55,6 +55,10 @@ public class SongService {
         }
     }
 
+    public List<Like> getLikes() {
+        return likeRepository.findAll();
+    }
+
     public List<Song> getLikedSongsOfUser(String user_id) {
         List<Like> likes = likeRepository.findAll();
         List<Song> songs = new ArrayList<>();

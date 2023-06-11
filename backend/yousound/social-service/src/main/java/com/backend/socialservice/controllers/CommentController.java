@@ -26,10 +26,10 @@ public class CommentController {
     @PostMapping("/create")
     public ResponseEntity<?> createComment(@Validated @RequestBody Comment comment) {
 
-        Sentiment sentiment = commentService.analyzeTextSentiment(comment.getContent());
-        if (sentiment.getScore()<0) {
-            return ResponseEntity.badRequest().body("Comment is not allowed on the platform");
-        }
+//        Sentiment sentiment = commentService.analyzeTextSentiment(comment.getContent());
+//        if (sentiment.getScore()<0) {
+//            return ResponseEntity.badRequest().body("Comment is not allowed on the platform");
+//        }
         return ResponseEntity.ok(commentService.createComment(comment));
     }
 

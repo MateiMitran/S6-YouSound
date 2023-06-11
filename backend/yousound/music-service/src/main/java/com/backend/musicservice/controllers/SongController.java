@@ -1,5 +1,6 @@
 package com.backend.musicservice.controllers;
 
+import com.backend.musicservice.entities.Like;
 import com.backend.musicservice.entities.Song;
 import com.backend.musicservice.services.SongService;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import javax.crypto.Cipher;
@@ -66,39 +68,49 @@ public class SongController {
         return ResponseEntity.ok(songService.createSong(song));
     }
 
+    @PostMapping("/{songId}/like/{userId}")
+    public ResponseEntity<Like> addToLikedSongs(@PathVariable Long songId, @PathVariable String userId) {
+        return ResponseEntity.ok(songService.addToLikedSongs(userId, songId));
+    }
+
     @PostMapping("/upload/{id}")
     public ResponseEntity<Boolean> updateSong(@PathVariable Long id, @RequestPart MultipartFile songFile, @RequestPart MultipartFile picture) throws Exception {
-
-        String secretKey = "*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeTh";
         Song song = songService.getSongById(id);
         String fileName = song.getId() + "-" + songFile.getOriginalFilename();
         String pictureName = song.getId() + "-picture-"+ picture.getOriginalFilename();
 
-        String urlSong = encrypt(String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, fileName), secretKey);
+        String urlSong = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, fileName);
 
-        String urlPic = encrypt(String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, pictureName), secretKey);
+        String urlPic = String.format("https://storage.googleapis.com/%s/%s", BUCKET_NAME, pictureName);
 
         song.setFile(urlSong);
         song.setPicture(urlPic);
         songService.createSong(song);
 
-        byte[] songFileEncrypted = encryptFile(songFile.getBytes(), secretKey);
-        byte[] pictureEncrypted = encryptFile(picture.getBytes(), secretKey);
-
         storage.create(BlobInfo.newBuilder(BUCKET_NAME, pictureName)
                         .setContentType("image/jpeg")
                         .build(),
-                pictureEncrypted);
+                picture.getBytes());
 
 
         storage.create(BlobInfo.newBuilder(BUCKET_NAME, fileName)
                         .setContentType("audio/mpeg")
                         .build(),
-               songFileEncrypted);
+                songFile.getBytes());
 
         return ResponseEntity.ok(true);
     }
 
+
+    @GetMapping("/liked/{userId}")
+    public ResponseEntity<List<Song>> getLikedSongs(@PathVariable String userId) {
+        return ResponseEntity.ok(songService.getLikedSongsOfUser(userId));
+    }
+
+    @GetMapping("/liked")
+    public ResponseEntity<List<Like>> getLikes() {
+        return ResponseEntity.ok(songService.getLikes());
+    }
 
     @GetMapping(value="/export/{id}", produces = "text/csv")
     public ResponseEntity<String> exportSongsFromUser(@PathVariable String id) {
@@ -156,8 +168,15 @@ public class SongController {
 
 
     @GetMapping
-    public ResponseEntity<List<Song>> getAllSongs() {
-        return ResponseEntity.ok(songService.getAllSongs());
+    public ResponseEntity<List<Song>> getAllSongs() throws Exception {
+        String secretKey = "*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeTh";
+
+        List<Song> songs = songService.getAllSongs();
+//        for (Song song: songs) {
+//            song.setFile(decrypt(song.getFile(), secretKey));
+//            song.setPicture(decrypt(song.getPicture(), secretKey));
+//        }
+        return ResponseEntity.ok(songs);
     }
 
     @DeleteMapping("/delete/{id}")
