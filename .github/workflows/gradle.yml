@@ -39,7 +39,6 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-        working-directory: backend/yousound
       - name: Test YouSound
         run: |
           cd backend/yousound
