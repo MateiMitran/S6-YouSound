@@ -85,6 +85,7 @@ jobs:
           docker build -f Dockerfile . -t yousoundd/frontend:0.0.2
           docker push yousoundd/frontend:0.0.2
   deploy-to-gcp:
+    needs: build-test-push-docker-image
     runs-on: ubuntu-latest
     container:
       image: google/cloud-sdk:latest
