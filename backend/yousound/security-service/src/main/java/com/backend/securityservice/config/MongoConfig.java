@@ -1,4 +1,4 @@
-package com.backend.socialservice.config;
+package com.backend.securityservice.config;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -19,12 +19,12 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "social";
+        return "users";
     }
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://techwaves6g4:RNTVlJRbgemNZyoW@social.gelu3.mongodb.net/?retryWrites=true&w=majority");
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://techwaves6g4:RNTVlJRbgemNZyoW@user.eardllh.mongodb.net/users?retryWrites=true&w=majority");
         MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString)
                 .build();
@@ -44,6 +44,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     public Collection getMappingBasePackages() {
-        return Collections.singleton("com.backend.socialservice");
+        return Collections.singleton("com.backend.securityservice");
     }
 }

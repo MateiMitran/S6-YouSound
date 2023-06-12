@@ -3,14 +3,10 @@ kind: Deployment
 metadata:
   annotations:
     deployment.kubernetes.io/revision: "1"
-  creationTimestamp: "2023-04-07T14:18:29Z"
-  generation: 1
   labels:
     app: music-service
   name: music-service
   namespace: default
-  resourceVersion: "25103"
-  uid: e0ed1db6-ec8d-4ff0-803b-1ddcc6f55021
 spec:
   progressDeadlineSeconds: 600
   replicas: 2
@@ -25,12 +21,11 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: music-service
     spec:
       containers:
-      - image: yousoundd/music-service:0.0.1
+      - image: gcr.io/flash-surge-386910/music-service:0.0.1
         imagePullPolicy: IfNotPresent
         name: music-service
         resources: {}
@@ -66,37 +61,15 @@ status:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    cloud.google.com/neg: '{"ingress":true}'
-  creationTimestamp: "2023-04-07T14:20:47Z"
-  finalizers:
-    - service.kubernetes.io/load-balancer-cleanup
   labels:
     app: music-service
   name: music-service
   namespace: default
-  resourceVersion: "26426"
-  uid: ff0c163c-259a-48cd-b9d5-9b8befd4258f
 spec:
-  allocateLoadBalancerNodePorts: true
-  clusterIP: 10.84.12.105
-  clusterIPs:
-    - 10.84.12.105
-  externalTrafficPolicy: Cluster
-  internalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
   ports:
-    - nodePort: 30556
-      port: 8081
+    - port: 8081
       protocol: TCP
       targetPort: 8081
   selector:
     app: music-service
-  sessionAffinity: None
-  type: LoadBalancer
-status:
-  loadBalancer:
-    ingress:
-      - ip: 35.238.57.187
+  type: ClusterIP

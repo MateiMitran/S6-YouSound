@@ -33,7 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2'
     implementation 'com.google.cloud:google-cloud-storage:2.22.0'
-    implementation 'com.mysql:mysql-connector-j:8.0.32'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.4'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.0'
     implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
