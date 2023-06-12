@@ -45,7 +45,7 @@ jobs:
           gradle test
       - name: Build the backend application
         run: |
-          cd backend/yousound/security-service
+          cd backend/yousound
           chmod +x gradlew
           ./gradlew build
       - name: docker login
