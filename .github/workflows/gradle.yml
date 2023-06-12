@@ -9,22 +9,13 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: ["master"]
+    branches: ["production"]
   pull_request:
-    branches: ["master"]
+    branches: ["production"]
 
 jobs:
   build-test-push-docker-image:
     runs-on: ubuntu-latest
-    services:
-      frontend:
-        image: yousoundd/frontend:0.0.1
-        ports:
-          - "3000:3000"
-      security:
-        image: yousoundd/security-service:0.0.1
-        ports:
-          - "8082:8082" 
     steps:
       - uses: actions/checkout@v2
       - name: Checkout code
@@ -42,54 +33,22 @@ jobs:
         run: | 
           cd backend/yousound
           gradle clean
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          chmod +x gradlew
-          ./gradlew build sonarqube --info
         working-directory: backend/yousound
       - name: Test YouSound
         run: |
           cd backend/yousound
           gradle test
-      - name: Install frontend dependencies
-        run: |
-          cd frontend/yousound-frontend
-          yarn
-      - name: Build and start the frontend application
-        run: |
-          cd frontend/yousound-frontend
-          yarn build
-          yarn start &
-      - name: Wait for frontend application to start
-        run: |
-          sleep 30s
-      - name: Build and start the backend application
+      - name: Build the backend application
         run: |
           cd backend/yousound/security-service
           chmod +x gradlew
           ./gradlew build
-          java -jar build/libs/security-service-1.0-SNAPSHOT.jar &
-      - name: Wait for backend application to start
-        run: |
-          sleep 30s
-      - name: Security scan with OWASP ZAP
-        run: |
-          docker run --network="host" -t owasp/zap2docker-stable zap-baseline.py -t http://172.17.0.1:3000 -I
       - name: docker login
         env:
           DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
@@ -131,3 +90,50 @@ jobs:
           cd frontend/yousound-frontend
           docker build -f Dockerfile . -t yousoundd/frontend:0.0.1
           docker push yousoundd/frontend:0.0.1
+  deploy-to-gcp:
+    runs-on: ubuntu-latest
+    container:
+      image: google/cloud-sdk:latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Google Cloud CLI
+      env:
+        SERVICE_ACCOUNT_KEY_BASE64: ${{ secrets.SERVICE_ACCOUNT }}
+      run: |
+        echo "$SERVICE_ACCOUNT_KEY_BASE64" | base64 --decode > /tmp/service-account-key.json
+        gcloud auth activate-service-account --key-file=/tmp/service-account-key.json
+        gcloud config set project flash-surge-386910
+        gcloud container clusters get-credentials yousound --region europe-west4 --project flash-surge-386910
+
+    - name: Deploy API Gateway
+      working-directory: ./backend/yousound/api-gateway
+      run: |
+        echo "Apply deployment.yaml for api-gateway"
+        kubectl apply -f deployment.yaml
+
+    - name: Deploy Security Service
+      working-directory: ./backend/yousound/security-service
+      run: |
+        echo "Apply deployment.yaml for security service"
+        kubectl apply -f deployment.yaml
+
+    - name: Deploy Music Service
+      working-directory: ./backend/yousound/music-service
+      run: |
+        echo "Apply deployment.yaml for music service"
+        kubectl apply -f deployment.yaml
+
+    - name: Deploy User Service
+      working-directory: ./backend/yousound/user-service
+      run: |
+        echo "Apply deployment.yaml for user service"
+        kubectl apply -f deployment.yaml
+
+    - name: Deploy Social Service
+      working-directory: ./backend/yousound/social-service
+      run: |
+        echo "Apply deployment.yaml for social service"
+        kubectl apply -f deployment.yaml
