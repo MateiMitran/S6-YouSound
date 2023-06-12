@@ -1,73 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-  labels:
-    app: social-service
   name: social-service
-  namespace: default
 spec:
-  progressDeadlineSeconds: 600
-  replicas: 2
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: social-service
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: social-service
     spec:
       containers:
-        - image: gcr.io/flash-surge-386910/social-service:0.0.1
-          imagePullPolicy: IfNotPresent
+        - image: yousoundd/social-service:0.0.2
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8085
           name: social-service
-          resources: {}
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
-      terminationGracePeriodSeconds: 30
-status:
-  availableReplicas: 1
-  conditions:
-    - lastTransitionTime: "2023-04-07T14:18:43Z"
-      lastUpdateTime: "2023-04-07T14:18:43Z"
-      message: Deployment has minimum availability.
-      reason: MinimumReplicasAvailable
-      status: "True"
-      type: Available
-    - lastTransitionTime: "2023-04-07T14:18:29Z"
-      lastUpdateTime: "2023-04-07T14:18:43Z"
-      message: ReplicaSet "social-service" has successfully progressed.
-      reason: NewReplicaSetAvailable
-      status: "True"
-      type: Progressing
-  observedGeneration: 1
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: social-service
   name: social-service
-  namespace: default
 spec:
   ports:
-    - port: 8085
+    - port: 80
       protocol: TCP
       targetPort: 8085
   selector:
