@@ -48,6 +48,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
                 throw new RuntimeException("Incorrect authorization structure");
             }
 
+            log.info("Hello there");
             log.info(webClientBuilder.build()
                     .get()
                     .uri("http://security-service.default.svc.cluster.local/api/auth/validate?token=" + parts[1])
