@@ -49,17 +49,10 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
             }
 
             log.info("Hello there");
-            log.info(webClientBuilder.build()
-                    .get()
-                    .uri("http://security-service.default.svc.cluster.local/api/auth/validate?token=" + parts[1])
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + parts[1])
-                    .retrieve()
-                    .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(), resp -> Mono.error(new RuntimeException("Unexpected status")))
-                    .bodyToMono(UserDTO.class).toString());
+
             Mono<UserDTO> originalRequest = webClientBuilder.build()
                     .get()
                     .uri("http://security-service.default.svc.cluster.local/api/auth/validate?token=" + parts[1])
-                    .header(HttpHeaders.AUTHORIZATION, "Bearer " + parts[1])
                     .retrieve()
                     .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(), resp -> Mono.error(new RuntimeException("Unexpected status")))
                     .bodyToMono(UserDTO.class);
