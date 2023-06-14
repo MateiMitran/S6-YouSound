@@ -27,9 +27,6 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
 
     Logger log = LoggerFactory.getLogger(AuthFilter.class);
 
-    @Autowired
-    private CircuitBreakerRegistry circuitBreakerRegistry;
-
     private final WebClient.Builder webClientBuilder;
 
     public AuthFilter(WebClient.Builder webClientBuilder) {
