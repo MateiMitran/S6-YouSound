@@ -51,13 +51,6 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
                 throw new RuntimeException("Incorrect authorization structure");
             }
 
-            // Creating the Circuit Breaker
-            CircuitBreaker circuitBreaker = circuitBreakerRegistry.circuitBreaker("securityService");
-
-            // Decorating the retrieve function with Circuit Breaker
-            Function<ClientResponse, Mono<UserDTO>> decoratedRetrieve = CircuitBreaker
-                    .decorateFunction(circuitBreaker, response -> response.bodyToMono(UserDTO.class));
-
             System.out.println("Hello there");
             Mono<UserDTO> originalRequest = webClientBuilder.build()
                     .get()
@@ -68,7 +61,6 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
                     .bodyToMono(UserDTO.class);
 
             return originalRequest
-                    .onErrorResume(e -> fallbackMethod(e, exchange, chain))
                     .map(userDTO -> {
                         exchange.getRequest()
                                 .mutate()
@@ -79,28 +71,6 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
         };
     }
 
-    private Mono<UserDTO> fallbackMethod(Throwable e, ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.error("Security service is currently unavailable", e);
-        String token = extractToken(exchange);
-        return callServerlessFunction(token);
-    }
-
-    private String extractToken(ServerWebExchange exchange) {
-        String authHeader = Objects.requireNonNull(exchange.getRequest().getHeaders().get(org.springframework.http.HttpHeaders.AUTHORIZATION)).get(0);
-        String[] parts = authHeader.split(" ");
-        return parts[1];
-    }
-
-    private Mono<UserDTO> callServerlessFunction(String token) {
-        log.info(token);
-        return webClientBuilder.build()
-                .get()
-                .uri("http://europe-west1-brave-drummer-386508.cloudfunctions.net/validateToken/api/auth/validate?token=" + token)
-                .header(HttpHeaders.ACCEPT, "*/*")
-                .retrieve()
-                .onStatus(status -> status.is4xxClientError() || status.is5xxServerError(), resp -> Mono.error(new RuntimeException("Unexpected status from serverless function")))
-                .bodyToMono(UserDTO.class);
-    }
     public static class Config {
 
     }
