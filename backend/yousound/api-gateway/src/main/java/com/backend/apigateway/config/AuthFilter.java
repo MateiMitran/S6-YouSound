@@ -58,6 +58,7 @@ public class AuthFilter extends AbstractGatewayFilterFactory<Object> {
             Function<ClientResponse, Mono<UserDTO>> decoratedRetrieve = CircuitBreaker
                     .decorateFunction(circuitBreaker, response -> response.bodyToMono(UserDTO.class));
 
+            System.out.println("Hello there");
             Mono<UserDTO> originalRequest = webClientBuilder.build()
                     .get()
                     .uri("http://security-service.default.svc.cluster.local/api/auth/validate?token=" + parts[1])

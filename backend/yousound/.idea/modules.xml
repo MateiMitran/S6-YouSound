@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/backend.yousound.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/backend.yousound.api-gateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/backend.yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/backend.yousound.music-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/backend.yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/backend.yousound.security-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/social-service/backend.yousound.social-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/social-service/backend.yousound.social-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/api-gateway/com.backend.yousound.api-gateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api-gateway/com.backend.yousound.api-gateway.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/music-service/com.backend.yousound.music-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/music-service/com.backend.yousound.music-service.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/security-service/com.backend.yousound.security-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/security-service/com.backend.yousound.security-service.main.iml" />
