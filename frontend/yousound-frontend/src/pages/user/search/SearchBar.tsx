@@ -18,7 +18,7 @@ const SearchBar: React.FC = () => {
   const fetchSearchResults = async (query: String) => {
     if (query.trim() !== "") {
       const response = await axios.get(
-        `http://${process.env.REACT_APP_HOST}:8080/api/search?query=${query}`, { headers: AuthHeader() }
+        `http://${process.env.REACT_APP_HOST}/api/search?query=${query}`, { headers: AuthHeader() }
       );
       setSearchResults(response.data);
     } else {

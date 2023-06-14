@@ -30,7 +30,7 @@ jobs:
         with:
           node-version: 14
       - name: Gradle Clean
-        run: | 
+        run: |
           cd backend/yousound
           gradle clean
       - name: Cache Gradle packages
@@ -50,8 +50,8 @@ jobs:
           ./gradlew build
       - name: docker login
         env:
-          DOCKER_USERNAME: '${{ secrets.DOCKER_USERNAME }}'
-          DOCKER_PASSWORD: '${{ secrets.DOCKER_PASSWORD }}'
+          DOCKER_USERNAME: "${{ secrets.DOCKER_USERNAME }}"
+          DOCKER_PASSWORD: "${{ secrets.DOCKER_PASSWORD }}"
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - name: Build and Push Api Gateway
@@ -79,11 +79,6 @@ jobs:
           cd backend/yousound/user-service
           docker build -f Dockerfile . -t yousoundd/user-service:0.0.2
           docker push yousoundd/user-service:0.0.2
-      - name: Build and Push Frontend
-        run: |
-          cd frontend/yousound-frontend
-          docker build -f Dockerfile . -t yousoundd/frontend:0.0.2
-          docker push yousoundd/frontend:0.0.2
   deploy-to-gcp:
     needs: build-test-push-docker-image
     runs-on: ubuntu-latest
@@ -91,44 +86,49 @@ jobs:
       image: google/cloud-sdk:latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Setup Google Cloud CLI
-      env:
-        SERVICE_ACCOUNT_KEY_BASE64: ${{ secrets.SERVICE_ACCOUNT }}
-      run: |
-        echo "$SERVICE_ACCOUNT_KEY_BASE64" | base64 --decode > /tmp/service-account-key.json
-        gcloud auth activate-service-account --key-file=/tmp/service-account-key.json
-        gcloud config set project flash-surge-386910
-        gcloud container clusters get-credentials yousound --region europe-west4 --project flash-surge-386910
+      - name: Setup Google Cloud CLI
+        env:
+          SERVICE_ACCOUNT_KEY_BASE64: ${{ secrets.SERVICE_ACCOUNT }}
+        run: |
+          echo "$SERVICE_ACCOUNT_KEY_BASE64" | base64 --decode > /tmp/service-account-key.json
+          gcloud auth activate-service-account --key-file=/tmp/service-account-key.json
+          gcloud config set project flash-surge-386910
+          gcloud container clusters get-credentials yousound --region europe-west4 --project flash-surge-386910
 
-    - name: Deploy API Gateway
-      working-directory: ./backend/yousound/api-gateway
-      run: |
-        echo "Apply deployment.yaml for api-gateway"
-        kubectl apply -f deployment.yaml
+      - name: Deploy API Gateway
+        working-directory: ./backend/yousound/api-gateway
+        run: |
+          echo "Apply deployment.yaml for api-gateway"
+          kubectl delete -f deployment.yaml
+          kubectl apply -f deployment.yaml
 
-    - name: Deploy Security Service
-      working-directory: ./backend/yousound/security-service
-      run: |
-        echo "Apply deployment.yaml for security service"
-        kubectl apply -f deployment.yaml
+      - name: Deploy Security Service
+        working-directory: ./backend/yousound/security-service
+        run: |
+          echo "Apply deployment.yaml for security service"
+          kubectl delete -f deployment.yaml
+          kubectl apply -f deployment.yaml
 
-    - name: Deploy Music Service
-      working-directory: ./backend/yousound/music-service
-      run: |
-        echo "Apply deployment.yaml for music service"
-        kubectl apply -f deployment.yaml
+      - name: Deploy Music Service
+        working-directory: ./backend/yousound/music-service
+        run: |
+          echo "Apply deployment.yaml for music service"
+          kubectl delete -f deployment.yaml
+          kubectl apply -f deployment.yaml
 
-    - name: Deploy User Service
-      working-directory: ./backend/yousound/user-service
-      run: |
-        echo "Apply deployment.yaml for user service"
-        kubectl apply -f deployment.yaml
+      - name: Deploy User Service
+        working-directory: ./backend/yousound/user-service
+        run: |
+          echo "Apply deployment.yaml for user service"
+          kubectl delete -f deployment.yaml
+          kubectl apply -f deployment.yaml
 
-    - name: Deploy Social Service
-      working-directory: ./backend/yousound/social-service
-      run: |
-        echo "Apply deployment.yaml for social service"
-        kubectl apply -f deployment.yaml
+      - name: Deploy Social Service
+        working-directory: ./backend/yousound/social-service
+        run: |
+          echo "Apply deployment.yaml for social service"
+          kubectl delete -f deployment.yaml
+          kubectl apply -f deployment.yaml

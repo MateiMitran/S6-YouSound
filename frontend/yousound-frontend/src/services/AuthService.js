@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://" + process.env.REACT_APP_HOST + ":8080/api/auth/";
+const API_URL = "http://" + process.env.REACT_APP_HOST + ":80/api/auth/";
 
 export const authenticateUser = (username, password) => {
   return (dispatch) => {

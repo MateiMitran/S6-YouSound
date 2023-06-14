@@ -7,7 +7,7 @@ import {
 } from "../types";
 import { AuthHeader } from "./AuthHeader";
 
-const API_URL = "http://"+ process.env.REACT_APP_HOST + ":8080/api/music";
+const API_URL = "http://"+ process.env.REACT_APP_HOST + ":80/api/music";
 
 export abstract class MusicService {
   public static async getAllSongs(): Promise<SongEntity[]> {
