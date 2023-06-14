@@ -48,6 +48,7 @@ public class UserController {
     @DeleteMapping("/delete-all/{userId}")
     public ResponseEntity<?> deleteAllData(@PathVariable String userId) {
         System.out.println((String) rabbitTemplate.convertSendAndReceive(fanoutExchange.getName(),"", userId));
+        userService.deleteUserById(userId);
         return ResponseEntity.ok(true);
     }
 

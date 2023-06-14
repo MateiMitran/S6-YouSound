@@ -57,9 +57,6 @@ public class SongController {
     public ResponseEntity<Song> getSongById(@PathVariable Long id) throws Exception {
 
         Song song = songService.getSongById(id);
-        String secretKey = "*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeTh";
-        song.setFile(decrypt(song.getFile(), secretKey));
-        song.setPicture(decrypt(song.getPicture(), secretKey));
         return ResponseEntity.ok(song);
     }
 
@@ -200,7 +197,7 @@ public class SongController {
         SecretKeySpec key = new SecretKeySpec(secretKey.getBytes(), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, key);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
     }
 
     private String decrypt(String strToDecrypt, String secretKey) throws Exception {

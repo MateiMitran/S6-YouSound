@@ -1,0 +1,38 @@
+-> Show frontend
+
+REQUESTS
+
+-> Get Users
+http://34.147.115.9/api/users
+-> Get All Songs
+http://34.147.115.9/api/music/songs
+-> Login
+http://34.147.115.9/api/auth/login
+{
+    "username": "john",
+    "password": "1234"
+}
+-> Like Song
+http://34.147.115.9/api/music/songs/33/like/648a135f21896a16d0afe019
+-> Delete All From User
+http://34.147.115.9/api/users/delete-all/648a135f21896a16d0afe019
+-> Get Liked Songs
+http://34.147.115.9/api/music/songs/liked/648a135f21896a16d0afe019
+-> Export Liked Songs
+http://34.147.115.9/api/music/songs/export/648a135f21896a16d0afe019
+-> Song Analytics
+https://europe-west1-brave-drummer-386508.cloudfunctions.net/musicAnalytics
+{
+        "id": 33,
+        "name": "Took her to the O",
+        "description": "King Von Song",
+        "picture": "https://storage.googleapis.com/yousound-bucket/33-picture-King_Von_-_Took_Her_To_The_O.jpg",
+        "file": "https://storage.googleapis.com/yousound-bucket/33-king_von_took_her_to_the_o_official_video_mp3_47528.mp3",
+        "created_at": "2023-06-13",
+        "likes": 0,
+        "duration": 200,
+        "genre": "Hip-Hop",
+        "album_id": null,
+        "artist_id": "Tzanca Uraganul",
+        "plays": 0
+    }

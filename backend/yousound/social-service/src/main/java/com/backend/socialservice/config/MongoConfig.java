@@ -19,7 +19,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "social";
+        return "users";
     }
 
     @Override
