@@ -30,10 +30,7 @@ public class WebSecurity {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/all", "/api/delete/**").hasAuthority("ROLE_ADMIN")
-                                .requestMatchers("/api/music/songs/create", "/api/music/songs/upload/**", "/api/music/songs/delete/**", "/api/music/albums/create").hasAuthority("ROLE_ARTIST")
-                                .requestMatchers("/actuator/prometheus").permitAll()
-                                .anyRequest().hasAuthority("ROLE_USER")
+                                .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer()
                 .jwt()
