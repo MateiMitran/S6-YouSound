@@ -1,7 +1,7 @@
 import axios from "axios";
 import { UserEntity } from "../types";
 
-const API_URL = "http://"+ process.env.REACT_APP_HOST + ":80/api/users";
+const API_URL = "http://"+ process.env.REACT_APP_HOST + "/api/users";
 
 
 export abstract class UserService {
