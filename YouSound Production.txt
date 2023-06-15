@@ -3,23 +3,22 @@
 REQUESTS
 
 -> Get Users
-http://34.147.115.9/api/users
+http://34.147.65.137/api/users
 -> Get All Songs
-http://34.147.115.9/api/music/songs
+http://34.147.65.137/api/music/songs
 -> Login
-http://34.147.115.9/api/auth/login
+http://34.147.65.137/api/auth/login
 {
     "username": "john",
     "password": "1234"
 }
 -> Like Song
-http://34.147.115.9/api/music/songs/33/like/648a135f21896a16d0afe019
--> Delete All From User
-http://34.147.115.9/api/users/delete-all/648a135f21896a16d0afe019
+http://34.147.65.137/api/music/songs/33/like/648a135f21896a16d0afe019
+
 -> Get Liked Songs
-http://34.147.115.9/api/music/songs/liked/648a135f21896a16d0afe019
+http://34.147.65.137/api/music/songs/liked/648a135f21896a16d0afe019
 -> Export Liked Songs
-http://34.147.115.9/api/music/songs/export/648a135f21896a16d0afe019
+http://34.147.65.137/api/music/songs/export/648a135f21896a16d0afe019
 -> Song Analytics
 https://europe-west1-brave-drummer-386508.cloudfunctions.net/musicAnalytics
 {
@@ -36,3 +35,6 @@ https://europe-west1-brave-drummer-386508.cloudfunctions.net/musicAnalytics
         "artist_id": "Tzanca Uraganul",
         "plays": 0
     }
+
+-> Delete All From User
+http://34.147.65.137/api/users/delete-all/648a135f21896a16d0afe019

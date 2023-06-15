@@ -194,7 +194,7 @@ export const LoginPage: React.FC = (props: any) => {
                 fontSize: "15px",
                 fontWeight: "bold",
                 mt: "10%",
-                mb: 2,
+                mb: 1,
                 ml: "15%",
               }}
               onClick={() => handleSubmit}
@@ -209,7 +209,7 @@ export const LoginPage: React.FC = (props: any) => {
                 textTransform: "none",
                 fontSize: "15px",
                 fontWeight: "bold",
-                mb: 2,
+                mb: 1,
                 ml: "15%",
               }}
             >
